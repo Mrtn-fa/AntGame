@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://07k7un0jp1gw"]
 
-[ext_resource type="Script" path="res://scenes/Camera.gd" id="1_f3bad"]
+[ext_resource type="Script" path="res://scenes/ui/Camera.gd" id="1_f3bad"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d61vf"]
 bg_color = Color(0.282353, 0.670588, 0.678431, 0.52549)

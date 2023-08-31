@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5qwtd2baq8wj"]
+
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_1j4km"]
+[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="2_bnkhn"]
+[ext_resource type="PackedScene" uid="uid://b46exseulygk6" path="res://scenes/components/HitboxComponent.tscn" id="3_pmxlw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h182m"]
+size = Vector2(64, 64)
+
+[node name="termite_worker" type="CharacterBody2D"]
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_bnkhn")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_pmxlw")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_h182m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_1j4km")
