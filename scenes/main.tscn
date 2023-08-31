@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5hufqs7sbm01"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
+[ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player.tscn" id="2_e1311"]
+[ext_resource type="Script" path="res://scenes/Camera.gd" id="3_2be4l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d61vf"]
+bg_color = Color(0.282353, 0.670588, 0.678431, 0.52549)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.145098, 0.360784, 0.772549, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ysfbh")
+player_scene = ExtResource("2_e1311")
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="SelectionRectangle" type="Panel" parent="UI"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_d61vf")
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("3_2be4l")
