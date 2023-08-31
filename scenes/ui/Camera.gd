@@ -14,23 +14,25 @@ var is_dragging = false
 signal area_seleced
 signal start_move_selection
 
-# Camera pan/zoom
-var camera_target = Vector2(position.x, position.y)
+# Camera pan
 var PAN_SPEED = 500.0
 var PAN_FACTOR = 0.0001
+var PAN_MARGIN = 20
+var pan_target = Vector2(position.x, position.y)
+
+# Camera zoom
 var ZOOM_SPEED = 20
-var ZOOM_MIN = 0.5
-var ZOOM_MAX = 2.0
+var ZOOM_MIN = 0.75
+var ZOOM_MAX = 2
 var ZOOM_FACTOR = 0.1
 var zoom_value = 1.0
 var zoom_target = zoom_value
 
 
 func draw_selection_rectangle(s=true):
-	selection_rectangle.size = Vector2(drag_start_vector - drag_end_vector).abs()
+	selection_rectangle.size = Vector2(drag_start_vector - drag_end_vector).abs() * int(s)
 	var pos = Vector2(min(drag_start_vector.x, drag_end_vector.x), min(drag_start_vector.y, drag_end_vector.y))
 	selection_rectangle.position = pos
-	selection_rectangle.size *= int(s)
 
 
 func process_selection_rectangle():
@@ -52,13 +54,21 @@ func process_selection_rectangle():
 
 
 func process_camera(delta: float) -> void:
-	var position_delta = Input.get_vector("PanLeft", "PanRight", "PanUp", "PanDown") * PAN_SPEED * delta / zoom_value
-	camera_target += position_delta
-	position = Util.damp(position, camera_target, PAN_FACTOR, delta)
+	if not is_dragging:
+		var viewport_size = get_viewport_rect().size
+		var pan_axis = Input.get_vector("PanLeft", "PanRight", "PanUp", "PanDown")
+		pan_axis.x += int(mouse_position.x > viewport_size.x - PAN_MARGIN) - int(mouse_position.x < PAN_MARGIN)
+		pan_axis.y += int(mouse_position.y > viewport_size.y - PAN_MARGIN) - int(mouse_position.y < PAN_MARGIN)
+		pan_axis = pan_axis.normalized()
+		
+		var pan_delta = pan_axis * PAN_SPEED * delta / zoom_value
+		pan_target += pan_delta
+		
+		var zoom_axis = int(Input.is_action_just_released("ZoomIn")) - int(Input.is_action_just_released("ZoomOut"))
+		var zoom_delta = zoom_axis * ZOOM_SPEED * delta
+		zoom_target += zoom_delta
 	
-	var zoom_axis = int(Input.is_action_just_released("ZoomIn")) - int(Input.is_action_just_released("ZoomOut"))
-	var zoom_delta = zoom_axis * ZOOM_SPEED * delta
-	zoom_target += zoom_delta
+	position = Util.damp(position, pan_target, PAN_FACTOR, delta)
 	zoom_target = clamp(zoom_target, ZOOM_MIN, ZOOM_MAX)
 	zoom_value = Util.log_damp(zoom_value, zoom_target, ZOOM_FACTOR, delta)
 	zoom.x = zoom_value
