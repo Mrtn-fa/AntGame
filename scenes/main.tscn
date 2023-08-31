@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=6 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player.tscn" id="2_e1311"]
 [ext_resource type="Script" path="res://scenes/ui/Camera.gd" id="3_2be4l"]
+[ext_resource type="Texture2D" uid="uid://crni47kwkm4kq" path="res://resources/sprites/WFkXPW.png" id="4_u27wq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d61vf"]
 bg_color = Color(0.282353, 0.670588, 0.678431, 0.52549)
@@ -29,4 +30,9 @@ player_scene = ExtResource("2_e1311")
 theme_override_styles/panel = SubResource("StyleBoxFlat_d61vf")
 
 [node name="Camera" type="Camera2D" parent="."]
+position_smoothing_speed = 25.0
 script = ExtResource("3_2be4l")
+
+[node name="world_placeholder" type="Sprite2D" parent="."]
+position = Vector2(-2, 23)
+texture = ExtResource("4_u27wq")
