@@ -3,15 +3,38 @@ extends Node2D
 @export var player_scene: PackedScene
 @onready var players: Node2D = $Players
 
+var units = []
+var unit_scene = preload("res://scenes/units/unit.tscn")
 
 func _ready() -> void:
+	Util.main = self
+	
+	# Multiplayer
 	for player_data in Game.players:
 		var player = player_scene.instantiate()
 		players.add_child(player)
 		player.setup(player_data)
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+@rpc("any_peer")
+func spawn_server(pos, type):
+	var unit = unit_scene.instantiate()
+	#unit.position = pos
+	var player_id = multiplayer.get_remote_sender_id()
+
+	if player_id == 0:
+		player_id = 1
+		
+	$Units.add_child(unit, true)
+	
+	unit.initialize.rpc(pos, player_id)
+
+
+func spawn_unit(pos, type):
+	if is_multiplayer_authority():
+		spawn_server(pos, type)
+	else:
+		spawn_server.rpc(pos, type)

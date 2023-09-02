@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyn8dcsupiohn"]
+
+[ext_resource type="Script" path="res://scenes/units/unit.gd" id="1_3bexo"]
+[ext_resource type="Texture2D" uid="uid://bkanwmbk50h85" path="res://resources/sprites/placeholderant.png" id="1_hvpik"]
+[ext_resource type="PackedScene" uid="uid://cqc3gxl3u2men" path="res://scenes/components/SelectorComponent.tscn" id="2_4uaex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tjw18"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4y7av"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/sync = false
+properties/0/watch = false
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
+[node name="Unit" type="CharacterBody2D" groups=["units"]]
+script = ExtResource("1_3bexo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hvpik")
+
+[node name="SelectorComponent" parent="." instance=ExtResource("2_4uaex")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tjw18")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_4y7av")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

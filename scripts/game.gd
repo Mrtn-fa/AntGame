@@ -92,6 +92,11 @@ func _exit_tree():
 
 
 class PlayerData:
+	var colors = {
+		Role.ROLE_A: Color.MEDIUM_PURPLE,
+		Role.ROLE_B: Color.YELLOW
+	}
+	
 	var id: int
 	var name: String
 	var role: Role
@@ -107,3 +112,6 @@ class PlayerData:
 			"name": name,
 			"role": role
 		}
+	
+	func get_color():
+		return colors[role]
