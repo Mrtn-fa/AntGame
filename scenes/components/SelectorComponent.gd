@@ -33,7 +33,9 @@ func set_selected(new_value: bool):
 func _ready():
 	var rect_size = parent_sprite.texture.get_size() * parent_sprite.scale + Vector2(MARGIN, MARGIN)
 	rectangle.size = rect_size
-	rectangle.position = -rect_size / 2
+	rectangle.position.x = -rect_size.x / 2
+	rectangle.position.y = 2
+	rectangle.scale.y = 0.5
 	set_selected(false)
 	Util.unit_controller.subscribe(self)
 

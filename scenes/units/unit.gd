@@ -2,7 +2,7 @@ class_name Unit extends CharacterBody2D
 
 var speed = 50
 var target = Vector2()
-
+var previous_position = Vector2.ZERO
 
 @export var player_id: int
 
@@ -30,10 +30,19 @@ func initialize(pos, id):
 #			-> Resource: Gather
 #			-> Nothing: move
 func _physics_process(delta):
+	previous_position = position
 	if is_multiplayer_authority():
 		velocity = position.direction_to(target) * speed
+		if velocity.x < 0:
+			$Sprite2D.flip_h = true
+		elif velocity.x > 0:
+			$Sprite2D.flip_h = false
+
 	if position.distance_to(target) > 20:
 		move_and_slide()
 	
 func _process(delta):
-	position += Vector2(randi_range(-10, 10), randi_range(-10, 10)) * delta
+	pass
+	#$Sprite2D.position += Vector2(randi_range(-10, 10), randi_range(-10, 10)) * delta
+	#$Sprite2D.position.x = clamp($Sprite2D.position.x, -6, 6)
+	#$Sprite2D.position.y = clamp($Sprite2D.position.y, -6, 6)

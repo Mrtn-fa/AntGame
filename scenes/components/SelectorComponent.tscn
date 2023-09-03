@@ -10,11 +10,18 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0.882353, 0.929412, 1)
 border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="SelectorComponent" type="Node2D" groups=["selectors"]]
 script = ExtResource("1_a23lu")
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -11.0
+offset_top = 1.0
+offset_right = 29.0
+offset_bottom = 41.0
+scale = Vector2(1, 0.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_24xdr")
