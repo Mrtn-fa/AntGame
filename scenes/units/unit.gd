@@ -11,7 +11,6 @@ func _ready():
 	
 func set_target(new_target):
 	target = new_target
-	print(target)
 
 
 @rpc("any_peer", "call_local")
@@ -31,7 +30,8 @@ func initialize(pos, id):
 #			-> Resource: Gather
 #			-> Nothing: move
 func _physics_process(delta):
-	velocity = position.direction_to(target) * speed
+	if is_multiplayer_authority():
+		velocity = position.direction_to(target) * speed
 	if position.distance_to(target) > 20:
 		move_and_slide()
 	

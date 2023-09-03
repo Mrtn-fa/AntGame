@@ -6,13 +6,13 @@ var mouse_position_global = Vector2()
 var mouse_in_window
 
 # Camera pan
-var PAN_SPEED = 500.0
+var PAN_SPEED = 400.0
 var PAN_FACTOR = 0.0001
 var PAN_MARGIN = 5
 var pan_target = Vector2(position.x, position.y)
 
 # Camera zoom
-var ZOOM_SPEED = 20
+var ZOOM_SPEED = 8
 var ZOOM_MIN = 0.75
 var ZOOM_MAX = 2
 var ZOOM_FACTOR = 0.1
