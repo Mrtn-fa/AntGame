@@ -4,10 +4,6 @@ var unit_controller = null
 var main = null
 
 
-func _ready():
-	Debug.dprint("yooo")
-
-
 func damp(current, target, factor, delta):
 	var K = 1 - pow(factor, delta)
 	return lerp(current, target, K)
