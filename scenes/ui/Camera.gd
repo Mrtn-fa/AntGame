@@ -5,9 +5,6 @@ var mouse_position = Vector2()
 var mouse_position_global = Vector2()
 var mouse_in_window
 
-# Rectangle Selection
-@onready var selection_rectangle = $"../SelectionRectangle"
-
 # Camera pan
 var PAN_SPEED = 500.0
 var PAN_FACTOR = 0.0001
@@ -24,7 +21,7 @@ var zoom_target = zoom_value
 
 
 func process_camera(delta: float) -> void:
-	if not selection_rectangle.is_dragging:
+	if not Util.unit_controller.is_dragging:
 		var viewport_size = get_viewport_rect().size
 		var pan_axis = Input.get_vector("PanLeft", "PanRight", "PanUp", "PanDown")
 		

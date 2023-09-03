@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player.tscn" id="2_e1311"]
-[ext_resource type="PackedScene" uid="uid://dicoaqb7lsufr" path="res://scenes/ui/SelectionRectangle.tscn" id="3_f4hhl"]
+[ext_resource type="PackedScene" uid="uid://80podmheqick" path="res://scenes/ui/UnitController.tscn" id="3_f4hhl"]
 [ext_resource type="PackedScene" uid="uid://dvbhjn34wcqk" path="res://scenes/ui/Camera.tscn" id="3_p7ey0"]
 [ext_resource type="Texture2D" uid="uid://crni47kwkm4kq" path="res://resources/sprites/WFkXPW.png" id="4_u27wq"]
 
@@ -18,11 +18,11 @@ player_scene = ExtResource("2_e1311")
 position = Vector2(-2, 23)
 texture = ExtResource("4_u27wq")
 
-[node name="SelectionRectangle" parent="." instance=ExtResource("3_f4hhl")]
-
 [node name="Camera" parent="." instance=ExtResource("3_p7ey0")]
 
 [node name="Units" type="Node" parent="."]
+
+[node name="UnitController" parent="." instance=ExtResource("3_f4hhl")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/units/unit.tscn")

@@ -1,6 +1,6 @@
 extends Node
 
-var selection_rectangle = null
+var unit_controller = null
 var main = null
 
 

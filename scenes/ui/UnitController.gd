@@ -1,64 +1,64 @@
 extends Node2D
 
+# Rectangle
 @onready var rectangle = $Panel
-
+var mouse_position = Vector2()
+var mouse_position_global = Vector2()
 var drag_start = Vector2.ZERO
 var drag_end = Vector2.ZERO
-var is_dragging = false
 var bottom_right = Vector2.ZERO
-
+var is_dragging = false
 var selection_box = Rect2()
 
-var selected = []
-
-var selection_components = {}
-
+# Selection Components
+var selected_units = []
+var selection_components = {}  # (set)
 func subscribe(node):
 	selection_components[node] = null
 func unsubscribe(node):
 	selection_components.erase(node)
 
 
-# O(unidades) pero debería ser posible O(unidades log(unidades))
 func select_area():
-	selected = []
+	# TODO: discriminar por tipo
+	selected_units = []
 	for node in selection_components:
 		if node.get_player_id() == multiplayer.get_unique_id():
 			if (node.global_position.x > position.x and node.global_position.x < bottom_right.x \
 					and node.global_position.y > position.y and node.global_position.y < bottom_right.y):
-				selected.append(node)
+				selected_units.append(node)
 				node.set_selected(true)
 			else:
 				node.set_selected(false)
 
+
 func select_point():
-	selected = []
+	selected_units = []
 	var selection_found = false
 	for node in selection_components:
 		if node.get_player_id() == multiplayer.get_unique_id():
 			if selection_found:
 				node.set_selected(false)
 			if node.get_rect().has_point(drag_end):
-				selected.append(node)
+				selected_units.append(node)
 				node.set_selected(true)
 				selection_found = true
 			else:
 				node.set_selected(false)
-	
+
 
 func draw(visible = true):
 	position = Vector2(min(drag_start.x, drag_end.x), min(drag_start.y, drag_end.y))
 	var rect_size = Vector2(drag_start - drag_end).abs() * int(visible)
 	rectangle.size = rect_size
 
+
 func get_selection():
 	position += Vector2(1, 1)
-
-var mouse_position = Vector2()
-var mouse_position_global = Vector2()
+	
 
 func _ready():
-	Util.selection_rectangle = self
+	Util.unit_controller = self
 	draw(false)
 
 func _input(event):

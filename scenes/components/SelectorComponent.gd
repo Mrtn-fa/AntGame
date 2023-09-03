@@ -5,6 +5,10 @@ extends Node2D
 var MARGIN = 6
 var selected = false
 
+# Moving
+# Working/Fighting
+# Idle
+
 func get_player_id():
 	return get_parent().player_id
 
@@ -31,8 +35,8 @@ func _ready():
 	rectangle.size = rect_size
 	rectangle.position = -rect_size / 2
 	set_selected(false)
-	Util.selection_rectangle.subscribe(self)
+	Util.unit_controller.subscribe(self)
 
 
 func _exit_tree():
-	Util.selection_rectangle.unsubscribe(self)
+	Util.unit_controller.unsubscribe(self)

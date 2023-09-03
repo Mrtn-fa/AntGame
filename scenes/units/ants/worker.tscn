@@ -24,7 +24,3 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_3i8ba")
 
 [node name="SelectorComponent" parent="." instance=ExtResource("4_d4pfi")]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
