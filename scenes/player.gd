@@ -19,6 +19,3 @@ func _input(event: InputEvent) -> void:
 			test.rpc_id(1)
 		if event.is_action_pressed("DebugSpawnWorker"):
 			Util.main.spawn_unit(get_global_mouse_position(), null)
-		if event.is_action_released("Command"):
-			Debug.dprint("Command")
-			pass
