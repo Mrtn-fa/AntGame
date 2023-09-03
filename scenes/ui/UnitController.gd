@@ -84,4 +84,7 @@ func _process(delta: float) -> void:
 			select_point()
 		is_dragging = false
 		draw(false)
-
+	
+	if Input.is_action_just_released("Command"):
+		for unit in selected_units:
+			unit.get_parent().set_target(get_global_mouse_position())

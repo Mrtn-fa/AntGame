@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 @rpc("any_peer")
 func spawn_server(pos, type):
 	var unit = unit_scene.instantiate()
+	unit.set_target(pos)
 	#unit.position = pos
 	var player_id = multiplayer.get_remote_sender_id()
 
