@@ -3,14 +3,33 @@ class_name Unit extends CharacterBody2D
 var speed = 50
 var target = Vector2()
 var previous_position = Vector2.ZERO
+var atk = 2
+var material_count = 0
 
 @export var player_id: int
+@export var Mat: uMaterial
+@export var health: HealthComponent
 
 func _ready():
 	randomize()
 	
 func set_target(new_target):
 	target = new_target
+
+
+func attack(to: Node):
+	if is_instance_of(to, Unit):
+		Debug.dprint("Unit attacked")
+	elif is_instance_of(to, uMaterial):
+		Debug.dprint("Material attacked")
+		
+func receive(from: Node):
+	if is_instance_of(from, Unit):
+		health.get_damage(from)
+		print("unit receive damage")
+	elif is_instance_of(from, uMaterial):
+		self.material_count += atk
+		print("unit received material")
 
 
 @rpc("any_peer", "call_local")

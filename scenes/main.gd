@@ -40,3 +40,13 @@ func spawn_unit(pos, type):
 		spawn_server(pos, type)
 	else:
 		spawn_server.rpc(pos, type)
+
+@rpc("any_peer", "call_local")
+func despawn_node_server(node: Node):
+	node.rip.rpc()
+
+func despawn_node(node: Node):
+	if is_multiplayer_authority():
+		despawn_node_server(node)
+	else:
+		despawn_node_server.rpc(node)

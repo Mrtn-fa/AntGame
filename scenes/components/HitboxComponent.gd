@@ -3,6 +3,6 @@ class_name HitboxComponent
 
 @export var health_component : HealthComponent
 
-func damage(attack):
+func damage(from: Node):
 	if health_component:
-		health_component.damage(attack)
+		health_component.damage(from)
