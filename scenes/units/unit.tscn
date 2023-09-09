@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyn8dcsupiohn"]
+[gd_scene load_steps=6 format=3 uid="uid://cyn8dcsupiohn"]
 
 [ext_resource type="Script" path="res://scenes/units/unit.gd" id="1_3bexo"]
 [ext_resource type="PackedScene" uid="uid://cqc3gxl3u2men" path="res://scenes/components/SelectorComponent.tscn" id="2_4uaex"]
 [ext_resource type="Texture2D" uid="uid://canu86uqrfv3n" path="res://resources/SoldierAntIdleSide1.png" id="2_06ylm"]
-[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="2_dmwmu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trylc"]
+size = Vector2(12, 6)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4y7av"]
 properties/0/path = NodePath(".:player_id")
@@ -19,17 +21,17 @@ properties/2/spawn = true
 properties/2/sync = false
 properties/2/watch = true
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_04xkt"]
-
 [node name="Unit" type="CharacterBody2D" groups=["units"]]
 script = ExtResource("1_3bexo")
-
-[node name="HealthComponent" parent="." instance=ExtResource("2_dmwmu")]
 
 [node name="SelectorComponent" parent="." instance=ExtResource("2_4uaex")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_06ylm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 5)
+shape = SubResource("RectangleShape2D_trylc")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_4y7av")
@@ -37,8 +39,3 @@ replication_config = SubResource("SceneReplicationConfig_4y7av")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
-scale = Vector2(1, 0.4)
-shape = SubResource("CircleShape2D_04xkt")

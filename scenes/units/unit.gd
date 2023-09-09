@@ -10,9 +10,7 @@ var material_count = 0
 @export var Mat: uMaterial
 @export var health: HealthComponent
 
-func _ready():
-	randomize()
-	
+
 func set_target(new_target):
 	target = new_target
 
@@ -22,7 +20,8 @@ func attack(to: Node):
 		Debug.dprint("Unit attacked")
 	elif is_instance_of(to, uMaterial):
 		Debug.dprint("Material attacked")
-		
+
+
 func receive(from: Node):
 	if is_instance_of(from, Unit):
 		health.get_damage(from)
@@ -38,10 +37,8 @@ func initialize(pos, id):
 	player_id = id
 	set_target(pos)
 	set_multiplayer_authority(player_id)
-	if not is_multiplayer_authority():
-		pass # process_mode = Node.PROCESS_MODE_DISABLED
-	
 	modulate = Game.get_player(player_id).get_color()
+
 
 # TODO: method "handle_target"
 # Target	-> Enemy Unit: Attack
@@ -58,9 +55,3 @@ func _physics_process(delta):
 			$Sprite2D.flip_h = false
 		if position.distance_to(target) > 20:
 			move_and_slide()
-	
-func _process(delta):
-	pass
-	#$Sprite2D.position += Vector2(randi_range(-10, 10), randi_range(-10, 10)) * delta
-	#$Sprite2D.position.x = clamp($Sprite2D.position.x, -6, 6)
-	#$Sprite2D.position.y = clamp($Sprite2D.position.y, -6, 6)

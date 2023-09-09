@@ -24,7 +24,8 @@ offset_bottom = 23.0
 
 [node name="Camera" parent="." instance=ExtResource("3_p7ey0")]
 
-[node name="Units" type="Node" parent="."]
+[node name="Units" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="UnitController" parent="." instance=ExtResource("3_f4hhl")]
 
