@@ -18,6 +18,14 @@ func subscribe(node):
 func unsubscribe(node):
 	selection_components.erase(node)
 
+var rng = RandomNumberGenerator.new()
+
+func _command_group():
+	var unit_group = rng.randi()
+	for selector in selected_units: #TODO: Bug futuro Unidades eliminados
+		var unit = selector.get_parent()
+		unit.unit_group = unit_group
+		unit.command(mouse_position_global)
 
 func select_area():
 	# TODO: discriminar por tipo
@@ -47,9 +55,9 @@ func select_point():
 				node.set_selected(false)
 
 
-func draw(visible = true):
+func draw(vis = true):
 	position = Vector2(min(drag_start.x, drag_end.x), min(drag_start.y, drag_end.y))
-	var rect_size = Vector2(drag_start - drag_end).abs() * int(visible)
+	var rect_size = Vector2(drag_start - drag_end).abs() * int(vis)
 	rectangle.size = rect_size
 
 
@@ -66,7 +74,7 @@ func _input(event):
 		mouse_position = event.position
 		mouse_position_global = get_global_mouse_position()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("LeftClick"):
 		drag_start = mouse_position_global
 		is_dragging = true
@@ -86,5 +94,4 @@ func _process(delta: float) -> void:
 		draw(false)
 	
 	if Input.is_action_just_released("Command"):
-		for unit in selected_units:
-			unit.get_parent().set_target(get_global_mouse_position())
+		_command_group()

@@ -2,6 +2,7 @@ extends Node
 
 var unit_controller = null
 var main = null
+var units = null
 
 
 func damp(current, target, factor, delta):
@@ -11,7 +12,7 @@ func damp(current, target, factor, delta):
 
 func log_damp(current, target, factor, delta):
 	var K = 1 - pow(factor, delta)
-	return exp(lerp(log(current), log(target), factor))
+	return exp(lerp(log(current), log(target), K))
 
 
 func size_to_rect(vector: Vector2) -> PackedVector2Array:

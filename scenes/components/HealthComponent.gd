@@ -7,7 +7,10 @@ var health : float
 func _ready():
 	health = MAX_HEALTH
 	
-func damage(attack):
-	health -= attack
+func get_damage(from: Node):
+	if from is Unit:
+		print("attack from Unit")
+		health -= from.atk
+		print("actual health", health)
 	if health <= 0:
-		get_parent().queue_free()
+		Util.main.despawn_node(self.get_parent())

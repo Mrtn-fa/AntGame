@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcbg2ws6h8q0w"]
+
+[ext_resource type="Script" path="res://scenes/components/navigation.gd" id="1_xmkw6"]
+
+[node name="NavigationComponent" type="Node2D"]
+script = ExtResource("1_xmkw6")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 8.0
+path_postprocessing = 1
+debug_use_custom = true
+debug_path_custom_color = Color(1, 1, 1, 0.207843)
+debug_path_custom_point_size = 2.0
+
+[node name="RayLeftest" type="RayCast2D" parent="."]
+rotation = -1.0472
+target_position = Vector2(25, 0)
+collision_mask = 3
+
+[node name="RayLeft" type="RayCast2D" parent="."]
+rotation = -0.523599
+target_position = Vector2(25, 0)
+collision_mask = 3
+
+[node name="RayFront" type="RayCast2D" parent="."]
+target_position = Vector2(25, 0)
+collision_mask = 3
+
+[node name="RayRight" type="RayCast2D" parent="."]
+rotation = 0.523599
+target_position = Vector2(25, 0)
+collision_mask = 3
+
+[node name="RayRightest" type="RayCast2D" parent="."]
+rotation = 1.0472
+target_position = Vector2(25, 0)
+collision_mask = 3
