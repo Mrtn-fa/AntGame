@@ -19,8 +19,8 @@ properties/2/spawn = true
 properties/2/sync = false
 properties/2/watch = true
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnli2"]
-size = Vector2(7, 3)
+[sub_resource type="CircleShape2D" id="CircleShape2D_yuekh"]
+radius = 5.0
 
 [node name="Unit" type="CharacterBody2D" groups=["units"]]
 script = ExtResource("1_3bexo")
@@ -29,13 +29,14 @@ script = ExtResource("1_3bexo")
 replication_config = SubResource("SceneReplicationConfig_4y7av")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -1.5)
-shape = SubResource("RectangleShape2D_nnli2")
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_yuekh")
 
 [node name="SelectorComponent" parent="." instance=ExtResource("2_4uaex")]
 position = Vector2(0, -3)
 
 [node name="NavigationComponent" parent="." instance=ExtResource("3_t6dpp")]
+position = Vector2(0, -3)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -8)

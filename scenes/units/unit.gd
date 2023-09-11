@@ -4,6 +4,7 @@ var atk = 2
 var material_count = 0
 var speed = 50
 var previous_position = Vector2.ZERO
+var unit_group = null
 
 @onready var map = $%TileMap
 @onready var navigation_component = $NavigationComponent
@@ -41,6 +42,13 @@ func state_move_process():
 func state_move_transition():
 	if navigation_component.is_target_reached():
 		set_state(STATE.IDLE)
+		return
+	
+	for i in get_slide_collision_count():
+		var collider = get_slide_collision(i).get_collider()
+		if collider.has_method("get_unit_group"):
+			if collider.state != STATE.MOVING and collider.get_unit_group() == unit_group:
+				set_state(STATE.IDLE)
 
 
 func command(pos: Vector2):
@@ -51,6 +59,10 @@ func command(pos: Vector2):
 func set_state(new_state: STATE):
 	previous_state = state
 	state = new_state
+
+
+func get_unit_group():
+	return unit_group
 
 
 func attack(to: Node):

@@ -32,7 +32,7 @@ func get_direction() -> Vector2:
 
 func _set_interest() -> Vector2:
 	var final_direction = 0
-	interest = [0.6, 0.8, 1, 0.8, 0.6]
+	interest = [0.79, 0.79, 1, 0.8, 0.8]
 	for ray_index in rays.size():
 		var ray = rays[ray_index]
 		if ray.is_colliding():

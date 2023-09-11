@@ -18,6 +18,14 @@ func subscribe(node):
 func unsubscribe(node):
 	selection_components.erase(node)
 
+var rng = RandomNumberGenerator.new()
+
+func _command_group():
+	var unit_group = rng.randi()
+	for selector in selected_units: #TODO: Bug futuro Unidades eliminados
+		var unit = selector.get_parent()
+		unit.unit_group = unit_group
+		unit.command(mouse_position_global)
 
 func select_area():
 	# TODO: discriminar por tipo
@@ -86,5 +94,4 @@ func _process(_delta: float) -> void:
 		draw(false)
 	
 	if Input.is_action_just_released("Command"):
-		for unit in selected_units: #TODO: Bug futuro Unidades eliminados
-			unit.get_parent().command(mouse_position_global)
+		_command_group()
