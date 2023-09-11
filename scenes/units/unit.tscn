@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyn8dcsupiohn"]
+[gd_scene load_steps=7 format=3 uid="uid://cyn8dcsupiohn"]
 
 [ext_resource type="Script" path="res://scenes/units/unit.gd" id="1_3bexo"]
 [ext_resource type="PackedScene" uid="uid://cqc3gxl3u2men" path="res://scenes/components/SelectorComponent.tscn" id="2_4uaex"]
 [ext_resource type="Texture2D" uid="uid://canu86uqrfv3n" path="res://resources/SoldierAntIdleSide1.png" id="2_06ylm"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_trylc"]
-size = Vector2(9, 6)
+[ext_resource type="PackedScene" uid="uid://dcbg2ws6h8q0w" path="res://scenes/components/NavigationComponent.tscn" id="3_t6dpp"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4y7av"]
 properties/0/path = NodePath(".:player_id")
@@ -21,32 +19,24 @@ properties/2/spawn = true
 properties/2/sync = false
 properties/2/watch = true
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnli2"]
+size = Vector2(7, 3)
+
 [node name="Unit" type="CharacterBody2D" groups=["units"]]
 script = ExtResource("1_3bexo")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 8.0
-path_postprocessing = 1
-avoidance_enabled = true
-radius = 6.0
-neighbor_distance = 64.0
-max_speed = 50.0
-debug_enabled = true
-debug_use_custom = true
-debug_path_custom_point_size = 2.0
-
-[node name="SelectorComponent" parent="." instance=ExtResource("2_4uaex")]
-position = Vector2(0, -3)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -8)
-texture = ExtResource("2_06ylm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_trylc")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_4y7av")
 
-[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_velocity_computed"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_nnli2")
+
+[node name="SelectorComponent" parent="." instance=ExtResource("2_4uaex")]
+position = Vector2(0, -3)
+
+[node name="NavigationComponent" parent="." instance=ExtResource("3_t6dpp")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -8)
+texture = ExtResource("2_06ylm")

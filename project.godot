@@ -98,6 +98,7 @@ attack_material={
 
 [navigation]
 
+2d/use_edge_connections=false
 2d/default_edge_connection_margin=8
 
 [rendering]

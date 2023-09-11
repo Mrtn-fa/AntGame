@@ -86,5 +86,5 @@ func _process(_delta: float) -> void:
 		draw(false)
 	
 	if Input.is_action_just_released("Command"):
-		for unit in selected_units:
+		for unit in selected_units: #TODO: Bug futuro Unidades eliminados
 			unit.get_parent().command(mouse_position_global)

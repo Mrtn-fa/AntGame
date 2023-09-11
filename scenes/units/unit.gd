@@ -3,13 +3,10 @@ class_name Unit extends CharacterBody2D
 var atk = 2
 var material_count = 0
 var speed = 50
-var target_threshold = 8
 var previous_position = Vector2.ZERO
-var movement_target = Vector2.ZERO
-var distance_to_target = Vector2.ZERO
 
 @onready var map = $%TileMap
-@onready var agent = $NavigationAgent2D
+@onready var navigation_component = $NavigationComponent
 
 @export var player_id: int
 @export var Mat: uMaterial
@@ -38,20 +35,17 @@ func state_idle_transition():
 
 
 func state_move_process():
-	move_to_target(movement_target)
+	move_to_target()
 
 
 func state_move_transition():
-	if agent.is_navigation_finished() or distance_to_target < target_threshold:
+	if navigation_component.is_target_reached():
 		set_state(STATE.IDLE)
-	
 
 
 func command(pos: Vector2):
-	movement_target = pos
-	agent.set_target_position(pos)
+	navigation_component.set_target(pos)
 	set_state(STATE.MOVING)
-	agent.is_target_reachable()
 
 
 func set_state(new_state: STATE):
@@ -86,8 +80,6 @@ func initialize(pos: Vector2, id: int):
 func _ready():
 	if not is_multiplayer_authority():
 		return
-	
-	agent.set_navigation_map(map)
 
 
 func _update_sprite():
@@ -97,21 +89,11 @@ func _update_sprite():
 		$Sprite2D.flip_h = false
 
 
-func move_to_target(target: Vector2):
+func move_to_target():
 	previous_position = position
-	distance_to_target = position.distance_to(target)
-	#velocity = position.direction_to(target) * speed
-	
-	var direction = agent.get_next_path_position() - position
-	velocity = direction.normalized() * speed
-	agent.set_velocity(velocity)
-	
-	_update_sprite()
-	#move_and_slide()
-
-func _on_velocity_computed(safe_velocity):
-	velocity = safe_velocity
+	velocity = navigation_component.get_direction() * speed
 	move_and_slide()
+	_update_sprite()
 
 
 func _physics_process(_delta: float):
