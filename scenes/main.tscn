@@ -12,6 +12,7 @@ script = ExtResource("1_ysfbh")
 player_scene = ExtResource("2_e1311")
 
 [node name="TileMap" parent="." instance=ExtResource("6_e3n3r")]
+unique_name_in_owner = true
 cell_quadrant_size = 64
 
 [node name="UI" type="CanvasLayer" parent="."]

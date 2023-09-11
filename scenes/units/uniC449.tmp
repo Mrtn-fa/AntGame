@@ -26,9 +26,7 @@ script = ExtResource("1_3bexo")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 6.0
-neighbor_distance = 64.0
-max_speed = 50.0
+neighbor_distance = 150.0
 
 [node name="SelectorComponent" parent="." instance=ExtResource("2_4uaex")]
 

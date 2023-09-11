@@ -8,6 +8,10 @@ var previous_position = Vector2.ZERO
 var movement_target = Vector2.ZERO
 var distance_to_target = Vector2.ZERO
 
+@onready var map = $%TileMap
+@onready var agent = $NavigationAgent2D
+@onready var path_line = $DebugPath
+
 @export var player_id: int
 @export var Mat: uMaterial
 @export var health: HealthComponent
@@ -39,13 +43,17 @@ func state_move_process():
 
 
 func state_move_transition():
-	if distance_to_target < target_threshold:
-		state = STATE.IDLE
+	if agent.is_navigation_finished() or distance_to_target < target_threshold:
+		set_state(STATE.IDLE)
+	
 
 
 func command(pos: Vector2):
 	movement_target = pos
+	agent.set_target_position(pos)
 	set_state(STATE.MOVING)
+	agent.is_target_reachable()
+	path_line.points = agent.get_current_navigation_path()
 
 
 func set_state(new_state: STATE):
@@ -77,6 +85,13 @@ func initialize(pos: Vector2, id: int):
 	modulate = Game.get_player(player_id).get_color()
 
 
+func _ready():
+	if not is_multiplayer_authority():
+		return
+	
+	agent.set_navigation_map(map)
+
+
 func _update_sprite():
 	if velocity.x < 0:
 		$Sprite2D.flip_h = true
@@ -87,8 +102,17 @@ func _update_sprite():
 func move_to_target(target: Vector2):
 	previous_position = position
 	distance_to_target = position.distance_to(target)
-	velocity = position.direction_to(target) * speed
+	#velocity = position.direction_to(target) * speed
+	
+	var direction = agent.get_next_path_position() - position
+	velocity = direction.normalized() * speed
+	agent.set_velocity(velocity)
+	
 	_update_sprite()
+	#move_and_slide()
+
+func _on_velocity_computed(safe_velocity):
+	velocity = safe_velocity
 	move_and_slide()
 
 
@@ -103,6 +127,4 @@ func _physics_process(_delta: float):
 		STATE.MOVING:
 			state_move_process()
 			state_move_transition()
-
-
 
