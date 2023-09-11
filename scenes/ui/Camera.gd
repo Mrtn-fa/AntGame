@@ -12,10 +12,10 @@ var PAN_MARGIN = 5
 var pan_target = Vector2(position.x, position.y)
 
 # Camera zoom
-var ZOOM_SPEED = 8
+var ZOOM_SPEED = 12
 var ZOOM_MIN = 0.75
 var ZOOM_MAX = 2
-var ZOOM_FACTOR = 0.1
+var ZOOM_FACTOR = 0.01
 var zoom_value = 1.0
 var zoom_target = zoom_value
 
