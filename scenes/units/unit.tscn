@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://canu86uqrfv3n" path="res://resources/SoldierAntIdleSide1.png" id="2_06ylm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trylc"]
-size = Vector2(12, 6)
+size = Vector2(9, 6)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4y7av"]
 properties/0/path = NodePath(".:player_id")
@@ -25,26 +25,28 @@ properties/2/watch = true
 script = ExtResource("1_3bexo")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 8.0
+path_postprocessing = 1
 avoidance_enabled = true
 radius = 6.0
 neighbor_distance = 64.0
 max_speed = 50.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_point_size = 2.0
 
 [node name="SelectorComponent" parent="." instance=ExtResource("2_4uaex")]
+position = Vector2(0, -3)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -8)
 texture = ExtResource("2_06ylm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_trylc")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_4y7av")
-
-[node name="DebugPath" type="Line2D" parent="."]
-top_level = true
-width = 1.0
-default_color = Color(1, 0.164706, 1, 1)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_velocity_computed"]

@@ -20,14 +20,14 @@ func _process(_delta: float) -> void:
 	$UI/Label.text = str(Engine.get_frames_per_second())
 
 @rpc("any_peer")
-func spawn_server(pos, type):
+func spawn_server(pos, _type):
 	var unit = unit_scene.instantiate()
 	var player_id = multiplayer.get_remote_sender_id()
 
 	if player_id == 0:
 		player_id = 1
 		
-	$Units.add_child(unit, true)
+	Util.units.add_child(unit, true)
 	
 	unit.initialize.rpc(pos, player_id)
 

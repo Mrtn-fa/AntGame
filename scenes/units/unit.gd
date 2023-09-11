@@ -10,7 +10,6 @@ var distance_to_target = Vector2.ZERO
 
 @onready var map = $%TileMap
 @onready var agent = $NavigationAgent2D
-@onready var path_line = $DebugPath
 
 @export var player_id: int
 @export var Mat: uMaterial
@@ -53,7 +52,6 @@ func command(pos: Vector2):
 	agent.set_target_position(pos)
 	set_state(STATE.MOVING)
 	agent.is_target_reachable()
-	path_line.points = agent.get_current_navigation_path()
 
 
 func set_state(new_state: STATE):
