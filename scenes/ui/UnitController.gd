@@ -47,9 +47,9 @@ func select_point():
 				node.set_selected(false)
 
 
-func draw(visible = true):
+func draw(vis = true):
 	position = Vector2(min(drag_start.x, drag_end.x), min(drag_start.y, drag_end.y))
-	var rect_size = Vector2(drag_start - drag_end).abs() * int(visible)
+	var rect_size = Vector2(drag_start - drag_end).abs() * int(vis)
 	rectangle.size = rect_size
 
 
@@ -66,7 +66,7 @@ func _input(event):
 		mouse_position = event.position
 		mouse_position_global = get_global_mouse_position()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("LeftClick"):
 		drag_start = mouse_position_global
 		is_dragging = true
@@ -87,4 +87,4 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_released("Command"):
 		for unit in selected_units:
-			unit.get_parent().set_target(get_global_mouse_position())
+			unit.get_parent().command(mouse_position_global)

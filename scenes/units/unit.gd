@@ -1,18 +1,56 @@
 class_name Unit extends CharacterBody2D
 
-var speed = 50
-var target = Vector2()
-var previous_position = Vector2.ZERO
 var atk = 2
 var material_count = 0
+var speed = 50
+var target_threshold = 8
+var previous_position = Vector2.ZERO
+var movement_target = Vector2.ZERO
+var distance_to_target = Vector2.ZERO
 
 @export var player_id: int
 @export var Mat: uMaterial
 @export var health: HealthComponent
 
+enum STATE {
+	IDLE,
+	MOVING,
+	#MOVING_TO_GATHER,
+	#GATHERING,
+	#PURSUING,
+	#FIGHTING,
+	#MOVING_TO_BUILD,
+	#BUILDING
+}
+var state = STATE.IDLE
+var previous_state = state
 
-func set_target(new_target):
-	target = new_target
+
+func state_idle_process():
+	velocity = Vector2.ZERO
+
+
+func state_idle_transition():
+	return
+
+
+func state_move_process():
+	move_to_target(movement_target)
+
+
+func state_move_transition():
+	if distance_to_target < target_threshold:
+		state = STATE.IDLE
+
+
+func command(pos: Vector2):
+	movement_target = pos
+	set_state(STATE.MOVING)
+
+
+func set_state(new_state: STATE):
+	previous_state = state
+	state = new_state
 
 
 func attack(to: Node):
@@ -32,26 +70,39 @@ func receive(from: Node):
 
 
 @rpc("any_peer", "call_local")
-func initialize(pos, id):
+func initialize(pos: Vector2, id: int):
 	position = pos
 	player_id = id
-	set_target(pos)
 	set_multiplayer_authority(player_id)
 	modulate = Game.get_player(player_id).get_color()
 
 
-# TODO: method "handle_target"
-# Target	-> Enemy Unit: Attack
-# 			-> Building: ???
-#			-> Resource: Gather
-#			-> Nothing: move
-func _physics_process(delta):
+func _update_sprite():
+	if velocity.x < 0:
+		$Sprite2D.flip_h = true
+	elif velocity.x > 0:
+		$Sprite2D.flip_h = false
+
+
+func move_to_target(target: Vector2):
 	previous_position = position
-	if is_multiplayer_authority():
-		velocity = position.direction_to(target) * speed
-		if velocity.x < 0:
-			$Sprite2D.flip_h = true
-		elif velocity.x > 0:
-			$Sprite2D.flip_h = false
-		if position.distance_to(target) > 20:
-			move_and_slide()
+	distance_to_target = position.distance_to(target)
+	velocity = position.direction_to(target) * speed
+	_update_sprite()
+	move_and_slide()
+
+
+func _physics_process(_delta: float):
+	if not is_multiplayer_authority():
+		return
+
+	match state:
+		STATE.IDLE:
+			state_idle_process()
+			state_idle_transition()
+		STATE.MOVING:
+			state_move_process()
+			state_move_transition()
+
+
+
