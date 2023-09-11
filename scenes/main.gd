@@ -16,15 +16,12 @@ func _ready() -> void:
 		player.setup(player_data)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$UI/Label.text = str(Engine.get_frames_per_second())
-	pass
 
 @rpc("any_peer")
 func spawn_server(pos, type):
 	var unit = unit_scene.instantiate()
-	unit.set_target(pos)
-	#unit.position = pos
 	var player_id = multiplayer.get_remote_sender_id()
 
 	if player_id == 0:
