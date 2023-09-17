@@ -14,9 +14,28 @@ extends Node2D
 var distance_to_target = Vector2.ZERO
 var interest = [0, 0, 0, 0, 0]
 
-func set_target(pos: Vector2) -> bool:
+var target_node = null
+
+func set_target_old(pos: Vector2) -> bool:
 	agent.set_target_position(pos)
 	return agent.is_target_reachable()
+	
+func set_target(target: Object):
+	var pos
+	if not target or is_instance_of(target, TileMap):
+		target_node = null
+		pos = get_global_mouse_position()
+		print("floor at", pos)
+	else:
+		target_node = target
+		print(target.position)
+		pos = Vector2(target.get_position())
+	print("target at", pos)
+	agent.set_target_position(pos)
+	return agent.is_target_reachable()
+	
+func get_target():
+	return target_node
 
 
 func is_target_reached() -> bool:

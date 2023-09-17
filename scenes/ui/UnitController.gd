@@ -17,15 +17,28 @@ func subscribe(node):
 	selection_components[node] = null
 func unsubscribe(node):
 	selection_components.erase(node)
+	
+func get_amigo() -> Node2D:
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = get_global_mouse_position()
+	var result = space_state.intersect_point(query)
+	if len(result) >= 1:
+		var amigo = result[0]
+		print("amigo:", amigo)
+		return amigo["collider"]
+	return null
+		
 
 var rng = RandomNumberGenerator.new()
 
 func _command_group():
 	var unit_group = rng.randi()
+	var current_amigo: Node2D = get_amigo()
 	for selector in selected_units: #TODO: Bug futuro Unidades eliminados
 		var unit = selector.get_parent()
 		unit.unit_group = unit_group
-		unit.command(mouse_position_global)
+		unit.command(current_amigo)
 
 func select_area():
 	# TODO: discriminar por tipo
