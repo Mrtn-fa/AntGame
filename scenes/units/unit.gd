@@ -1,8 +1,12 @@
 class_name Unit extends CharacterBody2D
 
 var atk = 2
+var RESOURCE_MAX = 10
 var material_count = 0
 var speed = 50
+var cooldown_time = 2 # seconds
+var cooldown = null
+var can_attack = true
 var previous_position = Vector2.ZERO
 var unit_group = null
 
@@ -16,8 +20,8 @@ var unit_group = null
 enum STATE {
 	IDLE,
 	MOVING,
-	#MOVING_TO_GATHER,
-	#GATHERING,
+	MOVING_TO_GATHER,
+	GATHERING,
 	#PURSUING,
 	#FIGHTING,
 	#MOVING_TO_BUILD,
@@ -50,10 +54,48 @@ func state_move_transition():
 			if collider.state != STATE.MOVING and collider.get_unit_group() == unit_group:
 				set_state(STATE.IDLE)
 
+func state_moving_to_gather_process():
+	move_to_target()
+	
+func state_moving_to_gather_transition():
+	if navigation_component.is_target_reached():
+		set_state(STATE.GATHERING)
+		print("unit started gathering")
+		return
+		
+# TODO: logic for going to the closest resource if it's destroyed
+func state_gathering_process():
+	var mat = navigation_component.get_target()
+	if self.material_count == RESOURCE_MAX:
+		print("full of resource!")
+		return
+	if mat == null: # resource is destroyed
+		set_state(STATE.IDLE)
+		navigation_component.set_target(null)
+		print("te lo echaste")
+		return
+	if can_attack:
+		print("gathering ", mat)
+		self.attack(mat)
+		can_attack = false
+	
+func state_gathering_transition():
+	if self.material_count == RESOURCE_MAX:
+		# go to main building to store resources
+		
+		pass
 
-func command(pos: Vector2):
+func command_old(pos: Vector2):
 	navigation_component.set_target(pos)
 	set_state(STATE.MOVING)
+
+func command(amigo: Node2D):
+	navigation_component.set_target(amigo)
+	if not amigo or is_instance_of(amigo, TileMap):
+		set_state(STATE.MOVING)
+	elif is_instance_of(amigo, uMaterial):
+		print("unit is moving to gather")
+		set_state(STATE.MOVING_TO_GATHER)
 
 
 func set_state(new_state: STATE):
@@ -65,10 +107,11 @@ func get_unit_group():
 	return unit_group
 
 
-func attack(to: Node):
+func attack(to: Node2D):
 	if is_instance_of(to, Unit):
 		Debug.dprint("Unit attacked")
 	elif is_instance_of(to, uMaterial):
+		to.get_damage(self)
 		Debug.dprint("Material attacked")
 
 
@@ -77,8 +120,8 @@ func receive(from: Node):
 		health.get_damage(from)
 		print("unit receive damage")
 	elif is_instance_of(from, uMaterial):
-		self.material_count += atk
-		print("unit received material")
+		self.material_count = min(self.material_count+self.atk, RESOURCE_MAX)
+		print("unit received material. actual: ", self.material_count)
 
 
 @rpc("any_peer", "call_local")
@@ -87,11 +130,20 @@ func initialize(pos: Vector2, id: int):
 	player_id = id
 	set_multiplayer_authority(player_id)
 	modulate = Game.get_player(player_id).get_color()
-
+	
 
 func _ready():
+	cooldown = Timer.new()
+	cooldown.set_one_shot(false)
+	cooldown.set_wait_time(cooldown_time)
+	cooldown.timeout.connect(_on_timeout)
+	add_child(cooldown)
+	cooldown.start()
 	if not is_multiplayer_authority():
 		return
+	
+func _on_timeout():
+	can_attack = true
 
 
 func _update_sprite():
@@ -119,4 +171,10 @@ func _physics_process(_delta: float):
 		STATE.MOVING:
 			state_move_process()
 			state_move_transition()
+		STATE.MOVING_TO_GATHER:
+			state_moving_to_gather_process()
+			state_moving_to_gather_transition()
+		STATE.GATHERING:
+			state_gathering_process()
+			state_gathering_transition()
 
