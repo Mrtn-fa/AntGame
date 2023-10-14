@@ -29,7 +29,6 @@ func _input(event):
 #			Debug.dprint("La posición del nodo 2D es:")
 #			Debug.dprint(posicion)
 
-
 func _on_timer_timeout():
 	if pos==0:
 		var posicion = nodo2d.global_position
