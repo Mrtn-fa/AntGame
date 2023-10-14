@@ -1,9 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://bijefgcoxchce"]
+[gd_scene load_steps=3 format=3 uid="uid://cx0nlgnx85qd6"]
 
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_v02wo"]
+[ext_resource type="Script" path="res://scenes/buildings/house.gd" id="1_wdeuv"]
 
-[node name="house" type="StaticBody2D"]
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_wdeuv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(64, 64)
+[node name="AntHill" type="Sprite2D" parent="."]
 texture = ExtResource("1_v02wo")
+
+[node name="Position1" type="Node2D" parent="."]
+position = Vector2(64, 56)
+
+[node name="Position2" type="Node2D" parent="."]
+position = Vector2(33, 69)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TimeRemaining" type="Label" parent="."]
+offset_left = 48.0
+offset_top = 56.0
+offset_right = 72.0
+offset_bottom = 82.0
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
