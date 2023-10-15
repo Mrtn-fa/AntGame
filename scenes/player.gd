@@ -7,6 +7,8 @@ func setup(player_data: Game.PlayerData):
 	name = str(player_data.id)
 	Debug.dprint(player_data.name, 30)
 	Debug.dprint(player_data.role, 30)
+	var house = Util.houses[int(player_data.role) - 1]
+	house.player_id = player_data.id
 
 @rpc
 func test():

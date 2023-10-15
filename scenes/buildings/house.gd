@@ -5,9 +5,11 @@ extends Node2D
 @onready var position2 = $Position2
 @onready var pos = 0
 
+var player_id
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Util.houses.append(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,10 +20,15 @@ func _process(delta):
 
 func _input(event):
 	
+	
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 #		Debug.dprint(get_local_mouse_position())
 #		Debug.dprint(to_local(event.position))
-		if sprite.get_rect().has_point(get_local_mouse_position()) and $Timer.time_left==0:
+
+
+		if sprite.get_rect().has_point(get_local_mouse_position()) and \
+				$Timer.time_left==0 and \
+				(player_id == multiplayer.get_unique_id()):
 			$Timer.start()
 			$TimeRemaining.show()
 #			Util.main.spawn_unit(posicion, null)

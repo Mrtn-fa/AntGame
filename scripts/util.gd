@@ -3,6 +3,7 @@ extends Node
 var unit_controller = null
 var main = null
 var units = null
+var houses = [];
 
 
 func damp(current, target, factor, delta):
