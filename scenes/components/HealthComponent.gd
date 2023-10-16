@@ -14,3 +14,6 @@ func get_damage(from: Node):
 		print("actual health", health)
 	if health <= 0:
 		Util.main.despawn_node(self.get_parent())
+
+func _process(delta):
+	$Label.text = str(health)

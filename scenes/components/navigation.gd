@@ -32,6 +32,7 @@ func set_target(target: Object):
 		pos = Vector2(target.get_position())
 	print("target at", pos)
 	agent.set_target_position(pos)
+	Debug.dprint(agent.is_target_reachable())
 	return agent.is_target_reachable()
 	
 func get_target():

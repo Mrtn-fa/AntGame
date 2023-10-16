@@ -10,6 +10,7 @@ var cooldown = null
 var can_attack = true
 var previous_position = Vector2.ZERO
 var unit_group = null
+var current_resource_node = null
 
 @onready var map = $%TileMap
 @onready var navigation_component = $NavigationComponent
@@ -83,17 +84,21 @@ func state_gathering_process():
 	
 func state_gathering_transition():
 	if self.material_count == RESOURCE_MAX:
+		var main_building = Game.get_current_player().main_building
+		navigation_component.set_target(main_building)
 		set_state(STATE.STORING)
 		
 func state_storing_process():
-	#var main_building = get_main_building()
-	# set_target(main_building.position)
 	move_to_target()
 	
 func state_storing_transition():
 	if navigation_component.is_target_reached():
 		self.interact(navigation_component.get_target())
-		set_state(STATE.MOVING_TO_GATHER)
+		if current_resource_node == null:
+			set_state(STATE.IDLE)
+		else:
+			navigation_component.set_target(current_resource_node)
+			set_state(STATE.MOVING_TO_GATHER)
 		
 
 func command_old(pos: Vector2):
@@ -106,6 +111,7 @@ func command(amigo: Node2D):
 		set_state(STATE.MOVING)
 	elif is_instance_of(amigo, uMaterial):
 		print("unit is moving to gather")
+		current_resource_node = navigation_component.get_target()
 		set_state(STATE.MOVING_TO_GATHER)
 
 
@@ -123,9 +129,12 @@ func interact(to: Node2D):
 	elif is_instance_of(to, uMaterial):
 		to.get_damage(self)
 		Debug.dprint("Material attacked")
-#	elif is_instance_of(to, MainBuilding):
-#		to.receive(self)
+	elif is_instance_of(to, MainBuilding):
+		to.receive_from(self)
 
+func subtract_material(qtt:int):
+	material_count -= qtt
+	
 
 func receive(from: Node):
 	if is_instance_of(from, Unit):

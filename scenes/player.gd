@@ -20,6 +20,7 @@ func add_material(unit: Unit):
 	# elif material_type == '...':
 		# pass
 	unit.subtract_material(material_count)
+	Debug.dprint("unit has " + str(unit.material_count) + ' units of resource')
 	
 	
 func subtract_wood(qtt:int):

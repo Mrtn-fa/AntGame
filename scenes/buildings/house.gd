@@ -9,8 +9,8 @@ var player_id
 
 
 func receive_from(unit: Unit):
-	#var player = get_player()
-	#player.add_material(unit)
+	var player = Game.get_current_player().player_node
+	player.add_material(unit)
 	pass
 
 # Called when the node enters the scene tree for the first time.
