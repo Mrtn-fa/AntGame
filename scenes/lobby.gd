@@ -1,7 +1,7 @@
 extends MarginContainer
 
 
-const MAX_PLAYERS = 2
+const MAX_PLAYERS = 4
 const PORT = 5409
 
 @onready var user = %User
@@ -15,6 +15,9 @@ const PORT = 5409
 
 @onready var role_a: Button = %RoleA
 @onready var role_b: Button = %RoleB
+
+@onready var role_button: Button = %RoleButton
+@onready var color_button: Button = %ColorButton
 
 @onready var back_ready: Button = %BackReady
 @onready var ready_toggle: Button = %Ready
@@ -58,8 +61,8 @@ func _ready():
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
 	
-	role_a.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_A))
-	role_b.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_B))
+	role_a.pressed.connect(func(): Game.set_current_player_role(Game.Role.ANTS))
+	role_b.pressed.connect(func(): Game.set_current_player_role(Game.Role.TERMITES))
 	
 	ready_toggle.pressed.connect(_on_ready_toggled)
 	
@@ -285,3 +288,11 @@ func _back_to_first_menu() -> void:
 		first.show()
 	if Game.is_online():
 		_disconnect()
+
+
+func _on_role_button_item_selected(index):
+	var selected_role = role_button.get_item_text(index)
+	if selected_role == 'Ants':
+		Game.set_current_player_role(Game.Role.ANTS)
+	elif selected_role == 'Termites':
+		Game.set_current_player_role(Game.Role.TERMITES)

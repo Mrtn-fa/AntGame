@@ -1,6 +1,16 @@
 class_name Player
 extends Node2D
 
+@export var resources : ResourceComponent
+
+func transact_material(material:uMaterial, quantity:int):
+	return resources.transact_material(material, quantity)
+		
+func add_material(material: uMaterial, quantity:int):
+	return resources.add_material(material, quantity)
+	
+func subtract_material(material: uMaterial, quantity:int):
+	return resources.subtract_material(material, quantity)
 
 func setup(player_data: Game.PlayerData):
 	set_multiplayer_authority(player_data.id)

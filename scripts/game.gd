@@ -5,8 +5,15 @@ signal player_updated(id)
 
 enum Role {
 	NONE,
-	ROLE_A,
-	ROLE_B
+	ANTS,
+	TERMITES
+}
+enum Colors {
+	NONE,
+	ORANGE,
+	INDIGO,
+	GREEN,
+	PINK
 }
 
 # [ {id: int, name: string, rol: Rol} ]
@@ -51,6 +58,12 @@ func set_player_role(id: int, role: Role) -> void:
 	var player = get_player(id)
 	player.role = role
 	player_updated.emit(id)
+	
+@rpc("any_peer", "reliable", "call_local")
+func set_player_color(id: int, color: Color) -> void:
+	var player = get_player(id)
+	player.color = color
+	player_updated.emit(id)
 
 
 func set_current_player_role(role: Role) -> void:
@@ -93,13 +106,18 @@ func _exit_tree():
 
 class PlayerData:
 	var colors = {
-		Role.ROLE_A: Color.MEDIUM_PURPLE,
-		Role.ROLE_B: Color.ORANGE_RED
+		'ORANGE': Color.ORANGE,
+		'LILAC': Color.MEDIUM_PURPLE,
+		'INDIGO': Color.INDIGO,
+		'PINK': Color.HOT_PINK,
+		#Role.ANTS: Color.MEDIUM_PURPLE,
+		#Role.TERMITES: Color.ORANGE_RED
 	}
 	
 	var id: int
 	var name: String
 	var role: Role
+	var color: Color
 	
 	func _init(new_id: int, new_name: String, new_role: Role = Role.NONE) -> void:
 		id = new_id
@@ -110,7 +128,8 @@ class PlayerData:
 		return {
 			"id": id,
 			"name": name,
-			"role": role
+			"role": role,
+			# "color": color
 		}
 	
 	func get_color():

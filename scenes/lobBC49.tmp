@@ -169,7 +169,7 @@ popup/item_0/id = 0
 popup/item_0/disabled = true
 popup/item_1/text = "Ants"
 popup/item_1/id = 1
-popup/item_2/text = "Termites"
+popup/item_2/text = "Termits"
 popup/item_2/id = 2
 
 [node name="ColorButton" type="OptionButton" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer3"]
