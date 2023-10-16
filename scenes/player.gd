@@ -34,7 +34,10 @@ func setup(player_data: Game.PlayerData):
 	Debug.dprint(player_data.role, 30)
 	var house = Util.houses[int(player_data.role) - 1]
 	house.player_id = player_data.id
-	Game.get_current_player().main_building = house
+	player_data.main_building = house
+	house.get_node("HealthComponent/Label").modulate = player_data.get_color()
+
+
 
 @rpc
 func test():

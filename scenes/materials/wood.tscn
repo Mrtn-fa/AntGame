@@ -15,3 +15,6 @@ texture = ExtResource("2_imbjr")
 hframes = 11
 vframes = 11
 frame = 51
+
+[node name="HealthComponent" parent="." index="2"]
+MAX_HEALTH = 20.0
