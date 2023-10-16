@@ -20,6 +20,7 @@ var current_target = null
 @export var Mat: uMaterial
 @onready var health: HealthComponent = $HealthComponent
 
+
 enum STATE {
 	IDLE,
 	MOVING,

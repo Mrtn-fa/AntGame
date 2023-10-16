@@ -48,3 +48,5 @@ texture = ExtResource("2_06ylm")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_okgtq")]

@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1qlrdi3ouyhj"]
+
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_os4t2"]
+[ext_resource type="Script" path="res://scenes/ui/Label.gd" id="1_ycspm"]
+[ext_resource type="Script" path="res://scenes/ui/TimerLabel.gd" id="2_wy3ac"]
+[ext_resource type="Script" path="res://scenes/ui/UnitContainer.gd" id="3_tw42w"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UpperBar" type="Node" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="UpperBar"]
+offset_right = 640.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UpperBar/PanelContainer"]
+layout_mode = 2
+
+[node name="TimerLabel" type="Label" parent="UpperBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wy3ac")
+
+[node name="ResourceLabel" type="Label" parent="UpperBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_ycspm")
+
+[node name="LowerBar" type="Node" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="LowerBar"]
+offset_top = 272.0
+offset_right = 639.0
+offset_bottom = 360.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LowerBar/PanelContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="UnitContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+columns = 5
+script = ExtResource("3_tw42w")
+
+[node name="Sprite2D2" type="Sprite2D" parent="LowerBar/PanelContainer/HBoxContainer"]
+position = Vector2(575.5, 24)
+scale = Vector2(0.992188, 1)
+texture = ExtResource("1_os4t2")
+
+[node name="ButtonContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="Sprite2D" type="Sprite2D" parent="LowerBar/PanelContainer/HBoxContainer"]
+position = Vector2(64, 24)
+texture = ExtResource("1_os4t2")
+
+[node name="LowerBarContainer" type="Control" parent="LowerBar"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
