@@ -1,9 +1,15 @@
-extends Node2D
+class_name MainBuilding extends Node2D
 
 @onready var sprite = $AntHill
 @onready var nodo2d = $Position1
 @onready var position2 = $Position2
 @onready var pos = 0
+
+
+func receive_from(unit: Unit):
+	#var player = get_player()
+	#player.add_material(unit)
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,4 +49,3 @@ func _on_timer_timeout():
 		$TimeRemaining.hide()
 		Util.main.spawn_unit(posicion, null)
 		pos -= 1
-	
