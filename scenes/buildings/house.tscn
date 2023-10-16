@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bijefgcoxchce"]
+[gd_scene load_steps=4 format=3 uid="uid://cx0nlgnx85qd6"]
 
 [ext_resource type="Script" path="res://scenes/buildings/house.gd" id="1_wdeuv"]
 [ext_resource type="Texture2D" uid="uid://cbrf0o48jm3ta" path="res://resources/ant-hill.png" id="2_8pvnx"]
