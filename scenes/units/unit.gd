@@ -3,6 +3,7 @@ class_name Unit extends CharacterBody2D
 var atk = 2
 var RESOURCE_MAX = 10
 var material_count = 0
+var material_type = ''
 var speed = 50
 var cooldown_time = 2 # seconds
 var cooldown = null
@@ -22,6 +23,7 @@ enum STATE {
 	MOVING,
 	MOVING_TO_GATHER,
 	GATHERING,
+	STORING,
 	#PURSUING,
 	#FIGHTING,
 	#MOVING_TO_BUILD,
@@ -76,14 +78,23 @@ func state_gathering_process():
 		return
 	if can_attack:
 		print("gathering ", mat)
-		self.attack(mat)
+		self.interact(mat)
 		can_attack = false
 	
 func state_gathering_transition():
 	if self.material_count == RESOURCE_MAX:
-		# go to main building to store resources
+		set_state(STATE.STORING)
 		
-		pass
+func state_storing_process():
+	#var main_building = get_main_building()
+	# set_target(main_building.position)
+	move_to_target()
+	
+func state_storing_transition():
+	if navigation_component.is_target_reached():
+		self.interact(navigation_component.get_target())
+		set_state(STATE.MOVING_TO_GATHER)
+		
 
 func command_old(pos: Vector2):
 	navigation_component.set_target(pos)
@@ -106,13 +117,14 @@ func set_state(new_state: STATE):
 func get_unit_group():
 	return unit_group
 
-
-func attack(to: Node2D):
+func interact(to: Node2D):
 	if is_instance_of(to, Unit):
 		Debug.dprint("Unit attacked")
 	elif is_instance_of(to, uMaterial):
 		to.get_damage(self)
 		Debug.dprint("Material attacked")
+	elif is_instance_of(to, MainBuilding):
+		to.receive(self)
 
 
 func receive(from: Node):
@@ -123,6 +135,8 @@ func receive(from: Node):
 		self.material_count = min(self.material_count+self.atk, RESOURCE_MAX)
 		print("unit received material. actual: ", self.material_count)
 
+func get_current_material():
+	return [material_count, material_type]
 
 @rpc("any_peer", "call_local")
 func initialize(pos: Vector2, id: int):
@@ -177,4 +191,7 @@ func _physics_process(_delta: float):
 		STATE.GATHERING:
 			state_gathering_process()
 			state_gathering_transition()
+		STATE.STORING:
+			state_storing_process()
+			state_storing_transition()
 
