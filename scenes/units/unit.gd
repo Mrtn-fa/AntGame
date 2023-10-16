@@ -123,8 +123,8 @@ func interact(to: Node2D):
 	elif is_instance_of(to, uMaterial):
 		to.get_damage(self)
 		Debug.dprint("Material attacked")
-	elif is_instance_of(to, MainBuilding):
-		to.receive(self)
+#	elif is_instance_of(to, MainBuilding):
+#		to.receive(self)
 
 
 func receive(from: Node):

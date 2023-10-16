@@ -33,6 +33,7 @@ func setup(player_data: Game.PlayerData):
 	Debug.dprint(player_data.role, 30)
 	var house = Util.houses[int(player_data.role) - 1]
 	house.player_id = player_data.id
+	Game.get_current_player().main_building = house
 
 @rpc
 func test():
@@ -42,6 +43,7 @@ func test():
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():
 		if event.is_action_pressed("test"):
+			print(Game.get_current_player().player_node)
 			test.rpc_id(1)
 		if event.is_action_pressed("DebugSpawnWorker"):
 			Util.main.spawn_unit(get_global_mouse_position(), null)

@@ -100,6 +100,8 @@ class PlayerData:
 	var id: int
 	var name: String
 	var role: Role
+	var main_building
+	var player_node
 	
 	func _init(new_id: int, new_name: String, new_role: Role = Role.NONE) -> void:
 		id = new_id
