@@ -1,13 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://co2csmf1n85vk"]
+[gd_scene load_steps=4 format=3 uid="uid://co2csmf1n85vk"]
 
 [ext_resource type="PackedScene" uid="uid://dmq7k21r1gksl" path="res://scenes/materials/uMaterial.tscn" id="1_hkh8u"]
 [ext_resource type="Script" path="res://scenes/materials/Wood.gd" id="2_bvyrv"]
 [ext_resource type="Texture2D" uid="uid://ddq53jksd72xt" path="res://resources/sprites/spritesheet.png" id="2_imbjr"]
-[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="4_dftl3"]
 
-[node name="Wood" node_paths=PackedStringArray("health") instance=ExtResource("1_hkh8u")]
+[node name="Wood" instance=ExtResource("1_hkh8u")]
 script = ExtResource("2_bvyrv")
-health = NodePath("HealthComponent")
 
 [node name="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(0, -9.48148, -10, 0, 0, 9.48148, 10, 0)
@@ -17,5 +15,3 @@ texture = ExtResource("2_imbjr")
 hframes = 11
 vframes = 11
 frame = 51
-
-[node name="HealthComponent" parent="." index="2" instance=ExtResource("4_dftl3")]

@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/Units.gd" id="4_bs463"]
 [ext_resource type="PackedScene" uid="uid://co2csmf1n85vk" path="res://scenes/materials/wood.tscn" id="6_2h2ba"]
 [ext_resource type="PackedScene" uid="uid://b2ofvxmcs5s2v" path="res://scenes/world/tiles.tscn" id="6_e3n3r"]
-[ext_resource type="PackedScene" uid="uid://cx0nlgnx85qd6" path="res://scenes/buildings/house.tscn" id="8_hlpwb"]
+[ext_resource type="PackedScene" uid="uid://bijefgcoxchce" path="res://scenes/buildings/house.tscn" id="8_hlpwb"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ysfbh")
@@ -52,13 +52,11 @@ spawn_path = NodePath("../YSort/Units")
 
 [node name="Trees" type="Node" parent="."]
 
-[node name="Wood2" parent="Trees" node_paths=PackedStringArray("health") instance=ExtResource("6_2h2ba")]
+[node name="Wood2" parent="Trees" instance=ExtResource("6_2h2ba")]
 position = Vector2(-167, -66)
-health = NodePath("../Wood/HealthComponent")
 
-[node name="Wood3" parent="Trees" node_paths=PackedStringArray("health") instance=ExtResource("6_2h2ba")]
+[node name="Wood3" parent="Trees" instance=ExtResource("6_2h2ba")]
 position = Vector2(-208, -66)
-health = NodePath("../Wood/HealthComponent")
 
 [node name="Wood" parent="Trees" instance=ExtResource("6_2h2ba")]
 position = Vector2(-186, -90)
