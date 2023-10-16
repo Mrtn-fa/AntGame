@@ -15,7 +15,7 @@ var unit_group = null
 
 @export var player_id: int
 @export var Mat: uMaterial
-@export var health: HealthComponent
+@onready var health = $HealthComponent
 
 enum STATE {
 	IDLE,

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyn8dcsupiohn"]
+[gd_scene load_steps=8 format=3 uid="uid://cyn8dcsupiohn"]
 
 [ext_resource type="Script" path="res://scenes/units/unit.gd" id="1_3bexo"]
 [ext_resource type="PackedScene" uid="uid://cqc3gxl3u2men" path="res://scenes/components/SelectorComponent.tscn" id="2_4uaex"]
 [ext_resource type="Texture2D" uid="uid://canu86uqrfv3n" path="res://resources/SoldierAntIdleSide1.png" id="2_06ylm"]
 [ext_resource type="PackedScene" uid="uid://dcbg2ws6h8q0w" path="res://scenes/components/NavigationComponent.tscn" id="3_t6dpp"]
+[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="5_pj7dd"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4y7av"]
 properties/0/path = NodePath(".:player_id")
@@ -41,3 +42,5 @@ position = Vector2(0, -3)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -8)
 texture = ExtResource("2_06ylm")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_pj7dd")]
