@@ -29,6 +29,9 @@ func spawn_server(pos, _type):
 		
 	Util.units.add_child(unit, true)
 	
+	pos.x += randf_range(-1.0, 1.0)
+	pos.y += randf_range(-1.0, 1.0)
+	
 	unit.initialize.rpc(pos, player_id)
 
 
