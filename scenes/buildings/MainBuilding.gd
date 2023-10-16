@@ -1,11 +1,9 @@
-class_name MainBuilding extends Node2D
+class_name MainBuilding extends Building
 
 @onready var sprite = $AntHill
 @onready var nodo2d = $Position1
 @onready var position2 = $Position2
 @onready var pos = 0
-
-var player_id
 
 
 func receive_from(unit: Unit):

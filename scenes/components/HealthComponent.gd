@@ -2,13 +2,13 @@ extends Node2D
 class_name HealthComponent
 
 @export var MAX_HEALTH  = 10.0
-var health : float
+@export var health : float
 
 func _ready():
 	health = MAX_HEALTH
 	
 func get_damage(from: Node):
-	if from is Unit:
+	if is_instance_of(from, Unit):
 		print("attack from Unit")
 		health -= from.atk
 		print("actual health", health)

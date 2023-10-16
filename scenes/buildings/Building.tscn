@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckw4gq40dn2ce"]
+
+[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="1_doivq"]
+
+[node name="Building" type="Node2D"]
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_doivq")]

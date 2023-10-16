@@ -9,10 +9,6 @@ func rip():
 	
 # Gets attacked, respond with material
 func get_damage(from: Unit):
-	print("----")
-	print(from)
-	print(health)
-	print(self)
 	health.get_damage(from)
 	from.receive(self)
 	

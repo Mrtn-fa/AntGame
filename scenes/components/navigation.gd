@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var target_threshold: int = 8
+@export var target_threshold: int = 16
 
 @onready var agent = $NavigationAgent2D
 @onready var rays =[
@@ -40,7 +40,13 @@ func get_target():
 
 
 func is_target_reached() -> bool:
-	return distance_to_target < target_threshold or agent.is_navigation_finished()
+	if target_node == null:
+		return agent.is_navigation_finished()
+	var distance = get_parent().position.distance_to(target_node.position)
+	Debug.dprint(distance)
+	return distance < target_threshold or agent.is_navigation_finished()
+	
+	#distance_to_target < target_threshold or agent.is_navigation_finished()
 
 
 func get_direction() -> Vector2:

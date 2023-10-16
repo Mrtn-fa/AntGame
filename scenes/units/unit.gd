@@ -11,13 +11,14 @@ var can_attack = true
 var previous_position = Vector2.ZERO
 var unit_group = null
 var current_resource_node = null
+var current_target = null
 
 @onready var map = $%TileMap
 @onready var navigation_component = $NavigationComponent
 
 @export var player_id: int
 @export var Mat: uMaterial
-@export var health: HealthComponent
+@onready var health: HealthComponent = $HealthComponent
 
 enum STATE {
 	IDLE,
@@ -25,14 +26,20 @@ enum STATE {
 	MOVING_TO_GATHER,
 	GATHERING,
 	STORING,
-	#PURSUING,
-	#FIGHTING,
+	PURSUING,
+	FIGHTING,
 	#MOVING_TO_BUILD,
 	#BUILDING
 }
 var state = STATE.IDLE
 var previous_state = state
 
+@rpc("any_peer", "call_local")
+func rip():
+	self.queue_free()
+
+func is_owner(p_id:int):
+	return player_id == p_id
 
 func state_idle_process():
 	velocity = Vector2.ZERO
@@ -100,6 +107,37 @@ func state_storing_transition():
 			navigation_component.set_target(current_resource_node)
 			set_state(STATE.MOVING_TO_GATHER)
 		
+func state_pursuing_process():
+	move_to_target()
+	
+func state_pursuing_transition():
+	if navigation_component.is_target_reached():
+		set_state(STATE.FIGHTING)
+
+func state_fighting_process():
+	var amigo = navigation_component.get_target()
+	if amigo == null:
+		set_state(STATE.IDLE)
+		navigation_component.set_target(null)
+		print("te lo echaste")
+		return
+	if can_attack:
+		self.interact(amigo)
+		can_attack = false
+
+func state_fighting_transition():
+	var amigo = navigation_component.get_target()
+	if amigo == null:
+		set_state(STATE.IDLE)
+		navigation_component.set_target(null)
+		print("te lo echaste")
+		return
+	var distance = self.position.distance_to(navigation_component.get_target().position)
+	if distance > 32:
+		navigation_component.set_target(navigation_component.get_target())
+		set_state(STATE.PURSUING)
+		
+
 
 func command_old(pos: Vector2):
 	navigation_component.set_target(pos)
@@ -109,10 +147,19 @@ func command(amigo: Node2D):
 	navigation_component.set_target(amigo)
 	if not amigo or is_instance_of(amigo, TileMap):
 		set_state(STATE.MOVING)
+	elif is_instance_of(amigo, Unit):
+		if not amigo.is_owner(player_id):
+			set_state(STATE.PURSUING)
+		
 	elif is_instance_of(amigo, uMaterial):
 		print("unit is moving to gather")
 		current_resource_node = navigation_component.get_target()
 		set_state(STATE.MOVING_TO_GATHER)
+	elif is_instance_of(amigo, Building):
+		if amigo.is_owner(player_id):
+			set_state(STATE.STORING)
+		else:
+			set_state(STATE.PURSUING)
 
 
 func set_state(new_state: STATE):
@@ -125,12 +172,15 @@ func get_unit_group():
 
 func interact(to: Node2D):
 	if is_instance_of(to, Unit):
-		Debug.dprint("Unit attacked")
+		to.receive(self)
 	elif is_instance_of(to, uMaterial):
 		to.get_damage(self)
 		Debug.dprint("Material attacked")
 	elif is_instance_of(to, MainBuilding):
-		to.receive_from(self)
+		if to.is_owner(player_id):
+			to.receive_from(self)
+		else:
+			to.receive_damage(self)
 
 func subtract_material(qtt:int):
 	material_count -= qtt
@@ -191,16 +241,28 @@ func _physics_process(_delta: float):
 		STATE.IDLE:
 			state_idle_process()
 			state_idle_transition()
+			$Label.text = "IDLE"
 		STATE.MOVING:
 			state_move_process()
 			state_move_transition()
+			$Label.text = "MOVING"
 		STATE.MOVING_TO_GATHER:
 			state_moving_to_gather_process()
 			state_moving_to_gather_transition()
+			$Label.text = "MOVING_TO_GATHER"
 		STATE.GATHERING:
 			state_gathering_process()
 			state_gathering_transition()
+			$Label.text = "GATHERING"
 		STATE.STORING:
 			state_storing_process()
 			state_storing_transition()
-
+			$Label.text = "STORING"
+		STATE.PURSUING:
+			state_pursuing_process()
+			state_pursuing_transition()
+			$Label.text = "PURSUING"
+		STATE.FIGHTING:
+			state_fighting_process()
+			state_fighting_transition()
+			$Label.text = "FIGHTING"

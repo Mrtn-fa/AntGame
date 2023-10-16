@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bijefgcoxchce"]
+[gd_scene load_steps=5 format=3 uid="uid://cx0nlgnx85qd6"]
 
 [ext_resource type="Script" path="res://scenes/buildings/MainBuilding.gd" id="1_ax1n5"]
 [ext_resource type="Texture2D" uid="uid://cbrf0o48jm3ta" path="res://resources/ant-hill.png" id="2_8pvnx"]
@@ -7,7 +7,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_g2jc5"]
 font_size = 12
 
-[node name="House" type="Node2D"]
+[node name="House" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ax1n5")
 
 [node name="AntHill" type="Sprite2D" parent="."]
@@ -35,5 +37,9 @@ label_settings = SubResource("LabelSettings_g2jc5")
 horizontal_alignment = 1
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_ig27u")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(2, -6)
+polygon = PackedVector2Array(-49, 7, -26, -23, 35, -13, 45, 6, 45, 16, 2, 27, -30, 21)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
