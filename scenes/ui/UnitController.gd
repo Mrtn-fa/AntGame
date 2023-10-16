@@ -18,6 +18,12 @@ func subscribe(node):
 func unsubscribe(node):
 	selection_components.erase(node)
 	
+var portrait_scene = load("res://scenes/ui/unit_portrait.tscn")	
+
+func create_portrait(unit: Unit, texture: Sprite2D, max_health: int, current_health: int):
+	var portrait = portrait_scene.instantiate()
+	return portrait.init(unit, texture, max_health, current_health)
+
 func get_amigo() -> Node2D:
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
@@ -98,11 +104,20 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_released("LeftClick"):
 		bottom_right = Vector2(max(drag_start.x, drag_end.x), max(drag_start.y, drag_end.y))
-		
+		for n in Util.unit_container.get_children():
+			Util.unit_container.remove_child(n)
+			n.queue_free()
 		if drag_start.distance_to(drag_end) > 20:
 			select_area()
 		else:
 			select_point()
+		for selector_unit in selected_units:
+			var sprite = selector_unit.parent_sprite
+			var unit = selector_unit.get_parent()
+			var max_health = unit.health.MAX_HEALTH
+			var current_health = unit.health.health
+			var portrait = create_portrait(unit, sprite, max_health, current_health)
+			Util.unit_container.add_child(portrait)
 		is_dragging = false
 		draw(false)
 	
