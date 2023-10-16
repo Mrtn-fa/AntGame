@@ -36,42 +36,40 @@ script = ExtResource("1_ycspm")
 
 [node name="LowerBar" type="Node" parent="."]
 
+[node name="PanelContainer" type="PanelContainer" parent="LowerBar"]
+offset_top = 272.0
+offset_right = 639.0
+offset_bottom = 360.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LowerBar/PanelContainer"]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="UnitContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+columns = 5
+script = ExtResource("3_tw42w")
+
+[node name="Sprite2D2" type="Sprite2D" parent="LowerBar/PanelContainer/HBoxContainer"]
+position = Vector2(575.5, 24)
+scale = Vector2(0.992188, 1)
+texture = ExtResource("1_os4t2")
+
+[node name="ButtonContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.33
+
+[node name="Sprite2D" type="Sprite2D" parent="LowerBar/PanelContainer/HBoxContainer"]
+position = Vector2(64, 24)
+texture = ExtResource("1_os4t2")
+
 [node name="LowerBarContainer" type="Control" parent="LowerBar"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="PanelContainer" type="PanelContainer" parent="LowerBar/LowerBarContainer"]
-layout_mode = 0
-offset_top = 272.0
-offset_right = 639.0
-offset_bottom = 360.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="LowerBar/LowerBarContainer/PanelContainer"]
-layout_mode = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="LowerBar/LowerBarContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.33
-
-[node name="UnitContainer" type="GridContainer" parent="LowerBar/LowerBarContainer/PanelContainer/HBoxContainer"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("3_tw42w")
-
-[node name="Sprite2D2" type="Sprite2D" parent="LowerBar/LowerBarContainer/PanelContainer/HBoxContainer"]
-position = Vector2(575.5, 24)
-scale = Vector2(0.992188, 1)
-texture = ExtResource("1_os4t2")
-
-[node name="ButtonContainer" type="GridContainer" parent="LowerBar/LowerBarContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.33
-
-[node name="Sprite2D" type="Sprite2D" parent="LowerBar/LowerBarContainer/PanelContainer/HBoxContainer"]
-position = Vector2(64, 24)
-texture = ExtResource("1_os4t2")
