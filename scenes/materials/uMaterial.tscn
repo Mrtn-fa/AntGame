@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="2_ytynn"]
 
 [node name="uMaterial" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_tcx5t")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

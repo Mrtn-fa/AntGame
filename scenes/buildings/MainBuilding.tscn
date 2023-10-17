@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl0y08s1r301x"]
+
+[ext_resource type="Script" path="res://scenes/buildings/MainBuilding.gd" id="1_s4e7a"]
+[ext_resource type="Texture2D" uid="uid://cbrf0o48jm3ta" path="res://resources/ant-hill.png" id="2_5fydr"]
+[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="3_24isx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rx36"]
+font_size = 12
+
+[node name="MainBuilding" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_s4e7a")
+
+[node name="AntHill" type="Sprite2D" parent="."]
+position = Vector2(0, -21)
+texture = ExtResource("2_5fydr")
+
+[node name="Position1" type="Node2D" parent="."]
+position = Vector2(48, 24)
+
+[node name="Position2" type="Node2D" parent="."]
+position = Vector2(24, 40)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_24isx")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-46, 1, -29, -21, 36, -21, 47, 10, 0, 21)
+
+[node name="TimeRemaining" type="Label" parent="."]
+visible = false
+offset_left = -11.0
+offset_top = -63.0
+offset_right = 13.0
+offset_bottom = -37.0
+text = "0"
+label_settings = SubResource("LabelSettings_5rx36")
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -32,7 +32,7 @@ func set_target(target: Object):
 		pos = Vector2(target.get_position())
 	print("target at", pos)
 	agent.set_target_position(pos)
-	Debug.dprint(agent.is_target_reachable())
+	#Debug.dprint(agent.is_target_reachable())
 	return agent.is_target_reachable()
 	
 func get_target():
@@ -43,7 +43,7 @@ func is_target_reached() -> bool:
 	if target_node == null:
 		return agent.is_navigation_finished()
 	var distance = get_parent().position.distance_to(target_node.position)
-	Debug.dprint(distance)
+	#Debug.dprint(distance)
 	return distance < target_threshold or agent.is_navigation_finished()
 	
 	#distance_to_target < target_threshold or agent.is_navigation_finished()

@@ -1,7 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckw4gq40dn2ce"]
+[gd_scene load_steps=3 format=3 uid="uid://ckw4gq40dn2ce"]
 
 [ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="1_doivq"]
+[ext_resource type="Script" path="res://scenes/buildings/Building.gd" id="1_oap56"]
 
-[node name="Building" type="Node2D"]
+[node name="Building" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_oap56")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_doivq")]

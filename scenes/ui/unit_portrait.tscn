@@ -18,6 +18,7 @@ script = ExtResource("1_w0xjt")
 layout_mode = 2
 
 [node name="UnitHealth" type="Label" parent="."]
+visible = false
 layout_mode = 2
 offset_right = 1.0
 offset_bottom = 23.0

@@ -5,6 +5,8 @@ var main = null
 var units = null
 var houses = [];
 var unit_container = null
+var you_lose = null
+var you_win = null
 
 
 func damp(current, target, factor, delta):

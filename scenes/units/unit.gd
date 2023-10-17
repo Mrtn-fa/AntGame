@@ -1,7 +1,7 @@
 class_name Unit extends CharacterBody2D
 
 var atk = 2
-var RESOURCE_MAX = 10
+var RESOURCE_MAX = 4
 var material_count = 0
 var material_type = ''
 var speed = 50
@@ -176,7 +176,7 @@ func interact(to: Node2D):
 		to.receive(self)
 	elif is_instance_of(to, uMaterial):
 		to.get_damage(self)
-		Debug.dprint("Material attacked")
+		#Debug.dprint("Material attacked")
 	elif is_instance_of(to, MainBuilding):
 		if to.is_owner(player_id):
 			to.receive_from(self)

@@ -20,7 +20,7 @@ func add_material(unit: Unit):
 	# elif material_type == '...':
 		# pass
 	unit.subtract_material(material_count)
-	Debug.dprint("unit has " + str(unit.material_count) + ' units of resource')
+	#Debug.dprint("unit has " + str(unit.material_count) + ' units of resource')
 	
 	
 func subtract_wood(qtt:int):
@@ -30,19 +30,28 @@ func subtract_wood(qtt:int):
 func setup(player_data: Game.PlayerData):
 	set_multiplayer_authority(player_data.id)
 	name = str(player_data.id)
-	Debug.dprint(player_data.name, 30)
-	Debug.dprint(player_data.role, 30)
+	#Debug.dprint(player_data.name, 30)
+	#Debug.dprint(player_data.role, 30)
 	var house = Util.houses[int(player_data.role) - 1]
 	house.player_id = player_data.id
 	player_data.main_building = house
+	player_data.enemy_main_building = Util.houses[int(player_data.role) - 2]
 	house.get_node("HealthComponent/Label").modulate = player_data.get_color()
 
+
+func _process(delta):
+	if Game.get_current_player().main_building == null:
+		Util.you_lose.visible = true
+	
+	if Game.get_current_player().enemy_main_building == null:
+		Util.you_win.visible = true
 
 
 @rpc
 func test():
 #	if is_multiplayer_authority():
 	Debug.dprint("test - player: %s" % name, 30)
+
 
 func _input(event: InputEvent) -> void:
 	if is_multiplayer_authority():

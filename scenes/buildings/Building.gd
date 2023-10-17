@@ -1,4 +1,4 @@
-class_name Building extends Node2D
+class_name Building extends StaticBody2D
 
 @onready var health = $HealthComponent
 var player_id : int

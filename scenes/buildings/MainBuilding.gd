@@ -33,14 +33,16 @@ func _input(event):
 		if sprite.get_rect().has_point(get_local_mouse_position()) and \
 				$Timer.time_left==0 and \
 				(player_id == multiplayer.get_unique_id()):
+			Debug.dprint("Hi!2222")
 			$Timer.start()
 			$TimeRemaining.show()
-#			Util.main.spawn_unit(posicion, null)
+			#Util.main.spawn_unit(posicion, null)
 #			Debug.dprint("You clicked on this Sprite")
 #			Debug.dprint("La posición del nodo 2D es:")
 #			Debug.dprint(posicion)
 
 func _on_timer_timeout():
+	Debug.dprint("aaaaaaa")
 	if pos==0:
 		var posicion = nodo2d.global_position
 #		Debug.dprint("timer timeout")

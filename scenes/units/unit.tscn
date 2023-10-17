@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyn8dcsupiohn"]
+[gd_scene load_steps=9 format=3 uid="uid://cyn8dcsupiohn"]
 
 [ext_resource type="Script" path="res://scenes/units/unit.gd" id="1_3bexo"]
 [ext_resource type="PackedScene" uid="uid://cqc3gxl3u2men" path="res://scenes/components/SelectorComponent.tscn" id="2_4uaex"]
@@ -23,6 +23,9 @@ properties/2/watch = true
 [sub_resource type="CircleShape2D" id="CircleShape2D_yuekh"]
 radius = 5.0
 
+[sub_resource type="Theme" id="Theme_ovqgq"]
+default_font_size = 8
+
 [node name="Unit" type="CharacterBody2D" groups=["units"]]
 script = ExtResource("1_3bexo")
 
@@ -46,5 +49,6 @@ texture = ExtResource("2_06ylm")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+theme = SubResource("Theme_ovqgq")
 
 [node name="HealthComponent" parent="." instance=ExtResource("5_okgtq")]
