@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cqc3gxl3u2men" path="res://scenes/components/SelectorComponent.tscn" id="2_4uaex"]
 [ext_resource type="Texture2D" uid="uid://canu86uqrfv3n" path="res://resources/SoldierAntIdleSide1.png" id="2_06ylm"]
 [ext_resource type="PackedScene" uid="uid://dcbg2ws6h8q0w" path="res://scenes/components/NavigationComponent.tscn" id="3_t6dpp"]
-[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="5_en5eo"]
+[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="5_okgtq"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4y7av"]
 properties/0/path = NodePath(".:player_id")
@@ -42,8 +42,6 @@ position = Vector2(0, -3)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -8)
 texture = ExtResource("2_06ylm")
-
-[node name="HealthComponent" parent="." instance=ExtResource("5_en5eo")]
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
