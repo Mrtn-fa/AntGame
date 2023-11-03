@@ -297,9 +297,9 @@ func _back_to_first_menu() -> void:
 func _on_team_selector_item_selected(index):
 	# 1: Ants, 2: Termites
 	if index == 1:	
-		Game.set_current_player_role(Game.Role.ROLE_A)
+		Game.set_current_player_role(Game.Role.ANTS)
 	elif index == 2:
-		Game.set_current_player_role(Game.Role.ROLE_B)
+		Game.set_current_player_role(Game.Role.TERMITES)
 
 func _on_color_selector_item_selected(index):
 	print(index)

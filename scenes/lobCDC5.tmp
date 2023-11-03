@@ -1,0 +1,262 @@
+[gd_scene load_steps=14 format=3 uid="uid://bslhrv3eo36wd"]
+
+[ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
+[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
+[ext_resource type="Texture2D" uid="uid://k2byt74lf7x4" path="res://resources/sprites/Tiny Dominion-1.png" id="3_806ve"]
+[ext_resource type="Texture2D" uid="uid://bkanwmbk50h85" path="res://resources/sprites/placeholderant.png" id="4_nmryn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8axtq"]
+bg_color = Color(0.0431373, 0.188235, 0.105882, 0.113725)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Gradient" id="Gradient_k3gn7"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.908225, 0.729464, 0.240506, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5rba8"]
+gradient = SubResource("Gradient_k3gn7")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_uaooe"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.294118, 0, 0.509804, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c01qx"]
+gradient = SubResource("Gradient_uaooe")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_t2awh"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.411765, 0.705882, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jne82"]
+gradient = SubResource("Gradient_t2awh")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_2oq0j"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.133333, 0.545098, 0.133333, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ounf8"]
+gradient = SubResource("Gradient_2oq0j")
+height = 16
+
+[node name="Lobby" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g2fmt")
+lobby_player_scene = ExtResource("2_060bj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("3_806ve")
+expand_mode = 1
+
+[node name="TimeContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+alignment = 1
+
+[node name="Label2" type="Label" parent="TimeContainer"]
+layout_mode = 2
+text = "Starting in:"
+
+[node name="Time" type="Label" parent="TimeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_8axtq")
+
+[node name="Menus" type="MarginContainer" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StartMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Menus/StartMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/StartMenu/HBoxContainer2"]
+layout_mode = 2
+text = "Name:
+"
+vertical_alignment = 1
+
+[node name="User" type="LineEdit" parent="PanelContainer/Menus/StartMenu/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/StartMenu"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="PanelContainer/Menus/StartMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="Join" type="Button" parent="PanelContainer/Menus/StartMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="JoinMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Menus/JoinMenu"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/Menus/JoinMenu/HBoxContainer2"]
+layout_mode = 2
+text = "IP:
+"
+vertical_alignment = 1
+
+[node name="IP" type="LineEdit" parent="PanelContainer/Menus/JoinMenu/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "127.0.0.1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/JoinMenu"]
+layout_mode = 2
+
+[node name="BackJoin" type="Button" parent="PanelContainer/Menus/JoinMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="ConfirmJoin" type="Button" parent="PanelContainer/Menus/JoinMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="Info" type="Label" parent="PanelContainer/Menus/JoinMenu"]
+visible = false
+layout_mode = 2
+
+[node name="ReadyMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+text = "Players:
+"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="Players" type="VBoxContainer" parent="PanelContainer/Menus/ReadyMenu/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="RoleA" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Role A"
+
+[node name="RoleB" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role B"
+
+[node name="TeamSelector" type="OptionButton" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Team"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = "Ants"
+popup/item_1/icon = ExtResource("4_nmryn")
+popup/item_1/id = 1
+popup/item_2/text = "Termites"
+popup/item_2/icon = ExtResource("4_nmryn")
+popup/item_2/id = 2
+
+[node name="ColorSelector" type="OptionButton" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+icon_alignment = 1
+item_count = 5
+selected = 0
+popup/item_0/text = "Color"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = ""
+popup/item_1/icon = SubResource("GradientTexture2D_5rba8")
+popup/item_1/id = 1
+popup/item_2/text = ""
+popup/item_2/icon = SubResource("GradientTexture2D_c01qx")
+popup/item_2/id = 2
+popup/item_3/text = ""
+popup/item_3/icon = SubResource("GradientTexture2D_jne82")
+popup/item_3/id = 3
+popup/item_4/text = ""
+popup/item_4/icon = SubResource("GradientTexture2D_ounf8")
+popup/item_4/id = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="BackReady" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back
+"
+
+[node name="Ready" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ready"
+
+[node name="StartTimer" type="Timer" parent="."]
+
+[connection signal="item_selected" from="PanelContainer/Menus/ReadyMenu/HBoxContainer/TeamSelector" to="." method="_on_team_selector_item_selected"]
+[connection signal="item_selected" from="PanelContainer/Menus/ReadyMenu/HBoxContainer/ColorSelector" to="." method="_on_color_selector_item_selected"]
