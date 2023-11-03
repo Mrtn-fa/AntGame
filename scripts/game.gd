@@ -5,8 +5,15 @@ signal player_updated(id)
 
 enum Role {
 	NONE,
-	ROLE_A,
-	ROLE_B
+	ANTS,
+	TERMITES
+}
+enum Colors {
+	NONE,
+	ORANGE,
+	INDIGO,
+	GREEN,
+	PINK
 }
 enum ChosenColor {
 	YELLOW,
@@ -56,6 +63,12 @@ func get_current_player() -> PlayerData:
 func set_player_role(id: int, role: Role) -> void:
 	var player = get_player(id)
 	player.role = role
+	player_updated.emit(id)
+	
+@rpc("any_peer", "reliable", "call_local")
+func set_player_color(id: int, color: Color) -> void:
+	var player = get_player(id)
+	player.color = color
 	player_updated.emit(id)
 
 
@@ -123,7 +136,8 @@ class PlayerData:
 		return {
 			"id": id,
 			"name": name,
-			"role": role
+			"role": role,
+			# "color": color
 		}
 	
 	func get_color():

@@ -28,6 +28,7 @@ func _on_player_updated(id: int) -> void:
 func _update(player: Game.PlayerData):
 	_set_player_name(player.name)
 	_set_player_role(player.role)
+	# _set_player_color(player.color)
 
 
 func _set_player_name(value: String) -> void:
@@ -37,10 +38,13 @@ func _set_player_name(value: String) -> void:
 func _set_player_role(value: Game.Role) -> void:
 	player_role.visible = value != Game.Role.NONE
 	match value:
-		Game.Role.ROLE_A:
-			player_role.text = "Role A"
-		Game.Role.ROLE_B:
-			player_role.text = "Role B"
+		Game.Role.ANTS:
+			player_role.text = "Ants"
+		Game.Role.TERMITES:
+			player_role.text = "Termites"
+
+func _set_player_color(value: Color) -> void:
+	pass
 
 
 func set_ready(value: bool) -> void:

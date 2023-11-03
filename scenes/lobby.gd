@@ -1,7 +1,7 @@
 extends MarginContainer
 
 
-const MAX_PLAYERS = 2
+const MAX_PLAYERS = 4
 const PORT = 5409
 
 @onready var user = %User
@@ -15,6 +15,9 @@ const PORT = 5409
 
 @onready var role_a: Button = %RoleA
 @onready var role_b: Button = %RoleB
+
+@onready var role_button: Button = %RoleButton
+@onready var color_button: Button = %ColorButton
 
 @onready var back_ready: Button = %BackReady
 @onready var ready_toggle: Button = %Ready
@@ -61,8 +64,8 @@ func _ready():
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
 	
-	role_a.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_A))
-	role_b.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_B))
+	role_a.pressed.connect(func(): Game.set_current_player_role(Game.Role.ANTS))
+	role_b.pressed.connect(func(): Game.set_current_player_role(Game.Role.TERMITES))
 	
 	ready_toggle.pressed.connect(_on_ready_toggled)
 	
