@@ -8,6 +8,12 @@ enum Role {
 	ROLE_A,
 	ROLE_B
 }
+enum ChosenColor {
+	YELLOW,
+	INDIGO,
+	PINK,
+	GREEN,
+}
 
 # [ {id: int, name: string, rol: Rol} ]
 var players: Array[PlayerData] = []
@@ -93,8 +99,12 @@ func _exit_tree():
 
 class PlayerData:
 	var colors = {
-		Role.ROLE_A: Color.MEDIUM_PURPLE,
-		Role.ROLE_B: Color.ORANGE_RED
+		#Role.ROLE_A: Color.MEDIUM_PURPLE,
+		#Role.ROLE_B: Color.ORANGE_RED
+		ChosenColor.YELLOW: Color.YELLOW,
+		ChosenColor.INDIGO: Color.INDIGO,
+		ChosenColor.PINK: Color.HOT_PINK,
+		ChosenColor.GREEN: Color.FOREST_GREEN,
 	}
 	
 	var id: int
