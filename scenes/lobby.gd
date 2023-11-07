@@ -1,7 +1,7 @@
 extends MarginContainer
 
 
-const MAX_PLAYERS = 2
+const MAX_PLAYERS = 4
 const PORT = 5409
 
 @onready var user = %User
@@ -15,6 +15,9 @@ const PORT = 5409
 
 @onready var role_a: Button = %RoleA
 @onready var role_b: Button = %RoleB
+
+@onready var role_button: Button = %RoleButton
+@onready var color_button: Button = %ColorButton
 
 @onready var back_ready: Button = %BackReady
 @onready var ready_toggle: Button = %Ready
@@ -32,6 +35,9 @@ const PORT = 5409
 @onready var time_container: HBoxContainer = %TimeContainer
 @onready var time: Label = %Time
 
+@onready var TeamSelector: OptionButton = %TeamSelector
+@onready var ColorSelector: OptionButton = %ColorSelector
+
 
 @export var lobby_player_scene: PackedScene
 
@@ -39,7 +45,7 @@ const PORT = 5409
 var status = { 1 : false }
 
 var _menu_stack: Array[Control] = []
-
+	
 func _ready():
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
@@ -58,8 +64,8 @@ func _ready():
 	back_join.pressed.connect(_back_menu)
 	back_ready.pressed.connect(_back_menu)
 	
-	role_a.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_A))
-	role_b.pressed.connect(func(): Game.set_current_player_role(Game.Role.ROLE_B))
+	role_a.pressed.connect(func(): Game.set_current_player_role(Game.Role.ANTS))
+	role_b.pressed.connect(func(): Game.set_current_player_role(Game.Role.TERMITES))
 	
 	ready_toggle.pressed.connect(_on_ready_toggled)
 	
@@ -74,7 +80,6 @@ func _ready():
  else "")
 	
 	Game.upnp_completed.connect(_on_upnp_completed)
-
 
 func _process(_delta: float) -> void:
 	if !start_timer.is_stopped():
@@ -155,6 +160,8 @@ func _on_peer_disconnected(id: int) -> void:
 
 
 func _on_server_disconnected() -> void:
+	TeamSelector.select(0)
+	ColorSelector.select(0)
 	Debug.dprint("server_disconnected")
 
 
@@ -285,3 +292,14 @@ func _back_to_first_menu() -> void:
 		first.show()
 	if Game.is_online():
 		_disconnect()
+
+
+func _on_team_selector_item_selected(index):
+	# 1: Ants, 2: Termites
+	if index == 1:	
+		Game.set_current_player_role(Game.Role.ANTS)
+	elif index == 2:
+		Game.set_current_player_role(Game.Role.TERMITES)
+
+func _on_color_selector_item_selected(index):
+	print(index)

@@ -1,0 +1,233 @@
+[gd_scene load_steps=11 format=3 uid="uid://bslhrv3eo36wd"]
+
+[ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
+[ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
+
+[sub_resource type="Gradient" id="Gradient_d4u4d"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.321569, 0.117647, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fwf51"]
+gradient = SubResource("Gradient_d4u4d")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_faxxj"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.294118, 0, 0.509804, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ptcqv"]
+gradient = SubResource("Gradient_faxxj")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_inv4t"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.301776, 0.704929, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ca84b"]
+gradient = SubResource("Gradient_inv4t")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_7vbgo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0.160784, 0.788235, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c8ue5"]
+gradient = SubResource("Gradient_7vbgo")
+height = 16
+
+[node name="Lobby" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g2fmt")
+lobby_player_scene = ExtResource("2_060bj")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Menus" type="MarginContainer" parent="PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StartMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/StartMenu"]
+layout_mode = 2
+text = "Name:
+"
+
+[node name="User" type="LineEdit" parent="PanelContainer/Menus/StartMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/StartMenu"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="PanelContainer/Menus/StartMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="Join" type="Button" parent="PanelContainer/Menus/StartMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="JoinMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/Menus/JoinMenu"]
+layout_mode = 2
+text = "IP:
+"
+
+[node name="IP" type="LineEdit" parent="PanelContainer/Menus/JoinMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/JoinMenu"]
+layout_mode = 2
+
+[node name="BackJoin" type="Button" parent="PanelContainer/Menus/JoinMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="ConfirmJoin" type="Button" parent="PanelContainer/Menus/JoinMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join"
+
+[node name="Info" type="Label" parent="PanelContainer/Menus/JoinMenu"]
+visible = false
+layout_mode = 2
+
+[node name="ReadyMenu" type="VBoxContainer" parent="PanelContainer/Menus"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+text = "Players:
+"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="Players" type="VBoxContainer" parent="PanelContainer/Menus/ReadyMenu/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="RoleA" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role A"
+
+[node name="RoleB" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Role B"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RoleButton" type="OptionButton" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+expand_icon = true
+item_count = 3
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "Role"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/text = "Ants"
+popup/item_1/id = 1
+popup/item_2/text = "Termits"
+popup/item_2/id = 2
+
+[node name="ColorButton" type="OptionButton" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text_overrun_behavior = 1
+clip_text = true
+expand_icon = true
+item_count = 5
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = "Color"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/text = ""
+popup/item_1/icon = SubResource("GradientTexture2D_fwf51")
+popup/item_1/id = 1
+popup/item_2/text = ""
+popup/item_2/icon = SubResource("GradientTexture2D_ptcqv")
+popup/item_2/id = 2
+popup/item_3/text = ""
+popup/item_3/icon = SubResource("GradientTexture2D_ca84b")
+popup/item_3/id = 3
+popup/item_4/text = ""
+popup/item_4/icon = SubResource("GradientTexture2D_c8ue5")
+popup/item_4/id = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+layout_mode = 2
+
+[node name="BackReady" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back
+"
+
+[node name="Ready" type="Button" parent="PanelContainer/Menus/ReadyMenu/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ready"
+
+[node name="TimeContainer" type="HBoxContainer" parent="PanelContainer/Menus/ReadyMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/Menus/ReadyMenu/TimeContainer"]
+layout_mode = 2
+text = "Starting in:"
+
+[node name="Time" type="Label" parent="PanelContainer/Menus/ReadyMenu/TimeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "5"
+
+[node name="StartTimer" type="Timer" parent="."]
+
+[connection signal="item_selected" from="PanelContainer/Menus/ReadyMenu/HBoxContainer3/RoleButton" to="." method="_on_role_button_item_selected"]
