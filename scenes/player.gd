@@ -1,14 +1,21 @@
-class_name Player
-extends Node2D
+class_name Player extends Node2D
 
 const STARTING_WOOD = 100
+const STARTING_SUGAR = 100
 var wood : int
+var sugar: int
 
 func _ready():
 	wood = STARTING_WOOD
+	sugar = STARTING_SUGAR
 	
-func is_valid_transaction(qtt:int):
-	return wood-qtt>=0
+func is_valid_transaction(qtt:int, material_type:String):
+	var material
+	if material_type == 'Wood':
+		material = wood
+	elif material_type == 'Sugar':
+		material = sugar
+	return material-qtt>=0
 
 func add_material(unit: Unit):
 	var material_data = unit.get_current_material()
@@ -17,14 +24,17 @@ func add_material(unit: Unit):
 	
 	if material_type == 'Wood':
 		wood += material_count
-	# elif material_type == '...':
-		# pass
+	elif material_type == 'Sugar':
+		sugar += material_count
 	unit.subtract_material(material_count)
 	#Debug.dprint("unit has " + str(unit.material_count) + ' units of resource')
 	
-	
-func subtract_wood(qtt:int):
-	wood-=qtt
+#TODO: corregir magic strings
+func subtract_material(qtt:int, material_type:String):
+	if material_type == 'Wood':
+		wood-=qtt
+	elif material_type == 'Sugar':
+		sugar-=qtt
 
 
 func setup(player_data: Game.PlayerData):
