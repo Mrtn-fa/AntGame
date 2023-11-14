@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnfkj0twgbe6b"]
+[gd_scene load_steps=6 format=3 uid="uid://cnfkj0twgbe6b"]
 
 [ext_resource type="Texture2D" uid="uid://48a66kai7vae" path="res://resources/back.png" id="1_qni3u"]
 [ext_resource type="Texture2D" uid="uid://dqmty7nxgyh7p" path="res://resources/logo.png" id="2_4xjbm"]
+[ext_resource type="Script" path="res://scenes/ui/MainMenuButtons.gd" id="2_yv7eh"]
+[ext_resource type="PackedScene" uid="uid://bslhrv3eo36wd" path="res://scenes/lobby.tscn" id="3_84uqs"]
+[ext_resource type="PackedScene" uid="uid://d1p34sbwiw0r3" path="res://scenes/ui/credits.tscn" id="4_mh11w"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BackgroundTextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +37,9 @@ offset_right = 93.0
 offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_yv7eh")
+sceneToLoad = ExtResource("3_84uqs")
+CreditsScene = ExtResource("4_mh11w")
 
 [node name="PlayButton" type="Button" parent="MainMenuButtons"]
 layout_mode = 2
@@ -50,7 +56,7 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Salir"
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TinyDominionLogo" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -62,3 +68,6 @@ offset_bottom = 127.322
 grow_horizontal = 2
 texture = ExtResource("2_4xjbm")
 expand_mode = 5
+
+[connection signal="pressed" from="MainMenuButtons/PlayButton" to="MainMenuButtons" method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuButtons/CreditsButton" to="MainMenuButtons" method="_on_credits_button_pressed"]
