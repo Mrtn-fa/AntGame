@@ -1,7 +1,6 @@
 extends VBoxContainer
 
-@export var sceneToLoad : PackedScene
-@export var creditsScene : PackedScene
+@export var mainMenuScene : PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,10 +11,5 @@ func _ready():
 func _process(delta):
 	pass
 
-
-func _on_play_button_pressed():
-	get_tree().change_scene_to_packed(sceneToLoad)
-	
-func _on_credits_button_pressed():
-	get_tree().change_scene_to_packed(creditsScene)
-
+func _on_back_button_pressed():
+	get_tree().change_scene_to_packed(mainMenuScene)

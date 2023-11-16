@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://krpb6ktwafun"]
+
+[ext_resource type="Texture2D" uid="uid://48a66kai7vae" path="res://resources/back.png" id="1_313mv"]
+[ext_resource type="Script" path="res://scenes/ui/CreditsButtons.gd" id="2_laocj"]
+[ext_resource type="PackedScene" uid="uid://cnfkj0twgbe6b" path="res://scenes/ui/main_menu.tscn" id="3_hcutg"]
+[ext_resource type="Texture2D" uid="uid://dqmty7nxgyh7p" path="res://resources/logo.png" id="4_4j5dw"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_313mv")
+expand_mode = 2
+
+[node name="CreditsButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -50.0
+offset_right = 93.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_laocj")
+mainMenuScene = ExtResource("3_hcutg")
+
+[node name="BackButton" type="Button" parent="CreditsButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Atrás"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 27.0
+offset_right = 113.0
+offset_bottom = 127.322
+grow_horizontal = 2
+texture = ExtResource("4_4j5dw")
+expand_mode = 5
+
+[connection signal="pressed" from="CreditsButtons/BackButton" to="CreditsButtons" method="_on_back_button_pressed"]
