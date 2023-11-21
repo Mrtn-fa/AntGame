@@ -7,13 +7,16 @@ var state_factory
 
 @onready var health: HealthComponent = $HealthComponent
 var atk = 2
-var RESOURCE_MAX = 4
-var material_count = 0
-var material_type = ''
+var range = 16
+# Moved to Worker.gd
+#var RESOURCE_MAX = 4
+#var material_count = 0
+#var material_type = ''
+#var current_resource_node = null
 var cooldown_time = 2 # Seconds
 var cooldown = null
 var can_attack = true
-var current_resource_node = null
+
 
 @onready var map = $%TileMap
 @onready var navigation_component = $NavigationComponent
@@ -29,11 +32,12 @@ func command(amigo: Node2D):
 		change_state(State.STATE.MOVING)
 	elif is_instance_of(amigo, Unit):
 		change_state(State.STATE.PURSUING if not amigo.is_owner(player_id) else State.STATE.MOVING)
-	elif is_instance_of(amigo, uMaterial):
-		current_resource_node = navigation_component.get_target()
-		change_state(State.STATE.MOVING_TO_GATHER)
-	elif is_instance_of(amigo, Building):
-		change_state(State.STATE.STORING if amigo.is_owner(player_id) else State.STATE.PURSUING)
+	# Moved to Worker
+	#elif is_instance_of(amigo, uMaterial):
+	#	current_resource_node = navigation_component.get_target()
+	#	change_state(State.STATE.MOVING_TO_GATHER)
+	#elif is_instance_of(amigo, Building):
+	#	change_state(State.STATE.STORING if amigo.is_owner(player_id) else State.STATE.PURSUING)
 
 
 func change_state(state_value):
@@ -60,23 +64,25 @@ func interact(to: Node2D):
 		else:
 			to.receive_damage(self)
 
-func subtract_material(qtt:int):
-	material_count -= qtt
+# Moved to Worker.gd
+#func subtract_material(qtt:int):
+#	material_count -= qtt
 
 
 func receive(from: Node):
 	if is_instance_of(from, Unit):
 		health.get_damage(from)
-	elif is_instance_of(from, uMaterial):
-		self.material_count = min(self.material_count+self.atk, RESOURCE_MAX)
+	# Moved to Worker.gd
+	#elif is_instance_of(from, uMaterial):
+	#	self.material_count = min(self.material_count+self.atk, RESOURCE_MAX)
+
+# Moved to Worker.gd
+#func get_current_material():
+#	return [material_count, material_type]
 
 
-func get_current_material():
-	return [material_count, material_type]
-
-
-func is_full():
-	return material_count == RESOURCE_MAX
+#func is_full():
+#	return material_count == RESOURCE_MAX
 
 func _on_timeout():
 	can_attack = true

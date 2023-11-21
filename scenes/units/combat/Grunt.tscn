@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://4bt5dcx0brhf"]
+
+[ext_resource type="Script" path="res://scenes/units/combat/Grunt.gd" id="1_8juxe"]
+
+[node name="Grunt" type="Node2D"]
+script = ExtResource("1_8juxe")
