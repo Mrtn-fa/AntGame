@@ -19,6 +19,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="YouWin" type="Label" parent="Control"]
+layout_mode = 0
 offset_right = 639.0
 offset_bottom = 359.0
 text = "YOU WIN!"
