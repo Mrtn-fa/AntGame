@@ -1,4 +1,4 @@
-extends Node2D
+class_name SelectorComponent extends Node2D
 
 @onready var rectangle = $Panel
 @onready var parent_sprite = $"../Sprite2D"

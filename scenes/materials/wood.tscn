@@ -5,8 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://ddq53jksd72xt" path="res://resources/sprites/spritesheet.png" id="2_imbjr"]
 
 [node name="Wood" instance=ExtResource("1_hkh8u")]
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("2_bvyrv")
 
 [node name="CollisionPolygon2D" parent="." index="0"]

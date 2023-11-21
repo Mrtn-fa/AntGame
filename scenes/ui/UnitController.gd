@@ -9,9 +9,12 @@ var drag_end = Vector2.ZERO
 var bottom_right = Vector2.ZERO
 var is_dragging = false
 var selection_box = Rect2()
+var unit_selection = false
+var building_selection = true
 
 # Selection Components
 var selected_units = []
+var selected_building = null
 var selection_components = {}  # (set)
 func subscribe(node):
 	selection_components[node] = null
@@ -47,17 +50,24 @@ func _command_group():
 		unit.command(current_amigo)
 
 func select_area():
-	# TODO: discriminar por tipo
 	selected_units = []
 	for node in selection_components:
 		if node.get_player_id() == multiplayer.get_unique_id():
 			if (node.global_position.x > position.x and node.global_position.x < bottom_right.x \
 					and node.global_position.y > position.y and node.global_position.y < bottom_right.y):
-				selected_units.append(node)
-				node.set_selected(true)
+				if is_instance_of(node, UnitSelectorComponent):
+					selected_units.append(node)
+					node.set_selected(true)
+				if is_instance_of(node, BuildingSelectorComponent):
+					node.set_selected(false)
+					selected_building = node
 			else:
 				node.set_selected(false)
-
+	if selected_units.is_empty() and selected_building != null:
+		selected_building.set_selected(true)
+		for selected_unit in selected_units:
+			selected_unit.set_selected(false)
+		selected_units = []
 
 func select_point():
 	selected_units = []
@@ -112,12 +122,13 @@ func _process(_delta: float) -> void:
 		else:
 			select_point()
 		for selector_unit in selected_units:
-			var sprite = selector_unit.parent_sprite
-			var unit = selector_unit.get_parent()
-			var max_health = unit.health.MAX_HEALTH
-			var current_health = unit.health.health
-			var portrait = create_portrait(unit, sprite, max_health, current_health)
-			Util.unit_container.add_child(portrait)
+			if is_instance_of(selector_unit, UnitSelectorComponent):
+				var sprite = selector_unit.parent_sprite
+				var unit = selector_unit.get_parent()
+				var max_health = unit.health.MAX_HEALTH
+				var current_health = unit.health.health
+				var portrait = create_portrait(unit, sprite, max_health, current_health)
+				Util.unit_container.add_child(portrait)
 		is_dragging = false
 		draw(false)
 	

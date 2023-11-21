@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=11 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player.tscn" id="2_e1311"]
@@ -9,10 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://co2csmf1n85vk" path="res://scenes/materials/wood.tscn" id="6_2h2ba"]
 [ext_resource type="PackedScene" uid="uid://b2ofvxmcs5s2v" path="res://scenes/world/tiles.tscn" id="6_e3n3r"]
 [ext_resource type="PackedScene" uid="uid://b1qlrdi3ouyhj" path="res://scenes/ui/hud.tscn" id="6_llbox"]
+[ext_resource type="PackedScene" uid="uid://dyhql21xpsdx6" path="res://scenes/materials/Sugar.tscn" id="10_ygita"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ysfbh")
 player_scene = ExtResource("2_e1311")
+
+[node name="UnitController" parent="." instance=ExtResource("3_f4hhl")]
+unique_name_in_owner = true
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -47,9 +51,6 @@ metadata/_edit_use_anchors_ = true
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Camera" parent="." instance=ExtResource("3_p7ey0")]
-
-[node name="UnitController" parent="." instance=ExtResource("3_f4hhl")]
-unique_name_in_owner = true
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://scenes/units/unit.tscn")
@@ -96,3 +97,8 @@ collision_mask = 1
 position = Vector2(217, -27)
 collision_layer = 1
 collision_mask = 1
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Sugar" parent="." instance=ExtResource("10_ygita")]
+position = Vector2(29, -123)

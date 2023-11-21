@@ -3,50 +3,52 @@ extends Node2D
 @export var target_threshold: int = 16
 
 @onready var agent = $NavigationAgent2D
-@onready var rays =[
+@onready var rays = [
+	$RayUp,
 	$RayLeftest,
 	$RayLeft,
 	$RayFront,
 	$RayRight,
-	$RayRightest
+	$RayRightest,
+	$RayDown
 ]
 
-var distance_to_target = Vector2.ZERO
-var interest = [0, 0, 0, 0, 0]
 
+var distance_to_target = Vector2.ZERO
+var interest = [0, 0, 0, 0, 0, 0, 0]
 var target_node = null
 
-func set_target_old(pos: Vector2) -> bool:
-	agent.set_target_position(pos)
-	return agent.is_target_reachable()
-	
+
 func set_target(target: Object):
 	var pos
 	if not target or is_instance_of(target, TileMap):
 		target_node = null
 		pos = get_global_mouse_position()
-		print("floor at", pos)
 	else:
 		target_node = target
-		print(target.position)
 		pos = Vector2(target.get_position())
-	print("target at", pos)
 	agent.set_target_position(pos)
-	#Debug.dprint(agent.is_target_reachable())
 	return agent.is_target_reachable()
-	
+
+
+func refresh_target():
+	var pos = Vector2(target_node.get_position())
+	agent.set_target_position(pos)
+
+
 func get_target():
 	return target_node
 
 
+# Condiciones para terminar la navegación (cualquiera sirve)
+# 1. Se murió la meta
+# 2. Está muy cerca a la meta
+# 3. Se acabaron los puntos del camino calculado
 func is_target_reached() -> bool:
 	if target_node == null:
 		return agent.is_navigation_finished()
 	var distance = get_parent().position.distance_to(target_node.position)
-	#Debug.dprint(distance)
 	return distance < target_threshold or agent.is_navigation_finished()
-	
-	#distance_to_target < target_threshold or agent.is_navigation_finished()
 
 
 func get_direction() -> Vector2:
@@ -58,7 +60,7 @@ func get_direction() -> Vector2:
 
 func _set_interest() -> Vector2:
 	var final_direction = 0
-	interest = [0.79, 0.79, 1, 0.8, 0.8]
+	interest = [0.59, 0.8, 0.79, 1, 0.8, 0.79, 0.6]
 	for ray_index in rays.size():
 		var ray = rays[ray_index]
 		if ray.is_colliding():
