@@ -9,6 +9,8 @@ var drag_end = Vector2.ZERO
 var bottom_right = Vector2.ZERO
 var is_dragging = false
 var selection_box = Rect2()
+var unit_selection = false
+var building_selection = true
 
 # Selection Components
 var selected_units = []
@@ -48,7 +50,6 @@ func _command_group():
 		unit.command(current_amigo)
 
 func select_area():
-	# TODO: discriminar por tipo
 	selected_units = []
 	for node in selection_components:
 		if node.get_player_id() == multiplayer.get_unique_id():
@@ -57,16 +58,16 @@ func select_area():
 				if is_instance_of(node, UnitSelectorComponent):
 					selected_units.append(node)
 					node.set_selected(true)
-			if is_instance_of(node, BuildingSelectorComponent):
-				for unit in selected_units:
-					unit.set_selected(false)
-					selected_units = []
-				selected_building = node
-				node.set_selected(true)
-				break
+				if is_instance_of(node, BuildingSelectorComponent):
+					node.set_selected(false)
+					selected_building = node
 			else:
 				node.set_selected(false)
-		
+	if selected_units.is_empty() and selected_building != null:
+		selected_building.set_selected(true)
+		for selected_unit in selected_units:
+			selected_unit.set_selected(false)
+		selected_units = []
 
 func select_point():
 	selected_units = []
