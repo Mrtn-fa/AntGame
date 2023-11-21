@@ -1,6 +1,6 @@
 class_name MainBuilding extends Building
 
-@onready var sprite = $AntHill
+@onready var sprite = $Sprite2D
 @onready var nodo2d = $Position1
 @onready var position2 = $Position2
 @onready var pos = 0
@@ -22,7 +22,7 @@ func _process(delta):
 #	Debug.dprint($Timer.time_left)
 	pass
 
-func _input(event):
+func woah(event):
 	
 	
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
@@ -37,6 +37,18 @@ func _input(event):
 			$Timer.start()
 			$TimeRemaining.show()
 			#Util.main.spawn_unit(posicion, null)
+#			Debug.dprint("You clicked on this Sprite")
+#			Debug.dprint("La posición del nodo 2D es:")
+#			Debug.dprint(posicion)
+
+func create_unit():
+	if sprite.get_rect().has_point(get_local_mouse_position()) and \
+			$Timer.time_left==0 and \
+			(player_id == multiplayer.get_unique_id()):
+		Debug.dprint("Hi!2222")
+		$Timer.start()
+		$TimeRemaining.show()
+		#Util.main.spawn_unit(posicion, null)
 #			Debug.dprint("You clicked on this Sprite")
 #			Debug.dprint("La posición del nodo 2D es:")
 #			Debug.dprint(posicion)

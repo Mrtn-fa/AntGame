@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://vig3vbfj4dy3"]
+
+[ext_resource type="Script" path="res://scenes/components/UnitSelectorComponent.gd" id="1_0qugj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fw3d4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.882353, 0.929412, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="UnitSelectorComponent" type="Node2D"]
+script = ExtResource("1_0qugj")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -11.0
+offset_top = 1.0
+offset_right = 29.0
+offset_bottom = 41.0
+scale = Vector2(1, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_fw3d4")

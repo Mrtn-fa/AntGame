@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl0y08s1r301x"]
+[gd_scene load_steps=6 format=3 uid="uid://bl0y08s1r301x"]
 
 [ext_resource type="Script" path="res://scenes/buildings/MainBuilding.gd" id="1_s4e7a"]
 [ext_resource type="Texture2D" uid="uid://cbrf0o48jm3ta" path="res://resources/ant-hill.png" id="2_5fydr"]
 [ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="3_24isx"]
+[ext_resource type="PackedScene" uid="uid://lh7tu41mw41a" path="res://scenes/components/BuildingSelectorComponent.tscn" id="3_ji8ep"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5rx36"]
 font_size = 12
@@ -12,7 +13,9 @@ collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_s4e7a")
 
-[node name="AntHill" type="Sprite2D" parent="."]
+[node name="BuildingSelectorComponent" parent="." instance=ExtResource("3_ji8ep")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -21)
 texture = ExtResource("2_5fydr")
 

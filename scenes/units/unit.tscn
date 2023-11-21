@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cyn8dcsupiohn"]
 
 [ext_resource type="Script" path="res://scenes/units/unit.gd" id="1_3bexo"]
-[ext_resource type="PackedScene" uid="uid://cqc3gxl3u2men" path="res://scenes/components/SelectorComponent.tscn" id="2_4uaex"]
 [ext_resource type="Texture2D" uid="uid://canu86uqrfv3n" path="res://resources/SoldierAntIdleSide1.png" id="2_06ylm"]
+[ext_resource type="PackedScene" uid="uid://vig3vbfj4dy3" path="res://scenes/components/UnitSelectorComponent.tscn" id="2_afmsb"]
 [ext_resource type="PackedScene" uid="uid://dcbg2ws6h8q0w" path="res://scenes/components/NavigationComponent.tscn" id="3_t6dpp"]
 [ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="5_okgtq"]
 
@@ -32,12 +32,11 @@ script = ExtResource("1_3bexo")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_4y7av")
 
+[node name="UnitSelectorComponent" parent="." instance=ExtResource("2_afmsb")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_yuekh")
-
-[node name="SelectorComponent" parent="." instance=ExtResource("2_4uaex")]
-position = Vector2(0, -3)
 
 [node name="NavigationComponent" parent="." instance=ExtResource("3_t6dpp")]
 position = Vector2(0, -3)
