@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5hufqs7sbm01"]
+[gd_scene load_steps=12 format=3 uid="uid://b5hufqs7sbm01"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ysfbh"]
 [ext_resource type="PackedScene" uid="uid://b3mhsy021dqog" path="res://scenes/player.tscn" id="2_e1311"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b2ofvxmcs5s2v" path="res://scenes/world/tiles.tscn" id="6_e3n3r"]
 [ext_resource type="PackedScene" uid="uid://b1qlrdi3ouyhj" path="res://scenes/ui/hud.tscn" id="6_llbox"]
 [ext_resource type="PackedScene" uid="uid://dyhql21xpsdx6" path="res://scenes/materials/Sugar.tscn" id="10_ygita"]
+[ext_resource type="PackedScene" uid="uid://dewp8l32py5bf" path="res://scenes/buildings/satellite_building.tscn" id="11_ek36x"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ysfbh")
@@ -102,3 +103,6 @@ collision_mask = 1
 
 [node name="Sugar" parent="." instance=ExtResource("10_ygita")]
 position = Vector2(29, -123)
+
+[node name="SatelliteBuilding" parent="." instance=ExtResource("11_ek36x")]
+position = Vector2(84, -148)

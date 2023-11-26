@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dewp8l32py5bf"]
+
+[ext_resource type="PackedScene" uid="uid://ckw4gq40dn2ce" path="res://scenes/buildings/Building.tscn" id="1_udpv5"]
+[ext_resource type="Texture2D" uid="uid://h2xc7s5ts6vt" path="res://resources/satellite.png" id="2_h64e3"]
+
+[node name="SatelliteBuilding" instance=ExtResource("1_udpv5")]
+
+[node name="Satellite" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -11)
+texture = ExtResource("2_h64e3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+polygon = PackedVector2Array(11, 4, 31, 1, 20, -15, -16, -15, -29, -2, -9, 4)
+
+[node name="GatherPoint" type="Node2D" parent="." index="3"]
+position = Vector2(0, 12)

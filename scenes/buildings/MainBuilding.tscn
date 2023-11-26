@@ -30,6 +30,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_24isx")]
+MAX_HEALTH = 20.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-46, 1, -29, -21, 36, -21, 47, 10, 0, 21)

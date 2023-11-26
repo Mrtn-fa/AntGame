@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dytr3bpqaww1q"
-path="res://.godot/imported/ant-hil2l.png-3808f5d9f6252521eee0809d25aba6f1.ctex"
+uid="uid://h2xc7s5ts6vt"
+path="res://.godot/imported/satellite.png-0c63a4ad2b247265d6ca47f4f6715f0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/ant-hil2l.png"
-dest_files=["res://.godot/imported/ant-hil2l.png-3808f5d9f6252521eee0809d25aba6f1.ctex"]
+source_file="res://resources/satellite.png"
+dest_files=["res://.godot/imported/satellite.png-0c63a4ad2b247265d6ca47f4f6715f0f.ctex"]
 
 [params]
 
