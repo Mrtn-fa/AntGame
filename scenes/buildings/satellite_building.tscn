@@ -10,7 +10,8 @@ position = Vector2(0, -11)
 texture = ExtResource("2_h64e3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
-polygon = PackedVector2Array(11, 4, 31, 1, 20, -15, -16, -15, -29, -2, -9, 4)
+position = Vector2(2, -2)
+polygon = PackedVector2Array(8, 4, 20, 1, 12, -12, -12, -12, -25, -3, -8, 4)
 
 [node name="GatherPoint" type="Node2D" parent="." index="3"]
 position = Vector2(0, 12)

@@ -28,6 +28,7 @@ func _process(delta):
 	global_position = mouse_cell_pos_global
 
 
+
 	if not build_mode:
 		if Input.is_action_just_pressed("Build"):
 			var building_scene = buildings[build_type]
@@ -41,8 +42,28 @@ func _process(delta):
 			exit_build_mode()
 			return
 		
+		var other_1 = %TileMap.get_neighbor_cell(mouse_cell_pos, TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE)
+		var other_2 = %TileMap.get_neighbor_cell(mouse_cell_pos, TileSet.CELL_NEIGHBOR_TOP_CORNER)
+		var other_3 = %TileMap.get_neighbor_cell(mouse_cell_pos, TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE)
+		
+		var can_build = %TileMap.get_cell_tile_data(0, mouse_cell_pos).get_navigation_polygon(0) and \
+			%TileMap.get_cell_tile_data(0, other_1).get_navigation_polygon(0) and \
+			%TileMap.get_cell_tile_data(0, other_2).get_navigation_polygon(0) and \
+			%TileMap.get_cell_tile_data(0, other_3).get_navigation_polygon(0)
+
+		if not can_build:
+			$Sprite2D.modulate = Color(1.0, 0.0, 0.0, 0.5)
+			return
+		else:
+			$Sprite2D.modulate = Color(1.0, 1.0, 1.0, 0.5)
+		
 		if Input.is_action_just_pressed("LeftClick"):
 			Util.main.change_tile.rpc(mouse_cell_pos, Vector2(0, 1))
+			
+			Util.main.change_tile.rpc(other_1, Vector2(0, 1))
+			Util.main.change_tile.rpc(other_2, Vector2(0, 1))
+			Util.main.change_tile.rpc(other_3, Vector2(0, 1))
+			
 			Util.main.spawn_building(global_position, build_type)
 			exit_build_mode()
 			return
