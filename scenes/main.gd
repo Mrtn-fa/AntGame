@@ -35,6 +35,27 @@ func spawn_server(pos, _type):
 	
 	unit.initialize.rpc(pos, player_id)
 
+@rpc("any_peer")
+func spawn_building_server(pos, type):
+	var building_scene = Util.building_controller.buildings[type]
+	var building = building_scene.instantiate()
+	var player_id = multiplayer.get_remote_sender_id()
+
+	if player_id == 0:
+		player_id = 1
+		
+	%YSort.add_child(building, true)
+	
+	building.initialize.rpc(pos, player_id)
+
+func change_tile(position, atlas_position):
+	return
+	
+func spawn_building(pos, type):
+	if is_multiplayer_authority():
+		spawn_building_server(pos, type)
+	else:
+		spawn_building_server.rpc(pos, type)
 
 func spawn_unit(pos, type):
 	if is_multiplayer_authority():

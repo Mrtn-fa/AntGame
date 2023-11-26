@@ -5,7 +5,7 @@
 
 [node name="SatelliteBuilding" instance=ExtResource("1_udpv5")]
 
-[node name="Satellite" type="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 position = Vector2(0, -11)
 texture = ExtResource("2_h64e3")
 
