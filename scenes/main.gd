@@ -48,8 +48,9 @@ func spawn_building_server(pos, type):
 	
 	building.initialize.rpc(pos, player_id)
 
-func change_tile(position, atlas_position):
-	return
+@rpc("any_peer", "call_local")
+func change_tile(pos: Vector2, atlas_position: Vector2):
+	%TileMap.set_cell(0, pos, 0, atlas_position)
 	
 func spawn_building(pos, type):
 	if is_multiplayer_authority():

@@ -27,10 +27,6 @@ func _process(delta):
 	var mouse_cell_pos_global = %TileMap.map_to_local(mouse_cell_pos)
 	global_position = mouse_cell_pos_global
 
-#	if Input.is_action_just_pressed("LeftClick"):
-#		var data = %TileMap.get_cell_tile_data(0, mouse_cell_pos)
-#		%TileMap.set_cell(0, mouse_cell_pos, 0, Vector2(0, 1))
-#		Debug.dprint(data)
 
 	if not build_mode:
 		if Input.is_action_just_pressed("Build"):
@@ -46,15 +42,7 @@ func _process(delta):
 			return
 		
 		if Input.is_action_just_pressed("LeftClick"):
-			#var building_scene = buildings[build_type]
-			#var building_instance = building_scene.instantiate()
-			#building_instance.global_position = global_position
-			
-			#%TileMap.set_cell(0, mouse_cell_pos, 0, Vector2(0, 1))
-			#%YSort.add_child(building_instance)
+			Util.main.change_tile.rpc(mouse_cell_pos, Vector2(0, 1))
 			Util.main.spawn_building(global_position, build_type)
-			
-			# todo: place ghost building until it is built by workers
-			
 			exit_build_mode()
 			return
