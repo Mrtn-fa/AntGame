@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var target_threshold: int = 16
+var target_threshold: int = 16
 
 @onready var agent = $NavigationAgent2D
 @onready var rays = [
@@ -19,14 +19,15 @@ var interest = [0, 0, 0, 0, 0, 0, 0]
 var target_node = null
 
 
-func set_target(target: Object):
+func set_target(target: Object, radius: int=16):
+	target_threshold = radius
 	var pos
 	if not target or is_instance_of(target, TileMap):
 		target_node = null
 		pos = get_global_mouse_position()
 	else:
 		target_node = target
-		pos = Vector2(target.get_position())
+		pos = Vector2(target.get_global_position())
 	agent.set_target_position(pos)
 	return agent.is_target_reachable()
 
@@ -60,7 +61,15 @@ func get_direction() -> Vector2:
 
 func _set_interest() -> Vector2:
 	var final_direction = 0
-	interest = [0.59, 0.8, 0.79, 1, 0.8, 0.79, 0.6]
+	interest = [
+		0.59 + randf_range(-0.01, 0.01),
+		0.8 + randf_range(-0.01, 0.01),
+		0.79 + randf_range(-0.01, 0.01),
+		1 + randf_range(-0.01, 0.01),
+		0.8 + randf_range(-0.01, 0.01),
+		0.79 + randf_range(-0.01, 0.01),
+		0.6 + randf_range(-0.01, 0.01)
+	]
 	for ray_index in rays.size():
 		var ray = rays[ray_index]
 		if ray.is_colliding():
