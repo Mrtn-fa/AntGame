@@ -44,10 +44,7 @@ text = "0"
 label_settings = SubResource("LabelSettings_5rx36")
 horizontal_alignment = 1
 
-[node name="InteractionArea" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InteractionArea"]
-position = Vector2(2, 0)
-polygon = PackedVector2Array(-48, 0, -48, 32, 48, 32, 48, 0)
+[node name="GatherPoint" type="Node2D" parent="."]
+position = Vector2(0, 28)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

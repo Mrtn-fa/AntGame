@@ -6,8 +6,8 @@ const label = "Storing"
 
 
 func transition():
-	if unit.navigation_component.is_target_reached():
-		unit.interact(unit.navigation_component.get_target())
+	if unit.has_arrived():
+		unit.interact(unit.navigation_component.get_target().get_parent())
 		if unit.current_resource_node == null:
 			unit.change_state(STATE.IDLE)
 		else:

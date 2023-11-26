@@ -8,6 +8,8 @@
 script = ExtResource("1_gek2t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.249998, -0.749999)
+scale = Vector2(0.183594, 0.136719)
 texture = ExtResource("2_sr7uw")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_i3le0")]
