@@ -303,3 +303,7 @@ func _on_team_selector_item_selected(index):
 
 func _on_color_selector_item_selected(index):
 	print(index)
+
+
+func _on_atras_pressed():
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
