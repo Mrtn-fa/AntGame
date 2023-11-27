@@ -46,10 +46,15 @@ func _process(delta):
 		var other_2 = %TileMap.get_neighbor_cell(mouse_cell_pos, TileSet.CELL_NEIGHBOR_TOP_CORNER)
 		var other_3 = %TileMap.get_neighbor_cell(mouse_cell_pos, TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE)
 		
-		var can_build = %TileMap.get_cell_tile_data(0, mouse_cell_pos).get_navigation_polygon(0) and \
-			%TileMap.get_cell_tile_data(0, other_1).get_navigation_polygon(0) and \
-			%TileMap.get_cell_tile_data(0, other_2).get_navigation_polygon(0) and \
-			%TileMap.get_cell_tile_data(0, other_3).get_navigation_polygon(0)
+		var data_0 = %TileMap.get_cell_tile_data(0, mouse_cell_pos)
+		var data_1 = %TileMap.get_cell_tile_data(0, other_1)
+		var data_2 = %TileMap.get_cell_tile_data(0, other_2)
+		var data_3 = %TileMap.get_cell_tile_data(0, other_3)
+		
+		var can_build = (data_0 and data_0.get_navigation_polygon(0)) and \
+			(data_1 and data_1.get_navigation_polygon(0)) and \
+			(data_2 and data_2.get_navigation_polygon(0)) and \
+			(data_3 and data_3.get_navigation_polygon(0))
 
 		if not can_build:
 			$Sprite2D.modulate = Color(1.0, 0.0, 0.0, 0.5)

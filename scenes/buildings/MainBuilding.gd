@@ -5,6 +5,7 @@ class_name MainBuilding extends Building
 @onready var position2 = $Position2
 @onready var pos = 0
 
+var satellites = []
 
 func receive_from(unit: Unit):
 	var player = Game.get_current_player().player_node
