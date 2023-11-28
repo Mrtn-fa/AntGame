@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl0y08s1r301x"]
+[gd_scene load_steps=7 format=3 uid="uid://bl0y08s1r301x"]
 
 [ext_resource type="Script" path="res://scenes/buildings/MainBuilding.gd" id="1_s4e7a"]
 [ext_resource type="Texture2D" uid="uid://cbrf0o48jm3ta" path="res://resources/ant-hill.png" id="2_5fydr"]
 [ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="3_24isx"]
 [ext_resource type="PackedScene" uid="uid://lh7tu41mw41a" path="res://scenes/components/BuildingSelectorComponent.tscn" id="3_ji8ep"]
+[ext_resource type="Texture2D" uid="uid://duu1iusfod81n" path="res://resources/ant-hill-portrait.png" id="5_nbe60"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5rx36"]
 font_size = 12
@@ -49,5 +50,10 @@ horizontal_alignment = 1
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="InteractionArea"]
 position = Vector2(2, 0)
 polygon = PackedVector2Array(-48, 0, -48, 32, 48, 32, 48, 0)
+
+[node name="Sprite2DPortrait" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_nbe60")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
