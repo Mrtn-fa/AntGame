@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://brshgb4qs70ue"]
+
+[ext_resource type="PackedScene" uid="uid://cyn8dcsupiohn" path="res://scenes/units/unit.tscn" id="1_ondpv"]
+[ext_resource type="Script" path="res://scenes/units/combat/Grunt.gd" id="2_etqk3"]
+[ext_resource type="Texture2D" uid="uid://besgrpgdchsl6" path="res://resources/sprites/ant/solider_ant.png" id="2_n0rxn"]
+
+[node name="Unit" instance=ExtResource("1_ondpv")]
+script = ExtResource("2_etqk3")
+
+[node name="Sprite2D" parent="." index="4"]
+texture = ExtResource("2_n0rxn")

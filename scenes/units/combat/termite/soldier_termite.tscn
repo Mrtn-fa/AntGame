@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddgcrdjqinuve"]
+
+[ext_resource type="PackedScene" uid="uid://cyn8dcsupiohn" path="res://scenes/units/unit.tscn" id="1_chfum"]
+[ext_resource type="Texture2D" uid="uid://bfm67rys648bs" path="res://resources/sprites/termite/solider_termite.png" id="2_6jtqn"]
+
+[node name="Unit" instance=ExtResource("1_chfum")]
+
+[node name="Sprite2D" parent="." index="4"]
+texture = ExtResource("2_6jtqn")
