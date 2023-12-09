@@ -1,19 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1qlrdi3ouyhj"]
+[gd_scene load_steps=9 format=3 uid="uid://b1qlrdi3ouyhj"]
 
 [ext_resource type="Script" path="res://scenes/ui/YouWin.gd" id="1_6x5x4"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="1_os4t2"]
-[ext_resource type="Script" path="res://scenes/ui/Label.gd" id="1_ycspm"]
+[ext_resource type="Script" path="res://scenes/ui/SugarLabel.gd" id="1_ycspm"]
 [ext_resource type="Script" path="res://scenes/ui/YouLose.gd" id="2_l2sf0"]
 [ext_resource type="Script" path="res://scenes/ui/TimerLabel.gd" id="2_wy3ac"]
 [ext_resource type="Script" path="res://scenes/ui/UnitContainer.gd" id="3_tw42w"]
+[ext_resource type="Script" path="res://scenes/ui/WoodLabel.gd" id="4_oravm"]
+[ext_resource type="Texture2D" uid="uid://6u25kcnlb5rh" path="res://resources/sprites/wood.png" id="5_tvqkt"]
+[ext_resource type="Texture2D" uid="uid://bbdl4tl1a0lk0" path="res://resources/sprites/sugarcube.png" id="6_vsqum"]
 
 [node name="HUD" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Control" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -38,26 +42,56 @@ script = ExtResource("2_l2sf0")
 
 [node name="UpperBar" type="Node" parent="."]
 
-[node name="PanelContainer" type="PanelContainer" parent="UpperBar"]
+[node name="PanelContainer" type="Panel" parent="UpperBar"]
 offset_right = 640.0
 offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UpperBar/PanelContainer"]
+[node name="TimerLabel" type="Label" parent="UpperBar/PanelContainer"]
+visible = false
 layout_mode = 2
-
-[node name="TimerLabel" type="Label" parent="UpperBar/PanelContainer/HBoxContainer"]
-layout_mode = 2
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 70.0
+offset_bottom = 31.0
 size_flags_horizontal = 3
-horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_wy3ac")
 
-[node name="ResourceLabel" type="Label" parent="UpperBar/PanelContainer/HBoxContainer"]
+[node name="ResourceWood" type="HBoxContainer" parent="UpperBar/PanelContainer"]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 7.0
+offset_right = 632.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="UpperBar/PanelContainer/ResourceWood"]
 layout_mode = 2
-size_flags_horizontal = 3
-horizontal_alignment = 1
+size_flags_horizontal = 6
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("4_oravm")
+
+[node name="Sprite2D" type="Sprite2D" parent="UpperBar/PanelContainer/ResourceWood"]
+position = Vector2(-4, 8)
+texture = ExtResource("5_tvqkt")
+
+[node name="ResourceSugar" type="HBoxContainer" parent="UpperBar/PanelContainer"]
+layout_mode = 2
+offset_left = 481.0
+offset_top = 7.0
+offset_right = 548.0
+offset_bottom = 32.0
+
+[node name="Label" type="Label" parent="UpperBar/PanelContainer/ResourceSugar"]
+layout_mode = 2
+size_flags_horizontal = 6
+horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("1_ycspm")
+
+[node name="Sprite2D" type="Sprite2D" parent="UpperBar/PanelContainer/ResourceSugar"]
+position = Vector2(0, 12)
+texture = ExtResource("6_vsqum")
 
 [node name="LowerBar" type="Node" parent="."]
 
@@ -79,22 +113,7 @@ layout_mode = 2
 columns = 5
 script = ExtResource("3_tw42w")
 
-[node name="Sprite2D2" type="Sprite2D" parent="LowerBar/PanelContainer/HBoxContainer"]
-position = Vector2(575.5, 24)
-scale = Vector2(0.992188, 1)
-texture = ExtResource("1_os4t2")
-
 [node name="ButtonContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.33
-
-[node name="Sprite2D" type="Sprite2D" parent="LowerBar/PanelContainer/HBoxContainer"]
-position = Vector2(64, 24)
-texture = ExtResource("1_os4t2")
-
-[node name="LowerBarContainer" type="Control" parent="LowerBar"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
