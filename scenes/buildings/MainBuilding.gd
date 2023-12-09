@@ -28,7 +28,6 @@ func woah(event):
 		if sprite.get_rect().has_point(get_local_mouse_position()) and \
 				$Timer.time_left==0 and \
 				(player_id == multiplayer.get_unique_id()):
-			Debug.dprint("Hi!2222")
 			$Timer.start()
 			$TimeRemaining.show()
 

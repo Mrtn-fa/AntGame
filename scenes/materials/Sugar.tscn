@@ -2,18 +2,16 @@
 
 [ext_resource type="Script" path="res://scenes/materials/Sugar.gd" id="1_gek2t"]
 [ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="1_i3le0"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_sr7uw"]
+[ext_resource type="Texture2D" uid="uid://c4fsuykaeljfx" path="res://resources/sprites/sugar_resource.png" id="2_m120e"]
 
 [node name="Sugar" type="StaticBody2D"]
 script = ExtResource("1_gek2t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.249998, -0.749999)
-scale = Vector2(0.183594, 0.136719)
-texture = ExtResource("2_sr7uw")
+texture = ExtResource("2_m120e")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_i3le0")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 2)
-polygon = PackedVector2Array(-12, 6, -12, -12, 12, -12, 12, 6)
+position = Vector2(0, 8)
+polygon = PackedVector2Array(0, -9.48148, -10, 0, 0, 9.48148, 10, 0)
