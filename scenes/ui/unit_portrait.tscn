@@ -14,11 +14,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w0xjt")
 
-[node name="PortraitTexture" type="TextureRect" parent="."]
+[node name="SplitContainer" type="SplitContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+vertical = true
+
+[node name="CenterContainer" type="CenterContainer" parent="SplitContainer"]
 layout_mode = 2
 
-[node name="Health" type="Label" parent="."]
-visible = false
+[node name="PortraitTexture" type="TextureRect" parent="SplitContainer/CenterContainer"]
 layout_mode = 2
-offset_right = 1.0
-offset_bottom = 23.0
+
+[node name="Health" type="Label" parent="SplitContainer"]
+layout_mode = 2
+horizontal_alignment = 1

@@ -4,6 +4,7 @@ class_name MainBuilding extends Building
 @onready var nodo2d = $Position1
 @onready var position2 = $Position2
 @onready var pos = 0
+@onready var portrait_sprite = $Sprite2DPortrait
 
 var satellites = []
 
