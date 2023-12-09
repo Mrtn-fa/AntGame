@@ -9,11 +9,17 @@ func _ready():
 	
 func get_damage(from: Node):
 	if is_instance_of(from, Unit):
-		print("attack from Unit")
-		health -= from.atk
-		print("actual health", health)
+		take_damage(from.atk)
 	if health <= 0:
 		Util.main.despawn_node(self.get_parent())
+		
+func take_damage(amount):
+	health -= amount
+	sync_health.rpc(health)
+
+@rpc("any_peer")
+func sync_health(new_health):
+	health = new_health
 
 func _process(delta):
 	$Label.text = str(health)
