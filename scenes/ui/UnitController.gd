@@ -55,6 +55,7 @@ func _command_group():
 func select_area():
 	selected_units = []
 	for node in selection_components:
+		node.set_selected(false)
 		if node.get_player_id() == multiplayer.get_unique_id():
 			if (node.global_position.x > position.x and node.global_position.x < bottom_right.x \
 					and node.global_position.y > position.y and node.global_position.y < bottom_right.y):
@@ -63,8 +64,6 @@ func select_area():
 					node.set_selected(true)
 				if is_instance_of(node, BuildingSelectorComponent):
 					selected_building = node
-			else:
-				node.set_selected(false)
 	if selected_units.is_empty() and selected_building != null:
 		selected_building.set_selected(true)
 		for selected_unit in selected_units:
@@ -75,24 +74,24 @@ func select_area():
 
 func select_point():
 	selected_units = []
+	#var selected_unit = null
+	var unit_selected = false
 	selected_building = null
-	var selection_found = false
+	
 	for node in selection_components:
 		if node.get_player_id() == multiplayer.get_unique_id():
-			if selection_found:
-				node.set_selected(false)
+			node.set_selected(false)
 			if node.get_rect().has_point(drag_end):
-				if is_instance_of(node, UnitSelectorComponent):
+				if is_instance_of(node, UnitSelectorComponent) and not unit_selected:
 					selected_units.append(node)
-				elif is_instance_of(node, BuildingSelectorComponent):
-					for selected_unit in selected_units:
-						selected_unit.set_selected(false)
-					selected_units = []
+					node.set_selected(true)
+					unit_selected = true
+					selected_building = null
+				elif is_instance_of(node, BuildingSelectorComponent) and not unit_selected:
 					selected_building = node
-				node.set_selected(true)
-				selection_found = true
-			else:
-				node.set_selected(false)
+	
+	if not unit_selected and selected_building != null:
+		selected_building.set_selected(true)
 			
 
 func draw(vis = true):

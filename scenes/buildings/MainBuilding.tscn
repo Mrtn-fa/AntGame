@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cbrf0o48jm3ta" path="res://resources/ant-hill.png" id="2_5fydr"]
 [ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="3_24isx"]
 [ext_resource type="PackedScene" uid="uid://lh7tu41mw41a" path="res://scenes/components/BuildingSelectorComponent.tscn" id="3_ji8ep"]
-[ext_resource type="Texture2D" uid="uid://duu1iusfod81n" path="res://resources/ant-hill-portrait.png" id="5_nbe60"]
+[ext_resource type="Texture2D" uid="uid://dlbo0xpddytpp" path="res://resources/ant-hill-portrait.png" id="5_nbe60"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5rx36"]
 font_size = 12
@@ -15,6 +15,7 @@ collision_mask = 2
 script = ExtResource("1_s4e7a")
 
 [node name="BuildingSelectorComponent" parent="." instance=ExtResource("3_ji8ep")]
+position = Vector2(0, -20)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -21)
