@@ -49,6 +49,7 @@ offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
 
 [node name="HUD" parent="UI" instance=ExtResource("6_llbox")]
+visible = true
 
 [node name="Players" type="Node2D" parent="."]
 

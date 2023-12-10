@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1qlrdi3ouyhj"]
+[gd_scene load_steps=10 format=3 uid="uid://b1qlrdi3ouyhj"]
 
 [ext_resource type="Script" path="res://scenes/ui/YouWin.gd" id="1_6x5x4"]
+[ext_resource type="Theme" uid="uid://jqf4gnrfrjcb" path="res://themes/mainfont.tres" id="1_rh5jg"]
 [ext_resource type="Script" path="res://scenes/ui/SugarLabel.gd" id="1_ycspm"]
 [ext_resource type="Script" path="res://scenes/ui/YouLose.gd" id="2_l2sf0"]
 [ext_resource type="Script" path="res://scenes/ui/TimerLabel.gd" id="2_wy3ac"]
@@ -15,6 +16,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = ExtResource("1_rh5jg")
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -45,6 +47,7 @@ script = ExtResource("2_l2sf0")
 [node name="PanelContainer" type="Panel" parent="UpperBar"]
 offset_right = 640.0
 offset_bottom = 40.0
+theme = ExtResource("1_rh5jg")
 
 [node name="TimerLabel" type="Label" parent="UpperBar/PanelContainer"]
 visible = false
@@ -99,6 +102,7 @@ texture = ExtResource("6_vsqum")
 offset_top = 272.0
 offset_right = 639.0
 offset_bottom = 360.0
+theme = ExtResource("1_rh5jg")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LowerBar/PanelContainer"]
 layout_mode = 2

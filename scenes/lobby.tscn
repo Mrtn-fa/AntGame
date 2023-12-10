@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bslhrv3eo36wd"]
+[gd_scene load_steps=15 format=3 uid="uid://bslhrv3eo36wd"]
 
 [ext_resource type="Script" path="res://scenes/lobby.gd" id="1_g2fmt"]
 [ext_resource type="PackedScene" uid="uid://chbh4lxk8rmmd" path="res://scenes/ui/lobby_player.tscn" id="2_060bj"]
 [ext_resource type="Texture2D" uid="uid://k2byt74lf7x4" path="res://resources/sprites/Tiny Dominion-1.png" id="3_806ve"]
+[ext_resource type="Theme" uid="uid://jqf4gnrfrjcb" path="res://themes/mainfont.tres" id="4_2dpt1"]
 [ext_resource type="Texture2D" uid="uid://bkanwmbk50h85" path="res://resources/sprites/placeholderant.png" id="4_nmryn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8axtq"]
@@ -54,6 +55,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_2dpt1")
 script = ExtResource("1_g2fmt")
 lobby_player_scene = ExtResource("2_060bj")
 
@@ -71,6 +73,7 @@ alignment = 1
 
 [node name="Label2" type="Label" parent="TimeContainer"]
 layout_mode = 2
+theme = ExtResource("4_2dpt1")
 text = "Starting in:"
 
 [node name="Time" type="Label" parent="TimeContainer"]

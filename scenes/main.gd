@@ -18,7 +18,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	$UI/Label.text = str(Engine.get_frames_per_second())
+	pass
+	#$UI/Label.text = str(Engine.get_frames_per_second())
 
 @rpc("any_peer")
 func spawn_server(pos, _type):
