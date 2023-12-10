@@ -302,7 +302,14 @@ func _on_team_selector_item_selected(index):
 		Game.set_current_player_role(Game.Role.TERMITES)
 
 func _on_color_selector_item_selected(index):
-	print(index)
+	if index == 1:
+		Game.set_current_player_color(Game.ChosenColor.YELLOW)
+	elif index == 2:
+		Game.set_current_player_color(Game.ChosenColor.INDIGO)
+	elif index == 3:
+		Game.set_current_player_color(Game.ChosenColor.PINK)
+	elif index == 4:
+		Game.set_current_player_color(Game.ChosenColor.GREEN)
 
 
 func _on_atras_pressed():

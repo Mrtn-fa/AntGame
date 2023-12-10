@@ -103,14 +103,9 @@ offset_bottom = 360.0
 [node name="HBoxContainer" type="HBoxContainer" parent="LowerBar/PanelContainer"]
 layout_mode = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.33
-
 [node name="UnitContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
 layout_mode = 2
-columns = 5
+columns = 8
 script = ExtResource("3_tw42w")
 
 [node name="ButtonContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]

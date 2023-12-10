@@ -66,7 +66,7 @@ func set_player_role(id: int, role: Role) -> void:
 	player_updated.emit(id)
 	
 @rpc("any_peer", "reliable", "call_local")
-func set_player_color(id: int, color: Color) -> void:
+func set_player_color(id: int, color: ChosenColor) -> void:
 	var player = get_player(id)
 	player.color = color
 	player_updated.emit(id)
@@ -74,6 +74,10 @@ func set_player_color(id: int, color: Color) -> void:
 
 func set_current_player_role(role: Role) -> void:
 	set_player_role.rpc(multiplayer.get_unique_id(), role)
+
+
+func set_current_player_color(color: ChosenColor) -> void:
+	set_player_color.rpc(multiplayer.get_unique_id(), color)
 
 
 func is_online() -> bool:
@@ -112,8 +116,6 @@ func _exit_tree():
 
 class PlayerData:
 	var colors = {
-		#Role.ROLE_A: Color.MEDIUM_PURPLE,
-		#Role.ROLE_B: Color.ORANGE_RED
 		ChosenColor.YELLOW: Color.YELLOW,
 		ChosenColor.INDIGO: Color.INDIGO,
 		ChosenColor.PINK: Color.HOT_PINK,
@@ -123,6 +125,7 @@ class PlayerData:
 	var id: int
 	var name: String
 	var role: Role
+	var color: ChosenColor
 	var main_building
 	var enemy_main_building
 	var player_node
@@ -137,8 +140,8 @@ class PlayerData:
 			"id": id,
 			"name": name,
 			"role": role,
-			# "color": color
+			"color": color
 		}
 	
 	func get_color():
-		return colors[role]
+		return colors[color]
