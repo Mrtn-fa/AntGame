@@ -6,7 +6,9 @@ extends Node2D
 var units = []
 var unit_scenes = {
 	"ant_worker": preload("res://scenes/units/specific/ant_worker.tscn"),
-	"termite_worker": preload("res://scenes/units/specific/termite_worker.tscn")
+	"termite_worker": preload("res://scenes/units/specific/termite_worker.tscn"),
+	"ant_grunt": preload("res://scenes/units/specific/ant_grunt.tscn"),
+	"termite_grunt": preload("res://scenes/units/specific/termite_grunt.tscn")
 }
 
 func _ready() -> void:

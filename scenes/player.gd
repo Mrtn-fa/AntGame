@@ -52,8 +52,10 @@ func setup(player_data: Game.PlayerData):
 	
 	if (player_data.role == Game.Role.ANTS):
 		base_unit = "ant_worker"
+		grunt_unit = "ant_grunt"
 	elif (player_data.role == Game.Role.TERMITES):
 		base_unit = "termite_worker"
+		grunt_unit = "termite_grunt"
 
 
 func _process(delta):
@@ -78,4 +80,4 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("DebugSpawnWorker"):
 			Util.main.spawn_unit(get_global_mouse_position(), base_unit)
 		if event.is_action_pressed("DebugSpawnWorkerTermite"):
-			Util.main.spawn_unit(get_global_mouse_position(), "termite_worker")
+			Util.main.spawn_unit(get_global_mouse_position(), grunt_unit)

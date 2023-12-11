@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d30oexvqwh4bt"]
+
+[ext_resource type="PackedScene" uid="uid://ujdt2ff7difb" path="res://scenes/units/grunt.tscn" id="1_7q73i"]
+[ext_resource type="Texture2D" uid="uid://dk0hmwwyd2trb" path="res://resources/sprites/solider_ant.png" id="2_p6a5q"]
+
+[node name="Unit" instance=ExtResource("1_7q73i")]
+
+[node name="Sprite2D" parent="." index="4"]
+texture = ExtResource("2_p6a5q")
