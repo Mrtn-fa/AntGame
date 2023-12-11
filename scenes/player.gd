@@ -69,4 +69,6 @@ func _input(event: InputEvent) -> void:
 			print(Game.get_current_player().player_node)
 			test.rpc_id(1)
 		if event.is_action_pressed("DebugSpawnWorker"):
-			Util.main.spawn_unit(get_global_mouse_position(), "worker")
+			Util.main.spawn_unit(get_global_mouse_position(), "ant_worker")
+		if event.is_action_pressed("DebugSpawnWorkerTermite"):
+			Util.main.spawn_unit(get_global_mouse_position(), "termite_worker")

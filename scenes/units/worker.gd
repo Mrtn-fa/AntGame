@@ -30,6 +30,7 @@ func command(amigo: Node2D):
 		change_state(State.STATE.STORING if amigo.is_owner(player_id) else State.STATE.PURSUING)
 		return
 
+
 func receive(from: Node):
 	super(from)
 	if is_instance_of(from, uMaterial):

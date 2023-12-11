@@ -6,14 +6,14 @@ var state
 var state_factory
 
 @onready var health: HealthComponent = $HealthComponent
-var atk = 2
+@export var atk = 2
 var cooldown_time = 2 # Seconds
 var cooldown = null
 var can_attack = true
 
 @onready var map = $%TileMap
 @onready var navigation_component = $NavigationComponent
-var speed = 50
+@export var speed = 50
 var unit_group = null
 
 

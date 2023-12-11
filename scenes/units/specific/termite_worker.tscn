@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuvhrd5iqak8j"]
+
+[ext_resource type="PackedScene" uid="uid://bbnjqaltvcjpm" path="res://scenes/units/worker.tscn" id="1_afvpa"]
+[ext_resource type="Texture2D" uid="uid://cp0tyhypn1afa" path="res://resources/sprites/soldierTermite.png" id="2_os538"]
+
+[node name="Unit" instance=ExtResource("1_afvpa")]
+
+[node name="Sprite2D" parent="." index="4"]
+texture = ExtResource("2_os538")
