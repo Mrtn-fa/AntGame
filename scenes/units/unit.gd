@@ -109,7 +109,7 @@ func initialize(pos: Vector2, id: int):
 	position = pos
 	player_id = id
 	set_multiplayer_authority(player_id)
-	modulate = Game.get_player(player_id).get_color()
+	#modulate = Game.get_player(player_id).get_color()
 
 
 func _ready():
