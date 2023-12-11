@@ -4,7 +4,9 @@ extends Node2D
 @onready var players: Node2D = $Players
 
 var units = []
-var unit_scene = preload("res://scenes/units/unit.tscn")
+var unit_scenes = {
+	"worker": preload("res://scenes/units/worker.tscn")
+}
 
 func _ready() -> void:
 	Util.main = self
@@ -21,9 +23,9 @@ func _process(_delta: float) -> void:
 	pass
 	#$UI/Label.text = str(Engine.get_frames_per_second())
 
-@rpc("any_peer")
-func spawn_server(pos, _type):
-	var unit = unit_scene.instantiate()
+@rpc("any_peer", "call_local")
+func spawn_server(pos, type):
+	var unit = unit_scenes[type].instantiate()
 	var player_id = multiplayer.get_remote_sender_id()
 
 	if player_id == 0:
@@ -41,10 +43,10 @@ func spawn_building_server(pos, type):
 	var building_scene = Util.building_controller.buildings[type]
 	var building = building_scene.instantiate()
 	var player_id = multiplayer.get_remote_sender_id()
-
+	
 	if player_id == 0:
 		player_id = 1
-		
+	
 	%YSort.add_child(building, true)
 	
 	building.initialize.rpc(pos, player_id)

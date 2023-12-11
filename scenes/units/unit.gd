@@ -143,10 +143,11 @@ func _ready():
 	if not is_multiplayer_authority():
 		return
 
+
 func _physics_process(_delta: float):
 	if not is_multiplayer_authority():
 		return
-		
+	
 	state.process()
 	state.transition()
 	$Label.text = state.label

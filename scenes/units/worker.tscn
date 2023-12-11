@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbnjqaltvcjpm"]
+
+[ext_resource type="PackedScene" uid="uid://cyn8dcsupiohn" path="res://scenes/units/unit.tscn" id="1_1nglq"]
+[ext_resource type="Script" path="res://scenes/units/worker.gd" id="2_54ock"]
+
+[node name="Unit" instance=ExtResource("1_1nglq")]
+script = ExtResource("2_54ock")

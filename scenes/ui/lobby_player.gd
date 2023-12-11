@@ -43,6 +43,7 @@ func _set_player_role(value: Game.Role) -> void:
 		Game.Role.TERMITES:
 			player_role.text = "Termites"
 
+
 func _set_player_color(value: Color) -> void:
 	pass
 
