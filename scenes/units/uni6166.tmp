@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyn8dcsupiohn"]
+
+[ext_resource type="Script" path="res://scenes/units/unit.gd" id="1_3bexo"]
+[ext_resource type="Texture2D" uid="uid://canu86uqrfv3n" path="res://resources/SoldierAntIdleSide1.png" id="2_06ylm"]
+[ext_resource type="PackedScene" uid="uid://vig3vbfj4dy3" path="res://scenes/components/UnitSelectorComponent.tscn" id="2_afmsb"]
+[ext_resource type="PackedScene" uid="uid://dcbg2ws6h8q0w" path="res://scenes/components/NavigationComponent.tscn" id="3_t6dpp"]
+[ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="5_okgtq"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4y7av"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Sprite2D:flip_h")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yuekh"]
+radius = 5.0
+
+[sub_resource type="Theme" id="Theme_ovqgq"]
+default_font_size = 8
+
+[node name="Unit" type="CharacterBody2D" groups=["units"]]
+script = ExtResource("1_3bexo")
+atk = null
+speed = null
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_4y7av")
+
+[node name="UnitSelectorComponent" parent="." instance=ExtResource("2_afmsb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_yuekh")
+
+[node name="NavigationComponent" parent="." instance=ExtResource("3_t6dpp")]
+position = Vector2(0, -3)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -8)
+texture = ExtResource("2_06ylm")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme = SubResource("Theme_ovqgq")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_okgtq")]

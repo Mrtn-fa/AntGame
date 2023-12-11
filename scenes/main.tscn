@@ -60,7 +60,7 @@ _spawnable_scenes = PackedStringArray("res://scenes/buildings/satellite_building
 spawn_path = NodePath("../YSort")
 
 [node name="UnitSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/units/unit.tscn", "res://scenes/units/worker.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/units/unit.tscn", "res://scenes/units/worker.tscn", "res://scenes/units/specific/ant_grunt.tscn", "res://scenes/units/specific/ant_worker.tscn", "res://scenes/units/specific/termite_grunt.tscn", "res://scenes/units/specific/termite_worker.tscn")
 spawn_path = NodePath("../YSort/Units")
 
 [node name="Trees" type="Node" parent="."]

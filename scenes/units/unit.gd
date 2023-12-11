@@ -5,6 +5,8 @@ var player_id: int
 var state
 var state_factory
 
+@onready var selector_component = $UnitSelectorComponent
+
 @onready var health: HealthComponent = $HealthComponent
 @export var atk = 2
 var cooldown_time = 2 # Seconds
@@ -109,7 +111,7 @@ func initialize(pos: Vector2, id: int):
 	position = pos
 	player_id = id
 	set_multiplayer_authority(player_id)
-	#modulate = Game.get_player(player_id).get_color()
+	selector_component.modulate = Game.get_player(player_id).get_color()
 
 
 func _ready():
