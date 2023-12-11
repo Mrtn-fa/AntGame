@@ -7,7 +7,8 @@ var sugar: int
 
 var base_unit = ""
 var grunt_unit = "" 
-
+@onready var ant_home_texture = preload("res://resources/ant-hill.png")
+@onready var termite_home_texture = preload("res://resources/sprites/termite_home.png")
 
 func _ready():
 	wood = STARTING_WOOD
@@ -53,9 +54,13 @@ func setup(player_data: Game.PlayerData):
 	if (player_data.role == Game.Role.ANTS):
 		base_unit = "ant_worker"
 		grunt_unit = "ant_grunt"
+		house.get_node("Sprite2D").texture = ant_home_texture
+		player_data.enemy_main_building.get_node("Sprite2D").texture = termite_home_texture
 	elif (player_data.role == Game.Role.TERMITES):
 		base_unit = "termite_worker"
 		grunt_unit = "termite_grunt"
+		house.get_node("Sprite2D").texture = termite_home_texture
+		player_data.enemy_main_building.get_node("Sprite2D").texture = ant_home_texture
 
 
 func _process(delta):
