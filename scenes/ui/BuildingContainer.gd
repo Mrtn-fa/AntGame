@@ -9,6 +9,7 @@ func _ready():
 func show_main_building(building):
 	button_train_worker.visible = true
 	button_train_worker.target = building
+	button_train_worker.cost = str(building.unit_cost) + " " + building.unit_material
 
 func hide_all():
 	# disconnect main button

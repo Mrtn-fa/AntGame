@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqr8yx8gdqr85"]
+
+[ext_resource type="Script" path="res://scenes/ui/BuildingContainer.gd" id="1_2bwfs"]
+[ext_resource type="PackedScene" uid="uid://conm3dnhjd3ps" path="res://scenes/ui/button_train_worker.tscn" id="2_gsaiv"]
+
+[node name="BuildingContainer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_2bwfs")
+
+[node name="ButtonTrainWorker" parent="." instance=ExtResource("2_gsaiv")]
+visible = false
+layout_mode = 1
+offset_left = -131.0
+offset_top = 22.0
+offset_right = -21.0
+offset_bottom = 53.0
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 3
+anchors_preset = 0
