@@ -30,10 +30,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -104.0
-offset_top = 43.0
-offset_right = 105.0
-offset_bottom = 137.024
+offset_left = -107.0
+offset_top = 20.0
+offset_right = 102.0
+offset_bottom = 114.024
 grow_horizontal = 2
 texture = ExtResource("3_jmsaj")
 expand_mode = 5
@@ -59,6 +59,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Jugar"
 
+[node name="Controles" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Controles"
+
 [node name="Creditos" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Créditos"
@@ -68,5 +72,6 @@ layout_mode = 2
 text = "Salir"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Controles" to="." method="_on_controles_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Creditos" to="." method="_on_creditos_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Salir" to="." method="_on_salir_pressed"]

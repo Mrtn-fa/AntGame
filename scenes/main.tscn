@@ -65,6 +65,24 @@ spawn_path = NodePath("../YSort/Units")
 
 [node name="Trees" type="Node" parent="."]
 
+[node name="Sugar" parent="Trees" instance=ExtResource("10_ygita")]
+position = Vector2(44, -108)
+
+[node name="Sugar2" parent="Trees" instance=ExtResource("10_ygita")]
+position = Vector2(7, -127)
+
+[node name="Sugar3" parent="Trees" instance=ExtResource("10_ygita")]
+position = Vector2(2, -96)
+
+[node name="Sugar4" parent="Trees" instance=ExtResource("10_ygita")]
+position = Vector2(-35, -111)
+
+[node name="Sugar5" parent="Trees" instance=ExtResource("10_ygita")]
+position = Vector2(41, -146)
+
+[node name="Sugar6" parent="Trees" instance=ExtResource("10_ygita")]
+position = Vector2(-18, -144)
+
 [node name="Wood12" parent="Trees" instance=ExtResource("6_2h2ba")]
 position = Vector2(-177, 135)
 collision_layer = 1
@@ -106,8 +124,5 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="Node" type="Node" parent="."]
-
-[node name="Sugar" parent="." instance=ExtResource("10_ygita")]
-position = Vector2(29, -123)
 
 [node name="BuildingController" parent="." instance=ExtResource("3_h2plp")]
