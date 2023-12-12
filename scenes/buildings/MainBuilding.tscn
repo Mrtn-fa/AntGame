@@ -38,7 +38,7 @@ one_shot = true
 MAX_HEALTH = 20.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-46, 1, -29, -21, 36, -21, 47, 10, 0, 21)
+polygon = PackedVector2Array(-76, -1, -31, -27, 40, -27, 77, 0, 51, 31, -38, 30)
 
 [node name="TimeRemaining" type="ProgressBar" parent="."]
 visible = false

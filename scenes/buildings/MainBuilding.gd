@@ -34,10 +34,13 @@ func train():
 	if player_role == Game.Role.TERMITES:
 		base_unit = "termite_worker"
 	
+	if $Timer.time_left != 0:
+		return
+	
 	if not Game.get_current_player().player_node.subtract_if_valid(unit_cost, unit_material):
 		return
 	
-	if $Timer.time_left==0 and (player_id == multiplayer.get_unique_id()):
+	if player_id == multiplayer.get_unique_id():
 		$Timer.start()
 		$TimeRemaining.show()
 
