@@ -8,10 +8,14 @@ class_name MainBuilding extends Building
 
 var satellites = []
 
+
 func receive_from(unit: Unit):
+	# TIME CONSTRAINT: see satellitE_building, i literally copypasted this function lol
+	# should be inheritance, sorry
 	var player = Game.get_current_player().player_node
 	player.add_material(unit)
 	pass
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,3 +53,7 @@ func _on_timer_timeout():
 		$TimeRemaining.hide()
 		Util.main.spawn_unit(posicion, null)
 		pos -= 1
+
+func _exit_tree():
+	if is_owner(multiplayer.get_unique_id()):
+		Util.building_controller.unsubscribe(self)

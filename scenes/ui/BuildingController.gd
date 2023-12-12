@@ -15,6 +15,18 @@ func unsubscribe(node):
 	Debug.dprint("nooooo :'(")
 	drop_off_list.erase(node)
 
+func get_nearest_drop_off(pos):
+	var nearest = Game.get_current_player().main_building
+	var nearest_distance = nearest.get_global_position().distance_to(pos)
+	
+	for node in drop_off_list:
+		var dist = node.get_global_position().distance_to(pos)
+		if dist < nearest_distance:
+			nearest = node
+			nearest_distance = dist
+	
+	return nearest
+
 
 var buildings = {
 	"satellite": preload("res://scenes/buildings/satellite_building.tscn")

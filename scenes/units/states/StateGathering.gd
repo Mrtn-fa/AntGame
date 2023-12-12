@@ -7,8 +7,9 @@ var storage_radius = 32
 
 func transition():
 	if unit.is_full():
-		var main_building = Game.get_current_player().main_building
-		unit.navigation_component.set_target(main_building.get_node("GatherPoint"), storage_radius)
+		var target = Util.building_controller.get_nearest_drop_off(unit.get_global_position())
+
+		unit.navigation_component.set_target(target, storage_radius)
 		unit.change_state(STATE.STORING)
 
 
