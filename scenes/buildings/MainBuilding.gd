@@ -22,12 +22,12 @@ func receive_from(unit: Unit):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Util.houses.append(self)
+	$TimeRemaining.max_value = $Timer.wait_time
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$TimeRemaining.text = "%s" % roundf($Timer.time_left)
-	pass
+	$TimeRemaining.value = $Timer.time_left
 
 func train():
 	var player_role = Game.get_current_player().role

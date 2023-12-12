@@ -5,8 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://b3jehs21w3dcm" path="res://scenes/components/HealthComponent.tscn" id="3_24isx"]
 [ext_resource type="PackedScene" uid="uid://lh7tu41mw41a" path="res://scenes/components/BuildingSelectorComponent.tscn" id="3_ji8ep"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_5rx36"]
-font_size = 12
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ys3s2"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="MainBuilding" type="StaticBody2D"]
 collision_layer = 2
@@ -36,15 +40,14 @@ MAX_HEALTH = 20.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-46, 1, -29, -21, 36, -21, 47, 10, 0, 21)
 
-[node name="TimeRemaining" type="Label" parent="."]
+[node name="TimeRemaining" type="ProgressBar" parent="."]
 visible = false
-offset_left = -11.0
-offset_top = -63.0
-offset_right = 13.0
-offset_bottom = -37.0
-text = "0"
-label_settings = SubResource("LabelSettings_5rx36")
-horizontal_alignment = 1
+offset_left = -47.0
+offset_top = -69.0
+offset_right = 48.0
+offset_bottom = -61.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ys3s2")
+show_percentage = false
 
 [node name="GatherPoint" type="Node2D" parent="."]
 position = Vector2(0, 28)
