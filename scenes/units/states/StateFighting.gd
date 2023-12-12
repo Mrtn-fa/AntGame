@@ -22,4 +22,5 @@ func process():
 	if amigo == null:
 		unit.change_state(STATE.IDLE)
 	elif unit.can_attack:
+		Debug.dprint("AMIGo >:(")
 		unit.interact(amigo)

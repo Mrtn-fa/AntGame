@@ -51,11 +51,12 @@ func interact(to: Node2D):
 	elif is_instance_of(to, uMaterial):
 		to.get_damage(self)
 		can_attack = false
-	elif is_instance_of(to, MainBuilding):
+	elif is_instance_of(to, Building):
 		if to.is_owner(player_id):
 			to.receive_from(self)
 		else:
 			to.receive_damage(self)
+		can_attack = false
 
 func receive(from: Node):
 	if is_instance_of(from, Unit):
