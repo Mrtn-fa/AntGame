@@ -78,6 +78,8 @@ func select_point():
 	var unit_selected = false
 	selected_building = null
 	
+	Debug.dprint("pid =" + str(multiplayer.get_unique_id()))
+	
 	for node in selection_components:
 		if node.get_player_id() == multiplayer.get_unique_id():
 			node.set_selected(false)

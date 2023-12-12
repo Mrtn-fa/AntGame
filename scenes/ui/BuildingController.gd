@@ -4,6 +4,15 @@ var build_mode = false
 
 var build_type = "satellite" # Change this later when multiple building types exist
 
+var drop_off_list = {}
+
+func subscribe(node):
+	Debug.dprint("gaming")
+	drop_off_list[node] = null
+	
+func unsubscribe(node):
+	drop_off_list.erase(node)
+
 
 var buildings = {
 	"satellite": preload("res://scenes/buildings/satellite_building.tscn")

@@ -41,7 +41,7 @@ func spawn_server(pos, type):
 	
 	unit.initialize.rpc(pos, player_id)
 
-@rpc("any_peer")
+@rpc("any_peer", "call_local")
 func spawn_building_server(pos, type):
 	var building_scene = Util.building_controller.buildings[type]
 	var building = building_scene.instantiate()

@@ -48,6 +48,18 @@ func get_target():
 func is_target_reached() -> bool:
 	if target_node == null:
 		return agent.is_navigation_finished()
+
+	if (is_instance_of(target_node, Building) or is_instance_of(target_node, uMaterial)):
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsPointQueryParameters2D.new()
+		query.position = get_parent().get_global_position()
+		var result = space_state.intersect_point(query)
+
+		for thing in result:
+			var collider = thing.collider
+			if collider == target_node:
+				return true
+
 	var distance = get_parent().position.distance_to(target_node.position)
 	return distance < target_threshold or agent.is_navigation_finished()
 
