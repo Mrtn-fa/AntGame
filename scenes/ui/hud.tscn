@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1qlrdi3ouyhj"]
+[gd_scene load_steps=12 format=3 uid="uid://b1qlrdi3ouyhj"]
 
 [ext_resource type="Script" path="res://scenes/ui/YouWin.gd" id="1_6x5x4"]
 [ext_resource type="Theme" uid="uid://jqf4gnrfrjcb" path="res://themes/mainfont.tres" id="1_rh5jg"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scenes/ui/WoodLabel.gd" id="4_oravm"]
 [ext_resource type="Texture2D" uid="uid://6u25kcnlb5rh" path="res://resources/sprites/wood.png" id="5_tvqkt"]
 [ext_resource type="Texture2D" uid="uid://bbdl4tl1a0lk0" path="res://resources/sprites/sugarcube.png" id="6_vsqum"]
+[ext_resource type="Script" path="res://scenes/ui/BuildingContainer.gd" id="10_81tfi"]
+[ext_resource type="Script" path="res://scenes/ui/ButtonTrainWorker.gd" id="11_vnv0i"]
 
 [node name="HUD" type="Control"]
 visible = false
@@ -105,12 +107,37 @@ theme = ExtResource("1_rh5jg")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LowerBar/PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
 
 [node name="Control" type="Control" parent="LowerBar/PanelContainer/HBoxContainer"]
 layout_mode = 2
 
 [node name="UnitContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 columns = 9
 script = ExtResource("3_tw42w")
+
+[node name="BuildingContainer" type="Control" parent="LowerBar/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("10_81tfi")
+
+[node name="ButtonTrainWorker" type="Button" parent="LowerBar/PanelContainer/BuildingContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -22.0
+offset_right = -11.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Train Worker"
+script = ExtResource("11_vnv0i")
+
+[connection signal="pressed" from="LowerBar/PanelContainer/BuildingContainer/ButtonTrainWorker" to="LowerBar/PanelContainer/BuildingContainer/ButtonTrainWorker" method="_on_pressed"]

@@ -25,8 +25,10 @@ var portrait_scene = load("res://scenes/ui/unit_portrait.tscn")
 
 func create_portrait(selected_node , texture: Sprite2D, max_health: int, current_health: int):
 	var portrait = portrait_scene.instantiate()
-	if is_instance_of(selected_node, BuildingSelectorComponent):
-		texture.scale *= 0.25
+	
+	if is_instance_of(selected_node, Building):
+		if is_instance_of(selected_node, MainBuilding):
+			Util.building_container.show_main_building(selected_node)
 		
 	return portrait.init(selected_node, texture, max_health, current_health)
 
@@ -128,6 +130,7 @@ func _process(_delta: float) -> void:
 		bottom_right = Vector2(max(drag_start.x, drag_end.x), max(drag_start.y, drag_end.y))
 		for n in Util.unit_container.get_children():
 			Util.unit_container.remove_child(n)
+			Util.building_container.hide_all()
 			n.queue_free()
 		if drag_start.distance_to(drag_end) > 20:
 			select_area()

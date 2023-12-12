@@ -1,12 +1,12 @@
 class_name MainBuilding extends Building
 
 @onready var sprite = $Sprite2D
-@onready var nodo2d = $Position1
-@onready var position2 = $Position2
+@onready var spawn1 = $Position1
+@onready var spawn2 = $Position2
 @onready var pos = 0
 @onready var portrait_sprite = $Sprite2DPortrait
 
-var satellites = []
+var base_unit = "ant_worker"
 
 
 func receive_from(unit: Unit):
@@ -27,32 +27,23 @@ func _process(delta):
 	$TimeRemaining.text = "%s" % roundf($Timer.time_left)
 	pass
 
-func woah(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if sprite.get_rect().has_point(get_local_mouse_position()) and \
-				$Timer.time_left==0 and \
-				(player_id == multiplayer.get_unique_id()):
-			$Timer.start()
-			$TimeRemaining.show()
-
-func create_unit():
-	if sprite.get_rect().has_point(get_local_mouse_position()) and \
-			$Timer.time_left==0 and \
-			(player_id == multiplayer.get_unique_id()):
+func train():
+	var player_role = Game.get_current_player().role
+	if player_role == Game.Role.TERMITES:
+		base_unit = "termite_worker"
+	
+	if $Timer.time_left==0 and (player_id == multiplayer.get_unique_id()):
 		$Timer.start()
 		$TimeRemaining.show()
 
 func _on_timer_timeout():
-	if pos==0:
-		var posicion = nodo2d.global_position
-		$TimeRemaining.hide()
-		Util.main.spawn_unit(posicion, null)
-		pos += 1
-	else:
-		var posicion = position2.global_position
-		$TimeRemaining.hide()
-		Util.main.spawn_unit(posicion, null)
-		pos -= 1
+	var spawn_x = randf_range(spawn1.global_position.x, spawn2.global_position.x)
+	var spawn_y = randf_range(spawn1.global_position.y, spawn2.global_position.y)
+
+	$TimeRemaining.hide()
+	Util.main.spawn_unit(Vector2(spawn_x, spawn_y), base_unit)
+
+
 
 func _exit_tree():
 	if is_owner(multiplayer.get_unique_id()):
