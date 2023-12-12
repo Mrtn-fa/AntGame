@@ -7,6 +7,8 @@ class_name MainBuilding extends Building
 @onready var portrait_sprite = $Sprite2DPortrait
 
 var base_unit = "ant_worker"
+var unit_cost = 5
+var unit_material = "Sugar"
 
 
 func receive_from(unit: Unit):
@@ -31,6 +33,9 @@ func train():
 	var player_role = Game.get_current_player().role
 	if player_role == Game.Role.TERMITES:
 		base_unit = "termite_worker"
+	
+	if not Game.get_current_player().player_node.subtract_if_valid(unit_cost, unit_material):
+		return
 	
 	if $Timer.time_left==0 and (player_id == multiplayer.get_unique_id()):
 		$Timer.start()

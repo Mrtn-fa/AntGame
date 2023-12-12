@@ -13,7 +13,14 @@ var grunt_unit = ""
 func _ready():
 	wood = STARTING_WOOD
 	sugar = STARTING_SUGAR
-	
+
+func subtract_if_valid(quantity: int, material_type: String):
+	if is_valid_transaction(quantity, material_type):
+		subtract_material(quantity, material_type)
+		return true
+	return false
+
+
 func is_valid_transaction(qtt:int, material_type:String):
 	var material
 	if material_type == 'Wood':

@@ -8,14 +8,12 @@ func _ready():
 	health = MAX_HEALTH
 	
 func get_damage(from: Node):
-	Debug.dprint("yo")
 	if is_instance_of(from, Unit):
 		take_damage(from.atk)
 	if health <= 0:
 		Util.main.despawn_node(self.get_parent())
 		
 func take_damage(amount):
-	Debug.dprint("mr white")
 	health -= amount
 	sync_health.rpc(health)
 
