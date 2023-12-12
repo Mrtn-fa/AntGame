@@ -17,7 +17,9 @@ func define_sprite(pid):
 func initialize(pos: Vector2, id: int):
 	super(pos, id)
 	
-	$Sprite2D.texture = define_sprite(player_id)
+	# código repetido pero filo
+	if Game.get_player(player_id).role == Game.Role.TERMITES:
+		$Sprite2D.texture = alt_texture
 	
 	if is_owner(multiplayer.get_unique_id()):
 		Util.building_controller.subscribe(self)
