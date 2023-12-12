@@ -50,6 +50,7 @@ func setup(player_data: Game.PlayerData):
 	player_data.main_building = house
 	player_data.enemy_main_building = Util.houses[int(player_data.role) - 2]
 	house.get_node("HealthComponent/Label").modulate = player_data.get_color()
+	house.get_node("BuildingSelectorComponent").modulate = player_data.get_color()
 	
 	if (player_data.role == Game.Role.ANTS):
 		base_unit = "ant_worker"

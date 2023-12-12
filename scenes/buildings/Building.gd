@@ -2,6 +2,7 @@ class_name Building extends StaticBody2D
 
 @onready var health = $HealthComponent
 var player_id : int
+var this_sprite = null
 
 func is_owner(p_id:int):
 	return player_id == p_id

@@ -57,18 +57,17 @@ func unblock_tiles(global_pos):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var player = Game.get_current_player().id
 	var global_mouse_pos = get_global_mouse_position()
 	var mouse_cell_pos = %TileMap.local_to_map(global_mouse_pos)
 	var mouse_cell_pos_global = %TileMap.map_to_local(mouse_cell_pos)
 	global_position = mouse_cell_pos_global
 
-
-
 	if not build_mode:
 		if Input.is_action_just_pressed("Build"):
 			var building_scene = buildings[build_type]
 			var building_instance = building_scene.instantiate()
-			$Sprite2D.texture = building_instance.get_node("Sprite2D").texture
+			$Sprite2D.texture = building_instance.define_sprite(player)
 			$Sprite2D.position = building_instance.get_node("Sprite2D").position
 			build_mode = true
 			building_instance.queue_free()

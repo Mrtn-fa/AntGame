@@ -1,13 +1,24 @@
 class_name Satellite extends Building
 
+const alt_texture_path = "res://resources/sprites/termite_satellite.png"
+@onready var alt_texture = preload(alt_texture_path)
+
 func receive_from(unit: Unit):
-	Debug.dprint("gaming?")
 	var player = Game.get_current_player().player_node
 	player.add_material(unit)
+
+func define_sprite(pid):
+	if Game.get_player(pid).role == Game.Role.TERMITES:
+		return load(alt_texture_path)
+	else:
+		return $Sprite2D.texture
 
 
 func initialize(pos: Vector2, id: int):
 	super(pos, id)
+	
+	$Sprite2D.texture = define_sprite(player_id)
+	
 	if is_owner(multiplayer.get_unique_id()):
 		Util.building_controller.subscribe(self)
 
