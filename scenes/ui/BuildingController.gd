@@ -9,8 +9,10 @@ var drop_off_list = {}
 func subscribe(node):
 	Debug.dprint("gaming")
 	drop_off_list[node] = null
+	Debug.dprint(drop_off_list)
 	
 func unsubscribe(node):
+	Debug.dprint("nooooo :'(")
 	drop_off_list.erase(node)
 
 

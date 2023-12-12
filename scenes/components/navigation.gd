@@ -17,6 +17,7 @@ var target_threshold: int = 16
 var distance_to_target = Vector2.ZERO
 var interest = [0, 0, 0, 0, 0, 0, 0]
 var target_node = null
+var move_mode = null
 
 
 func set_target(target: Object, radius: int=16):
@@ -24,8 +25,10 @@ func set_target(target: Object, radius: int=16):
 	var pos
 	if not target or is_instance_of(target, TileMap):
 		target_node = null
+		move_mode = "location"
 		pos = get_global_mouse_position()
 	else:
+		move_mode = "thing"
 		target_node = target
 		pos = Vector2(target.get_global_position())
 	agent.set_target_position(pos)
@@ -46,8 +49,11 @@ func get_target():
 # 2. Está muy cerca a la meta
 # 3. Se acabaron los puntos del camino calculado
 func is_target_reached() -> bool:
-	if target_node == null:
+	if target_node == null and move_mode == "location":
 		return agent.is_navigation_finished()
+	
+	if not is_instance_valid(target_node):
+		return true
 
 	if (is_instance_of(target_node, Building) or is_instance_of(target_node, uMaterial)):
 		var space_state = get_world_2d().direct_space_state
