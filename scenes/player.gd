@@ -36,6 +36,9 @@ func add_material(unit: Unit):
 	
 	if material_type == 'Wood':
 		wood += material_count
+		
+		if Game.get_current_player().role == Game.Role.TERMITES:
+			wood += round(material_count * 0.25)
 	elif material_type == 'Sugar':
 		sugar += material_count
 	unit.subtract_material(material_count)
