@@ -22,9 +22,12 @@ vertical = true
 
 [node name="CenterContainer" type="CenterContainer" parent="SplitContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="PortraitTexture" type="TextureRect" parent="SplitContainer/CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+expand_mode = 1
 
 [node name="Health" type="Label" parent="SplitContainer"]
 layout_mode = 2

@@ -9,7 +9,8 @@ func init(node, sprite: Sprite2D, max_health: int, current_health: int):
 	if is_instance_of(node, Unit):
 		$SplitContainer/CenterContainer/PortraitTexture.texture = sprite.texture
 	elif is_instance_of(node, Building):
-		$SplitContainer/CenterContainer/PortraitTexture.texture = node.portrait_sprite.texture
+		$SplitContainer/CenterContainer/PortraitTexture.texture = node.get_node("Sprite2D").texture
+		
 	$SplitContainer/Health.text = str(current_health)+"/"+str(max_health)
 	var r = lerp(256, 0, current_health/max_health)
 	var g = lerp(0, 256, current_health/max_health)

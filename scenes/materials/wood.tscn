@@ -7,6 +7,9 @@
 [node name="Wood" instance=ExtResource("1_hkh8u")]
 script = ExtResource("2_bvyrv")
 
+[node name="CollisionPolygon2D" parent="." index="0"]
+polygon = PackedVector2Array(0, -10, -24, 5, -1, 24, 20, 5)
+
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_rwqug")
 

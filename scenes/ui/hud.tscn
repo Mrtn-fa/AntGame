@@ -98,20 +98,19 @@ texture = ExtResource("6_vsqum")
 [node name="LowerBar" type="Node" parent="."]
 
 [node name="PanelContainer" type="PanelContainer" parent="LowerBar"]
-offset_top = 272.0
+offset_top = 284.0
 offset_right = 639.0
 offset_bottom = 360.0
 theme = ExtResource("1_rh5jg")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LowerBar/PanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Control" type="Control" parent="LowerBar/PanelContainer/HBoxContainer"]
+layout_mode = 2
 
 [node name="UnitContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
 layout_mode = 2
-columns = 8
+columns = 9
 script = ExtResource("3_tw42w")
-
-[node name="ButtonContainer" type="GridContainer" parent="LowerBar/PanelContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.33
