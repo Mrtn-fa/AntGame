@@ -43,6 +43,18 @@ func exit_build_mode():
 	$Sprite2D.texture = null
 
 
+func unblock_tiles(global_pos):
+	var cell_pos = %TileMap.local_to_map(global_pos)
+	var other_1 = %TileMap.get_neighbor_cell(cell_pos, TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE)
+	var other_2 = %TileMap.get_neighbor_cell(cell_pos, TileSet.CELL_NEIGHBOR_TOP_CORNER)
+	var other_3 = %TileMap.get_neighbor_cell(cell_pos, TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE)
+	
+	Util.main.change_tile.rpc(cell_pos, Vector2(2, 1))
+	Util.main.change_tile.rpc(other_1, Vector2(2, 1))
+	Util.main.change_tile.rpc(other_2, Vector2(2, 1))
+	Util.main.change_tile.rpc(other_3, Vector2(2, 1))
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var global_mouse_pos = get_global_mouse_position()
@@ -64,6 +76,8 @@ func _process(delta):
 		if Input.is_action_just_pressed("Build"):
 			exit_build_mode()
 			return
+		
+		#2, 1
 		
 		var other_1 = %TileMap.get_neighbor_cell(mouse_cell_pos, TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE)
 		var other_2 = %TileMap.get_neighbor_cell(mouse_cell_pos, TileSet.CELL_NEIGHBOR_TOP_CORNER)

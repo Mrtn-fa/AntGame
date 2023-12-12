@@ -12,6 +12,7 @@ func receive_damage(from: Unit):
 
 @rpc("any_peer", "call_local")
 func rip():
+	Util.building_controller.unblock_tiles(get_global_position())
 	self.queue_free()
 
 @rpc("any_peer", "call_local")
