@@ -74,13 +74,14 @@ func setup(player_data: Game.PlayerData):
 
 
 func _process(delta):
-	if Game.get_current_player().main_building == null:
+	if not is_instance_valid(Game.get_current_player().main_building):
 		Util.you_lose.visible = true
 		get_tree().paused = true
 	
-	if Game.get_current_player().enemy_main_building == null:
+	if not is_instance_valid(Game.get_current_player().enemy_main_building):
 		Util.you_win.visible = true
 		get_tree().paused = true
+		
 
 
 @rpc

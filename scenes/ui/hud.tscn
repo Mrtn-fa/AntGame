@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://dqr8yx8gdqr85" path="res://scenes/ui/building_container.tscn" id="10_mvwwg"]
 
 [node name="HUD" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -20,7 +19,6 @@ offset_bottom = 40.0
 theme = ExtResource("1_rh5jg")
 
 [node name="Control" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
