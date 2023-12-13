@@ -13,4 +13,5 @@ func initialize(pos: Vector2, id: int):
 		Util.building_controller.subscribe(self)
 
 func _ready():
+	super()
 	real_building = "satellite"
