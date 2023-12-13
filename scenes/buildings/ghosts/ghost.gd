@@ -4,6 +4,8 @@ class_name Ghost extends Building
 var build_level = 0
 var build_max = 10
 var real_building = ""
+var my_unit = null
+var frame_my_unit_was_set = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +20,6 @@ func build_real():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	Debug.dprint(str(build_level) + "/" + str(build_max))
 	$TimeRemaining.value = build_level
 	
 	if build_level >= build_max:
@@ -26,7 +27,19 @@ func _process(delta):
 
 
 func receive_from(unit: Unit):
-	build_level += unit.build_speed
+	var modifier = 1
+	
+	if Game.get_current_player().role == Game.Role.TERMITES:
+		var time_diff = Engine.get_process_frames() - frame_my_unit_was_set
+		
+		if not is_instance_valid(my_unit) or my_unit == null or time_diff > 1000:
+			my_unit = unit
+			frame_my_unit_was_set = Engine.get_process_frames()
+		
+		if my_unit != unit:
+			modifier = 0
+		
+	build_level += unit.build_speed * modifier
 
 
 @rpc("any_peer", "call_local")
