@@ -42,7 +42,6 @@ func add_material(unit: Unit):
 	elif material_type == 'Sugar':
 		sugar += material_count
 	unit.subtract_material(material_count)
-	#Debug.dprint("unit has " + str(unit.material_count) + ' units of resource')
 	
 #TODO: corregir magic strings
 func subtract_material(qtt:int, material_type:String):
@@ -77,9 +76,11 @@ func setup(player_data: Game.PlayerData):
 func _process(delta):
 	if Game.get_current_player().main_building == null:
 		Util.you_lose.visible = true
+		get_tree().paused = true
 	
 	if Game.get_current_player().enemy_main_building == null:
 		Util.you_win.visible = true
+		get_tree().paused = true
 
 
 @rpc

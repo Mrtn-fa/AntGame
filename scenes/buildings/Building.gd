@@ -9,7 +9,6 @@ func is_owner(p_id:int):
 	return player_id == p_id
 
 func receive_damage(from: Unit):
-	Debug.dprint("ouch!")
 	health.get_damage(from)
 
 @rpc("any_peer", "call_local")
@@ -26,5 +25,3 @@ func initialize(pos: Vector2, id: int):
 	#modulate = Game.get_player(player_id).get_color()
 	$BuildingSelectorComponent.modulate = Game.get_player(player_id).get_color()
 
-func _ready():
-	Debug.dprint("built!")
