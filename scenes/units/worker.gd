@@ -32,7 +32,6 @@ func command(amigo: Node2D):
 				change_state(State.STATE.STORING)
 			elif is_instance_of(amigo, Ghost):
 				change_state(State.STATE.MOVING_TO_BUILD)
-				pass
 		else:
 			change_state(State.STATE.PURSUING)
 		return

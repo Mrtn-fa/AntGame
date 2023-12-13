@@ -1,6 +1,7 @@
 extends Control
 
 @onready var button_train_worker = $ButtonTrainWorker
+@onready var button_train_grunt = $ButtonTrainGrunt
 @onready var button_build_satellite = $ButtonBuildSatellite
 @onready var button_build_barracks = $ButtonBuildBarracks
 
@@ -16,6 +17,13 @@ func hide_building_ui():
 	button_build_satellite.visible = false
 	button_build_barracks.visible = false
 
+
+func show_barracks(building):
+	button_train_grunt.visible = true
+	button_train_grunt.target = building
+	button_train_grunt.cost = str(building.unit_cost) + " " + building.unit_material
+	hide_building_ui()
+
 func show_main_building(building):
 	button_train_worker.visible = true
 	button_train_worker.target = building
@@ -26,6 +34,8 @@ func hide_all():
 	# disconnect main button
 	button_train_worker.visible = false
 	button_train_worker.target = null
+	button_train_grunt.visible = false
+	button_train_grunt.target = null
 	show_building_ui()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqr8yx8gdqr85"]
+[gd_scene load_steps=6 format=3 uid="uid://dqr8yx8gdqr85"]
 
 [ext_resource type="Script" path="res://scenes/ui/BuildingContainer.gd" id="1_2bwfs"]
 [ext_resource type="PackedScene" uid="uid://conm3dnhjd3ps" path="res://scenes/ui/button_train_worker.tscn" id="2_gsaiv"]
 [ext_resource type="PackedScene" uid="uid://fj6o5ej2b1ph" path="res://scenes/ui/button_build_satellite.tscn" id="3_xyues"]
 [ext_resource type="PackedScene" uid="uid://hmeqcwoyxey1" path="res://scenes/ui/button_build_barracks.tscn" id="4_a0lne"]
+[ext_resource type="PackedScene" uid="uid://dv1d1rjdwsoyc" path="res://scenes/ui/button_train_grunt.tscn" id="5_2rsio"]
 
 [node name="BuildingContainer" type="Control"]
 layout_mode = 3
@@ -37,6 +38,16 @@ offset_left = -265.0
 offset_top = 15.0
 offset_right = -145.0
 offset_bottom = 60.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ButtonTrainGrunt" parent="." instance=ExtResource("5_2rsio")]
+visible = false
+layout_mode = 1
+offset_left = -130.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = 61.0
 grow_horizontal = 1
 grow_vertical = 1
 

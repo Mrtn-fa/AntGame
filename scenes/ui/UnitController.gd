@@ -29,6 +29,8 @@ func create_portrait(selected_node , texture: Sprite2D, max_health: int, current
 	if is_instance_of(selected_node, Building):
 		if is_instance_of(selected_node, MainBuilding):
 			Util.building_container.show_main_building(selected_node)
+		elif is_instance_of(selected_node, Barracks):
+			Util.building_container.show_barracks(selected_node)
 		
 	return portrait.init(selected_node, texture, max_health, current_health)
 
@@ -134,6 +136,12 @@ func _process(_delta: float) -> void:
 			select_area()
 		else:
 			select_point()
+			
+		if len(selected_units) > 0:
+			Util.building_container.hide_building_ui()
+		else:
+			Util.building_container.show_building_ui()
+		
 		for selector_unit in selected_units:
 			var sprite = selector_unit.parent_sprite
 			var unit = selector_unit.get_parent()

@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwjiixkmxxc42"]
+[gd_scene load_steps=5 format=3 uid="uid://bwjiixkmxxc42"]
 
 [ext_resource type="PackedScene" uid="uid://ckw4gq40dn2ce" path="res://scenes/buildings/Building.tscn" id="1_0hq7s"]
 [ext_resource type="Script" path="res://scenes/buildings/barracks_building.gd" id="2_wx5tu"]
 [ext_resource type="Texture2D" uid="uid://d0bhup5n8ripl" path="res://resources/sprites/ant_barracks.png" id="3_tqeed"]
 
-[node name="SatelliteBuilding" instance=ExtResource("1_0hq7s")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykdp6"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="BarracksBuilding" instance=ExtResource("1_0hq7s")]
 script = ExtResource("2_wx5tu")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
@@ -20,3 +27,24 @@ position = Vector2(0, -10)
 [node name="Sprite2D" type="Sprite2D" parent="." index="5"]
 position = Vector2(0, -16)
 texture = ExtResource("3_tqeed")
+
+[node name="TimeRemaining" type="ProgressBar" parent="." index="6"]
+visible = false
+offset_left = -47.0
+offset_top = -69.0
+offset_right = 48.0
+offset_bottom = -61.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ykdp6")
+show_percentage = false
+
+[node name="Position1" type="Node2D" parent="." index="7"]
+position = Vector2(44, 19)
+
+[node name="Position2" type="Node2D" parent="." index="8"]
+position = Vector2(-49, 6)
+
+[node name="Timer" type="Timer" parent="." index="9"]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
