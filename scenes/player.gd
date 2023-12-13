@@ -1,6 +1,6 @@
 class_name Player extends Node2D
 
-const STARTING_WOOD = 40
+const STARTING_WOOD = 5
 const STARTING_SUGAR = 20
 var wood : int
 var sugar: int

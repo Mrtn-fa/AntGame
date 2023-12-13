@@ -136,7 +136,7 @@ func _physics_process(_delta: float):
 	
 	state.process()
 	state.transition()
-	$Label.text = state.label
+	#$Label.text = state.label
 	#$Label.text = str(player_id)
 
 # --- --- ---
