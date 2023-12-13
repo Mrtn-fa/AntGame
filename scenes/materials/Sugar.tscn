@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://c4fsuykaeljfx" path="res://resources/sprites/sugar_resource.png" id="2_m120e"]
 
 [node name="Sugar" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_gek2t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
