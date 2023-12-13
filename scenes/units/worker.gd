@@ -1,6 +1,6 @@
 class_name Worker extends Unit
 
-var RESOURCE_MAX = 4
+var RESOURCE_MAX = 8
 var material_count = 0
 var material_type = ''
 var current_resource_node = null

@@ -13,6 +13,7 @@ script = ExtResource("1_gek2t")
 texture = ExtResource("2_m120e")
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_i3le0")]
+MAX_HEALTH = 100.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, 8)
