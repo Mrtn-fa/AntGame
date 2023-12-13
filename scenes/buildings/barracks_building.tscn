@@ -30,10 +30,10 @@ texture = ExtResource("3_tqeed")
 
 [node name="TimeRemaining" type="ProgressBar" parent="." index="6"]
 visible = false
-offset_left = -47.0
-offset_top = -69.0
-offset_right = 48.0
-offset_bottom = -61.0
+offset_left = -22.0
+offset_top = -46.0
+offset_right = 22.0
+offset_bottom = -38.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_ykdp6")
 show_percentage = false
 

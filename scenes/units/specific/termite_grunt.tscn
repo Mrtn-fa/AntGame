@@ -4,6 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://vfnnduwug48q" path="res://resources/sprites/solider_termite.png" id="2_4mmw0"]
 
 [node name="Unit" instance=ExtResource("1_kv381")]
+atk = 8
+speed = 60
 
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_4mmw0")
+
+[node name="HealthComponent" parent="." index="6"]
+MAX_HEALTH = 20.0

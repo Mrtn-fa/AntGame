@@ -25,3 +25,6 @@ func initialize(pos: Vector2, id: int):
 	#modulate = Game.get_player(player_id).get_color()
 	$BuildingSelectorComponent.modulate = Game.get_player(player_id).get_color()
 
+
+func _ready():
+	pass

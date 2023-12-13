@@ -4,6 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dk0hmwwyd2trb" path="res://resources/sprites/solider_ant.png" id="2_p6a5q"]
 
 [node name="Unit" instance=ExtResource("1_7q73i")]
+atk = 8
+speed = 60
 
 [node name="Sprite2D" parent="." index="4"]
 texture = ExtResource("2_p6a5q")
+
+[node name="HealthComponent" parent="." index="6"]
+MAX_HEALTH = 25.0
