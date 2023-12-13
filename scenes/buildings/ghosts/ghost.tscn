@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bshacrkx0fnpr"]
+[gd_scene load_steps=4 format=3 uid="uid://bshacrkx0fnpr"]
 
 [ext_resource type="PackedScene" uid="uid://ckw4gq40dn2ce" path="res://scenes/buildings/Building.tscn" id="1_qth26"]
 [ext_resource type="Script" path="res://scenes/buildings/ghosts/ghost.gd" id="2_lblig"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyqrj"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Building" instance=ExtResource("1_qth26")]
 script = ExtResource("2_lblig")
@@ -12,3 +19,11 @@ position = Vector2(0, -10)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
 position = Vector2(2, 26)
 polygon = PackedVector2Array(30, -26, 5, -47, -6, -47, -33, -27, -18, -19, 16, -18)
+
+[node name="TimeRemaining" type="ProgressBar" parent="." index="4"]
+offset_left = -30.0
+offset_top = -32.0
+offset_right = 33.0
+offset_bottom = -24.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_xyqrj")
+show_percentage = false
