@@ -57,19 +57,20 @@ layout_mode = 2
 
 [node name="Jugar" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Jugar"
+text = "Play
+"
 
 [node name="Controles" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Controles"
+text = "Controls"
 
 [node name="Creditos" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Créditos"
+text = "Credits"
 
 [node name="Salir" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Salir"
+text = "Exit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Controles" to="." method="_on_controles_pressed"]

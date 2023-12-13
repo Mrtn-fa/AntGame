@@ -269,8 +269,7 @@ size_flags_vertical = 8
 
 [node name="Atras" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Atrás"
+text = "Back"
 
 [connection signal="item_selected" from="PanelContainer/Menus/ReadyMenu/HBoxContainer/TeamSelector" to="." method="_on_team_selector_item_selected"]
 [connection signal="item_selected" from="PanelContainer/Menus/ReadyMenu/HBoxContainer/ColorSelector" to="." method="_on_color_selector_item_selected"]
