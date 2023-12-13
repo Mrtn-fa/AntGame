@@ -56,7 +56,7 @@ visible = true
 [node name="Camera" parent="." instance=ExtResource("3_p7ey0")]
 
 [node name="BuildingSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://scenes/buildings/satellite_building.tscn", "res://scenes/buildings/satellite_building.tscn")
+_spawnable_scenes = PackedStringArray("res://scenes/buildings/satellite_building.tscn", "res://scenes/buildings/satellite_building.tscn", "res://scenes/buildings/ghosts/satellite_ghost.tscn")
 spawn_path = NodePath("../YSort")
 
 [node name="UnitSpawner" type="MultiplayerSpawner" parent="."]

@@ -28,7 +28,8 @@ func get_nearest_drop_off(pos):
 
 
 var buildings = {
-	"satellite": preload("res://scenes/buildings/satellite_building.tscn")
+	"satellite": preload("res://scenes/buildings/satellite_building.tscn"),
+	"satelliteghost": preload("res://scenes/buildings/ghosts/satellite_ghost.tscn")
 }
 
 
@@ -123,11 +124,13 @@ func _process(delta):
 			
 			player_node.subtract_if_valid(build_cost, build_material)
 			
-			Util.main.change_tile.rpc(mouse_cell_pos, Vector2(0, 1))
+			#Util.main.change_tile.rpc(mouse_cell_pos, Vector2(0, 1))
+			#
+			#Util.main.change_tile.rpc(other_1, Vector2(0, 1))
+			#Util.main.change_tile.rpc(other_2, Vector2(0, 1))
+			#Util.main.change_tile.rpc(other_3, Vector2(0, 1))
 			
-			Util.main.change_tile.rpc(other_1, Vector2(0, 1))
-			Util.main.change_tile.rpc(other_2, Vector2(0, 1))
-			Util.main.change_tile.rpc(other_3, Vector2(0, 1))
+			build_type = build_type + "ghost"
 			
 			Util.main.spawn_building(global_position, build_type)
 			exit_build_mode()

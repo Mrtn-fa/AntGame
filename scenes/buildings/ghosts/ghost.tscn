@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bshacrkx0fnpr"]
+
+[ext_resource type="PackedScene" uid="uid://ckw4gq40dn2ce" path="res://scenes/buildings/Building.tscn" id="1_qth26"]
+[ext_resource type="Script" path="res://scenes/buildings/ghosts/ghost.gd" id="2_lblig"]
+
+[node name="Building" instance=ExtResource("1_qth26")]
+script = ExtResource("2_lblig")
+
+[node name="BuildingSelectorComponent" parent="." index="2"]
+position = Vector2(0, -10)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
+position = Vector2(2, 26)
+polygon = PackedVector2Array(30, -26, 5, -47, -6, -47, -33, -27, -18, -19, 16, -18)

@@ -27,7 +27,14 @@ func command(amigo: Node2D):
 		return
 
 	if is_instance_of(amigo, Building):
-		change_state(State.STATE.STORING if amigo.is_owner(player_id) else State.STATE.PURSUING)
+		if amigo.is_owner(player_id):
+			if is_instance_of(amigo, MainBuilding) or is_instance_of(amigo, Satellite):
+				change_state(State.STATE.STORING)
+			elif is_instance_of(amigo, Ghost):
+				# move to build state
+				pass
+		else:
+			change_state(State.STATE.PURSUING)
 		return
 
 
