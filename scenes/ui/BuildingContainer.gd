@@ -2,6 +2,7 @@ extends Control
 
 @onready var button_train_worker = $ButtonTrainWorker
 @onready var button_build_satellite = $ButtonBuildSatellite
+@onready var button_build_barracks = $ButtonBuildBarracks
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,9 +10,11 @@ func _ready():
 
 func show_building_ui():
 	button_build_satellite.visible = true
+	button_build_barracks.visible = true
 	
 func hide_building_ui():
 	button_build_satellite.visible = false
+	button_build_barracks.visible = false
 
 func show_main_building(building):
 	button_train_worker.visible = true

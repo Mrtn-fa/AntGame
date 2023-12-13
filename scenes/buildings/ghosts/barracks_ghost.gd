@@ -1,6 +1,6 @@
 extends Ghost
 
-const alt_texture_path = "res://resources/sprites/termite_satellite_ghost.png"
+const alt_texture_path = "res://resources/sprites/termite_barracks_ghost.png"
 @onready var alt_texture = preload(alt_texture_path)
 
 func initialize(pos: Vector2, id: int):
@@ -11,4 +11,4 @@ func initialize(pos: Vector2, id: int):
 
 func _ready():
 	super()
-	real_building = "satellite"
+	real_building = "barracks"

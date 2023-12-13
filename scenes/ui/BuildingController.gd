@@ -29,7 +29,9 @@ func get_nearest_drop_off(pos):
 
 var buildings = {
 	"satellite": preload("res://scenes/buildings/satellite_building.tscn"),
-	"satelliteghost": preload("res://scenes/buildings/ghosts/satellite_ghost.tscn")
+	"satelliteghost": preload("res://scenes/buildings/ghosts/satellite_ghost.tscn"),
+	"barracks": preload("res://scenes/buildings/barracks_building.tscn"),
+	"barracksghost": preload("res://scenes/buildings/ghosts/barracks_ghost.tscn")
 }
 
 

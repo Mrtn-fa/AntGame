@@ -27,6 +27,8 @@ func _process(delta):
 
 
 func receive_from(unit: Unit):
+	$TimeRemaining.visible = true
+	
 	var modifier = 1
 	
 	if Game.get_current_player().role == Game.Role.TERMITES:

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqr8yx8gdqr85"]
+[gd_scene load_steps=5 format=3 uid="uid://dqr8yx8gdqr85"]
 
 [ext_resource type="Script" path="res://scenes/ui/BuildingContainer.gd" id="1_2bwfs"]
 [ext_resource type="PackedScene" uid="uid://conm3dnhjd3ps" path="res://scenes/ui/button_train_worker.tscn" id="2_gsaiv"]
 [ext_resource type="PackedScene" uid="uid://fj6o5ej2b1ph" path="res://scenes/ui/button_build_satellite.tscn" id="3_xyues"]
+[ext_resource type="PackedScene" uid="uid://hmeqcwoyxey1" path="res://scenes/ui/button_build_barracks.tscn" id="4_a0lne"]
 
 [node name="BuildingContainer" type="Control"]
 layout_mode = 3
@@ -26,6 +27,18 @@ offset_bottom = 60.0
 grow_horizontal = 1
 grow_vertical = 1
 focus_mode = 0
+
+[node name="ButtonBuildBarracks" parent="." instance=ExtResource("4_a0lne")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = -265.0
+offset_top = 15.0
+offset_right = -145.0
+offset_bottom = 60.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Control" type="Control" parent="."]
 custom_minimum_size = Vector2(16, 0)

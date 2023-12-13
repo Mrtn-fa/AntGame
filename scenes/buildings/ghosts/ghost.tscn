@@ -21,6 +21,7 @@ position = Vector2(2, 26)
 polygon = PackedVector2Array(30, -26, 5, -47, -6, -47, -33, -27, -18, -19, 16, -18)
 
 [node name="TimeRemaining" type="ProgressBar" parent="." index="4"]
+visible = false
 offset_left = -30.0
 offset_top = -32.0
 offset_right = 33.0
