@@ -44,17 +44,22 @@ func exit_build_mode():
 	$Sprite2D.texture = null
 
 
-func unblock_tiles(global_pos):
+func fill_tiles(global_pos, type):
 	var cell_pos = %TileMap.local_to_map(global_pos)
 	var other_1 = %TileMap.get_neighbor_cell(cell_pos, TileSet.CELL_NEIGHBOR_TOP_RIGHT_SIDE)
 	var other_2 = %TileMap.get_neighbor_cell(cell_pos, TileSet.CELL_NEIGHBOR_TOP_CORNER)
 	var other_3 = %TileMap.get_neighbor_cell(cell_pos, TileSet.CELL_NEIGHBOR_TOP_LEFT_SIDE)
 	
-	Util.main.change_tile.rpc(cell_pos, Vector2(2, 1))
-	Util.main.change_tile.rpc(other_1, Vector2(2, 1))
-	Util.main.change_tile.rpc(other_2, Vector2(2, 1))
-	Util.main.change_tile.rpc(other_3, Vector2(2, 1))
+	Util.main.change_tile.rpc(cell_pos, type)
+	Util.main.change_tile.rpc(other_1, type)
+	Util.main.change_tile.rpc(other_2, type)
+	Util.main.change_tile.rpc(other_3, type)
 
+func unblock_tiles(global_pos):
+	fill_tiles(global_pos, Vector2(2, 1))
+
+func block_tiles(global_pos):
+	fill_tiles(global_pos, Vector2(0, 1))
 
 func enter_build_mode(building, _build_cost, _build_material):
 	build_cost = _build_cost

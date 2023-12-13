@@ -31,7 +31,7 @@ func command(amigo: Node2D):
 			if is_instance_of(amigo, MainBuilding) or is_instance_of(amigo, Satellite):
 				change_state(State.STATE.STORING)
 			elif is_instance_of(amigo, Ghost):
-				# move to build state
+				change_state(State.STATE.MOVING_TO_BUILD)
 				pass
 		else:
 			change_state(State.STATE.PURSUING)

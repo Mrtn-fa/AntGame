@@ -11,3 +11,6 @@ func initialize(pos: Vector2, id: int):
 	
 	if is_owner(multiplayer.get_unique_id()):
 		Util.building_controller.subscribe(self)
+
+func _ready():
+	real_building = "satellite"

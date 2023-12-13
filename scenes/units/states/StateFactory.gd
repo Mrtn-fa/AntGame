@@ -13,7 +13,9 @@ func _init():
 		State.STATE.GATHERING: StateGathering,
 		State.STATE.STORING: StateStoring,
 		State.STATE.PURSUING: StatePursuing,
-		State.STATE.FIGHTING: StateFighting
+		State.STATE.FIGHTING: StateFighting,
+		State.STATE.MOVING_TO_BUILD: StateMovingToBuild,
+		State.STATE.BUILDING: StateBuilding
 	}
 
 

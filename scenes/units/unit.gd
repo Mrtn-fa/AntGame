@@ -9,6 +9,7 @@ var state_factory
 
 @onready var health: HealthComponent = $HealthComponent
 @export var atk = 2
+var build_speed = 1
 var cooldown_time = 2 # Seconds
 var cooldown = null
 var can_attack = true

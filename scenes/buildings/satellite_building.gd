@@ -17,6 +17,8 @@ func define_sprite(pid):
 func initialize(pos: Vector2, id: int):
 	super(pos, id)
 	
+	Util.building_controller.block_tiles(get_global_position())
+	
 	# código repetido pero filo
 	if Game.get_player(player_id).role == Game.Role.TERMITES:
 		$Sprite2D.texture = alt_texture
